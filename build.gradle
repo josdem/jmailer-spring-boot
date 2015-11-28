@@ -28,6 +28,8 @@ dependencies {
   compile 'org.springframework.boot:spring-boot-starter-web'
   compile 'org.springframework.boot:spring-boot-starter-aop'
   compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  compile 'org.springframework:spring-jms'
+  compile 'org.apache.activemq:activemq-broker'
   compile 'org.codehaus.groovy:groovy:2.4.5'
   compile 'com.google.code.gson:gson:2.3.1'
   testCompile 'org.springframework.boot:spring-boot-starter-test'
