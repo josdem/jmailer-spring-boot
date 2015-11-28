@@ -17,8 +17,6 @@ class NotificationServiceImpl implements NotificationService {
 
   @Autowired
   MailService mailService
-  @Autowired
-  Properties properties
 
   private Log log = LogFactory.getLog(getClass())
 
@@ -33,8 +31,8 @@ class NotificationServiceImpl implements NotificationService {
     String templateKey = "${messageCommand.type.toString()}_PATH"
     String subjectKey = "${messageCommand.type.toString()}_SUBJECT"
 
-    String templateName = properties.getProperty(templateKey)
-    String subject = properties.getProperty(subjectKey)
+    String templateName = 'message.ftl'
+    String subject = 'hello'
 
     log.info("Sending email with subject: " + subject)
     [subject, templateName]

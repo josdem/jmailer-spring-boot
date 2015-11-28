@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.jms.config.JmsListenerContainerFactory
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean
 import org.springframework.util.FileSystemUtils
 
 @SpringBootApplication
@@ -22,7 +23,7 @@ class JmailerApplication {
   }
 
   @Bean
-  public JavaMailSenderImpl javaMailSenderImpl(){
+  JavaMailSenderImpl javaMailSenderImpl(){
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl()
     mailSender.setHost("smtp.gmail.com")
     mailSender.setPort(587)
