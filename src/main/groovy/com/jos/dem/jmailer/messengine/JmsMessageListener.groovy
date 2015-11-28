@@ -1,4 +1,4 @@
-package com.jos.dem.jmailer.service
+package com.jos.dem.jmailer.messengine
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ConfigurableApplicationContext
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 import org.springframework.util.FileSystemUtils
 
 @Component
-public class Receiver {
+class JmsMessageListener {
 
   @Autowired
   ConfigurableApplicationContext context
@@ -18,4 +18,6 @@ public class Receiver {
     context.close()
     FileSystemUtils.deleteRecursively(new File("activemq-data"))
   }
+
 }
+
