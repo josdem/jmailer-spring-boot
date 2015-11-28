@@ -21,7 +21,6 @@ class JmailerApplication {
   }
 
   static void main(String[] args) {
-    FileSystemUtils.deleteRecursively(new File("activemq-data"))
     SpringApplication.run(JmailerApplication.class, args)
   }
 
