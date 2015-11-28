@@ -8,6 +8,8 @@ import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Component
 import org.springframework.util.FileSystemUtils
 
+import com.jos.dem.jmailer.service.NotificationService
+
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
