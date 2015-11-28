@@ -1,6 +1,7 @@
 package com.jos.dem.jmailer.service.impl
 
 import javax.jms.JMSException
+import javax.jms.ObjectMessage
 import javax.jms.Message
 import javax.jms.Session
 
@@ -27,13 +28,16 @@ class MessageServiceImpl implements MessageService {
 
   void message(final MessageCommand command) {
     MessageCreator messageCreator = new MessageCreator() {
+
       @Override
       public Message createMessage(Session session) throws JMSException {
-        return session.createTextMessage("ping!")
+        ObjectMessage message = session.createObjectMessage()
+        message.setObject(command)
+        return message
       }
     }
 
     log.info 'Sending a new message'
-    jmsTemplate.send("mailbox-destination", messageCreator)
+    jmsTemplate.send("destination", messageCreator)
   }
 }
