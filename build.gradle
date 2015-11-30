@@ -40,3 +40,8 @@ dependencies {
 task wrapper(type: Wrapper) {
   gradleVersion = '2.7'
 }
+
+bootRun {
+  systemProperties = System.properties
+}
+

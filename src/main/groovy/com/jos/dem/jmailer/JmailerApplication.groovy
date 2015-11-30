@@ -10,10 +10,16 @@ import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.jms.config.JmsListenerContainerFactory
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.util.FileSystemUtils
 
 @SpringBootApplication
 class JmailerApplication {
+
+  @Value('${email.username}')
+  String username
+  @Value('${email.password}')
+  String password
 
   @Bean
   JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
@@ -27,8 +33,8 @@ class JmailerApplication {
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl()
     mailSender.setHost("smtp.gmail.com")
     mailSender.setPort(587)
-    mailSender.setUsername("soporte@techminds.com.mx")
-    mailSender.setPassword("T3chminds2016")
+    mailSender.setUsername(username)
+    mailSender.setPassword(password)
     Properties prop = mailSender.getJavaMailProperties()
     prop.put("mail.transport.protocol", "smtp")
     prop.put("mail.smtp.auth", "true")
