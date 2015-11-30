@@ -26,7 +26,7 @@ class NotificationServiceImpl implements NotificationService {
   private Log log = LogFactory.getLog(getClass())
 
   @Override
-  void sendNotification(MessageCommand messageCommand) {
+  Boolean sendNotification(MessageCommand messageCommand) {
      def data = [email:messageCommand.email, subject:subject]
      mailService.sendMailWithTemplate(data, messageCommand.properties, template)
   }

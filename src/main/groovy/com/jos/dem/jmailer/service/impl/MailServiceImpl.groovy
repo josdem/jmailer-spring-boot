@@ -27,7 +27,7 @@ class MailServiceImpl implements MailService {
 
   Log log = LogFactory.getLog(getClass())
 
-  void sendMailWithTemplate(final Map values, final Map model, final String template) {
+  Boolean sendMailWithTemplate(final Map values, final Map model, final String template) {
     MimeMessagePreparator preparator = new MimeMessagePreparator() {
       void prepare(MimeMessage mimeMessage) throws Exception {
         MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true)
@@ -40,6 +40,7 @@ class MailServiceImpl implements MailService {
     }
 
     this.javaMailSender.send(preparator)
+    return true
   }
 
 }

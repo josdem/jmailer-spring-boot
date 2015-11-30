@@ -4,6 +4,6 @@ import com.jos.dem.jmailer.command.MessageCommand
 
 interface NotificationService {
 
-  void sendNotification(MessageCommand command)
+  Boolean sendNotification(MessageCommand command)
 
 }
