@@ -33,4 +33,9 @@ class EmailerController {
     new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
+  @RequestMapping("/")
+  String index() {
+    "index"
+  }
+
 }
