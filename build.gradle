@@ -32,9 +32,7 @@ dependencies {
   compile 'org.springframework:spring-jms'
   compile 'org.apache.activemq:activemq-broker'
   compile 'org.codehaus.groovy:groovy:2.4.5'
-  compile 'com.google.code.gson:gson:2.3.1'
   compile 'org.freemarker:freemarker:2.3.23'
-  testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -45,9 +43,3 @@ task wrapper(type: Wrapper) {
 bootRun {
   systemProperties = System.properties
 }
-
-test {
-  systemProperties = System.properties
-}
-
-
