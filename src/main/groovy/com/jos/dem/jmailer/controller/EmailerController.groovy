@@ -25,13 +25,6 @@ class EmailerController {
 
   Log log = LogFactory.getLog(this.class)
 
-  @RequestMapping(method = POST, value = "/message", consumes="application/json")
-  @ResponseBody
-  ResponseEntity<String> message(@RequestBody MessageCommand command) {
-    log.info "Sending contact email: ${command.email}"
-    emailerService.sendEmail(command)
-    new ResponseEntity<String>("OK", HttpStatus.OK)
-  }
 
   @RequestMapping("/")
   String index() {
@@ -53,5 +46,19 @@ class EmailerController {
     "batch"
   }
 
+  @RequestMapping(method = POST, value = "/message", consumes="application/json")
+  @ResponseBody
+  ResponseEntity<String> message(@RequestBody MessageCommand command) {
+    log.info "Sending contact email: ${command.email}"
+    emailerService.sendEmail(command)
+    new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
+  @RequestMapping(method = POST,  value = "/contact")
+  String contact(@RequestBody FormCommand command) {
+    log.info "Sending josdem contact email: ${command.emailContact}"
+    emailerService.sendEmail(command)
+    return "redirect:http://josdem.io/flyer/jmailer"
+  }
 
 }
