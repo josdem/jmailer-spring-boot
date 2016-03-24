@@ -43,5 +43,9 @@ class EmailerController {
     "command_line"
   }
 
+  @RequestMapping("/form")
+  String form() {
+    "form"
+  }
 
 }

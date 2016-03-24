@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <a class="navbar-brand" href="/">Jmailer</a>
+    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Form</h1>
+        <p>Send email from everywhere</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Register Here</a></p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <p>You can send email using a form</p>
+        <br/>
+        <h4>Form</h4>
+        <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
+        <br/>
+        <form method="POST" action="http://jmailer.josdem.io/form">
+          <div class="panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">Send you a message</h4>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+              </div>
+              <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
+              </div>
+              <div class="form-group">
+                <label>Message:</label>
+                <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br/><br/><br/>
+    <footer>
+      <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <a class="navbar-brand" href="http://josdem.io">© josdem.io 2016</a>
+      </nav>
+    </footer>
+  </body>
+</html>
