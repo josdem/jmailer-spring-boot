@@ -55,9 +55,18 @@ class EmailerController {
 
   @RequestMapping(method = POST,  value = "/form")
   String form(MessageCommand command) {
-    log.info "Sending josdem contact email: ${command.emailContact}"
+    log.info "Sending email to: ${command.emailContact}"
+    command.email = command.emailContact
+    command.message = "${command.message}, Thank you for using Jmailer!"
+    emailerService.sendEmail(command)
+    return "redirect:http://josdem.io/flyer/jmailer"
+  }
+
+  @RequestMapping(method = POST,  value = "/contact")
+  String contact(MessageCommand command) {
+    log.info "Send more information to email: ${command.emailContact}"
     command.email = 'joseluis.delacruz@gmail.com'
-    command.message = "${command.message} Reply to: ${command.emailContact}"
+    command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"
     emailerService.sendEmail(command)
     return "redirect:http://josdem.io/flyer/jmailer"
   }

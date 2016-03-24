@@ -5,5 +5,6 @@ class MessageCommand implements Command {
   String message
   String name
   String emailContact
+  String source
 }
 

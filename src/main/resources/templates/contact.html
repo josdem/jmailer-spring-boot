@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <a class="navbar-brand" href="/">Jmailer</a>
+    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Register</h1>
+        <p>Send email from everywhere</p>
+        <p><a class="btn btn-primary btn-lg" href="/" role="button">Home</a></p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <p>Thank you for your inquiry</p>
+        <br/>
+        <h4>Contact</h4>
+        <p>Please, send me a message and I will respond as soon as possible</p>
+        <br/>
+        <form method="POST" action="http://jmailer.josdem.io/contact">
+          <div class="panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">Please, send me more information</h4>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+              </div>
+              <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" class="form-control" name="emailContact" placeholder="Enter your email"/>
+              </div>
+              <div class="form-group">
+                <label>Message:</label>
+                <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
+              </div>
+            </div>
+            <input type="hidden" value="jmailer" name="source" />
+            <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br/><br/><br/>
+    <footer>
+      <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <a class="navbar-brand" href="http://josdem.io">© josdem.io 2016</a>
+      </nav>
+    </footer>
+  </body>
+</html>
