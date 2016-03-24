@@ -45,6 +45,11 @@ class EmailerController {
     "batch"
   }
 
+  @RequestMapping("/contact")
+  String contact() {
+    "contact"
+  }
+
   @RequestMapping(method = POST, value = "/message", consumes="application/json")
   @ResponseBody
   ResponseEntity<String> message(@RequestBody MessageCommand command) {
@@ -62,8 +67,8 @@ class EmailerController {
     return "redirect:http://josdem.io/flyer/jmailer"
   }
 
-  @RequestMapping(method = POST,  value = "/contact")
-  String contact(MessageCommand command) {
+  @RequestMapping(method = POST,  value = "/register")
+  String register(MessageCommand command) {
     log.info "Send more information to email: ${command.emailContact}"
     command.email = 'joseluis.delacruz@gmail.com'
     command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"
