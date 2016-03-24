@@ -12,9 +12,10 @@ import org.springframework.jms.config.SimpleJmsListenerContainerFactory
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.util.FileSystemUtils
+import org.springframework.boot.context.web.SpringBootServletInitializer
 
 @SpringBootApplication
-class JmailerApplication {
+class JmailerApplication extends SpringBootServletInitializer {
 
   @Value('${email.username}')
   String username
