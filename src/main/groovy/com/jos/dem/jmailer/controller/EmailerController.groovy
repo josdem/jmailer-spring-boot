@@ -13,7 +13,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.command.MessageCommand
-import com.jos.dem.jmailer.enums.MessageType
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -25,7 +24,6 @@ class EmailerController {
   EmailerService emailerService
 
   Log log = LogFactory.getLog(this.class)
-
 
   @RequestMapping("/")
   String index() {
@@ -51,16 +49,15 @@ class EmailerController {
   @ResponseBody
   ResponseEntity<String> message(@RequestBody MessageCommand command) {
     log.info "Sending contact email: ${command.email}"
-    command.type = MessageType.MESSAGE
     emailerService.sendEmail(command)
     new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
-  @RequestMapping(method = POST,  value = "/contact")
-  String contact(@RequestBody FormCommand command) {
+  @RequestMapping(method = POST,  value = "/form")
+  String form(MessageCommand command) {
     log.info "Sending josdem contact email: ${command.emailContact}"
     command.email = 'joseluis.delacruz@gmail.com'
-    command.type = MessageType.FORM
+    command.message = "${command.message} Reply to: ${command.emailContact}"
     emailerService.sendEmail(command)
     return "redirect:http://josdem.io/flyer/jmailer"
   }
