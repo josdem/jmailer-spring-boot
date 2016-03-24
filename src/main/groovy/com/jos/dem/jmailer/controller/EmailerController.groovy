@@ -38,4 +38,10 @@ class EmailerController {
     "index"
   }
 
+  @RequestMapping("/command-line")
+  String commandLine() {
+    "command_line"
+  }
+
+
 }
