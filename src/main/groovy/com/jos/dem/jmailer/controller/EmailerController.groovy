@@ -48,4 +48,10 @@ class EmailerController {
     "form"
   }
 
+  @RequestMapping("/batch")
+  String batch() {
+    "batch"
+  }
+
+
 }
