@@ -12,6 +12,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import com.jos.dem.jmailer.service.EmailerService
+import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
 
 import org.apache.commons.logging.Log
@@ -22,6 +23,9 @@ class EmailerController {
 
   @Autowired
   EmailerService emailerService
+
+  @Value('${email.redirect}')
+  String redirectUrl
 
   Log log = LogFactory.getLog(this.class)
 
@@ -60,20 +64,9 @@ class EmailerController {
 
   @RequestMapping(method = POST,  value = "/form")
   String form(MessageCommand command) {
-    log.info "Sending email to: ${command.emailContact}"
-    command.email = command.emailContact
-    command.message = "${command.message}, Thank you for using Jmailer!"
-    emailerService.sendEmail(command)
-    return "redirect:http://josdem.io/flyer/jmailer"
-  }
-
-  @RequestMapping(method = POST,  value = "/register")
-  String register(MessageCommand command) {
-    log.info "Send more information to email: ${command.emailContact}"
-    command.email = 'joseluis.delacruz@gmail.com'
-    command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"
-    emailerService.sendEmail(command)
-    return "redirect:http://josdem.io/flyer/jmailer"
+    log.info "Sending email to: ${command.email}"
+    emailerService.sendEmail(emailerFormatter(command))
+    return "redirect:${redirectUrl}"
   }
 
 }

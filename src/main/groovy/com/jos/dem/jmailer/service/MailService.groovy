@@ -1,4 +1,4 @@
-package com.jos.dem.jmailer.integration
+package com.jos.dem.jmailer.service
 
 interface MailService {
 

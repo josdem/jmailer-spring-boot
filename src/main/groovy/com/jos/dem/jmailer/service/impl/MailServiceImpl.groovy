@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils
 import org.springframework.mail.javamail.JavaMailSenderImpl
 
-import com.jos.dem.jmailer.integration.MailService
+import com.jos.dem.jmailer.service.MailService
 
 import freemarker.template.Configuration
 import freemarker.template.Template
