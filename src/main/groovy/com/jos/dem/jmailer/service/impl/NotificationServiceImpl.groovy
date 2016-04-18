@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
-import com.jos.dem.jmailer.integration.MailService
+import com.jos.dem.jmailer.service.MailService
 import com.jos.dem.jmailer.service.NotificationService
 import com.jos.dem.jmailer.command.MessageCommand
 import org.springframework.beans.factory.annotation.Value

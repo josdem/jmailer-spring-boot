@@ -1,4 +1,4 @@
-package com.jos.dem.jmailer.service
+package com.jos.dem.jmailer
 
 import spock.lang.Specification
 

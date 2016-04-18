@@ -1,8 +1,10 @@
 package com.jos.dem.jmailer.service
 
+import com.jos.dem.jmailer.command.MessageCommand
+
 interface EmailerFormatter {
 
-  Command format(Command command)
+  MessageCommand format(MessageCommand command)
 
 }
 

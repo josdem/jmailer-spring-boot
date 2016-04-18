@@ -1,4 +1,4 @@
-package com.jos.dem.jmailer.service
+package com.jos.dem.jmailer
 
 import spock.lang.Specification
 
@@ -8,6 +8,7 @@ import org.springframework.boot.test.IntegrationTest
 import org.springframework.test.context.ContextConfiguration
 
 import com.jos.dem.jmailer.JmailerApplication
+import com.jos.dem.jmailer.service.NotificationService
 import com.jos.dem.jmailer.command.MessageCommand
 
 @ContextConfiguration(loader = SpringApplicationContextLoader.class, classes = JmailerApplication.class)

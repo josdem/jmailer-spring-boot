@@ -1,6 +1,7 @@
 package com.jos.dem.jmailer.controller
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RequestBody
@@ -23,6 +24,8 @@ class EmailerController {
 
   @Autowired
   EmailerService emailerService
+  @Autowired
+  EmailerFormatter emailerFormatter
 
   @Value('${email.redirect}')
   String redirectUrl
@@ -65,7 +68,7 @@ class EmailerController {
   @RequestMapping(method = POST,  value = "/form")
   String form(MessageCommand command) {
     log.info "Sending email to: ${command.email}"
-    emailerService.sendEmail(emailerFormatter(command))
+    emailerService.sendEmail(emailerFormatter.format(command))
     return "redirect:${redirectUrl}"
   }
 
