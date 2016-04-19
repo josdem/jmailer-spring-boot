@@ -1,17 +1,1 @@
-{
-  "name": "jmailer-spring-boot",
-  "homepage": "http://josdem.io",
-  "authors": [
-    "josdem <joseluis.delacruz@gmail.com>"
-  ],
-  "description": "email delivery service",
-  "main": "JmailerApplication",
-  "moduleType": [],
-  "keywords": [
-    "mail"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "bootstrap": "~3.3.6"
-  }
-}
+{"name":"gradle-bower-installer","dependencies":{"bootstrap":"3.3.6"},"install":{"path":"src/main/resources/static/assets/third-party","ignore":[],"sources":{}}}
