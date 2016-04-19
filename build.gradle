@@ -68,4 +68,7 @@ project(":web"){
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile project(":services")
   }
+
+  bootRun.dependsOn rootProject.tasks['bowerInstall']
 }
+
