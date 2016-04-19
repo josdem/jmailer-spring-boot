@@ -1,1 +1,1 @@
-{"name":"gradle-bower-installer","dependencies":{"bootstrap":"3.3.6"},"install":{"path":"src/main/resources/static/assets/third-party","ignore":[],"sources":{}}}
+{"name":"gradle-bower-installer","dependencies":{"bootstrap":"3.3.6"}}
