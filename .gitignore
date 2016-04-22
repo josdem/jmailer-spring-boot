@@ -1,3 +1,5 @@
 .gradle
 build
 src/main/resources/static/assets/third-party/
+node_modules/
+web/
