@@ -12,12 +12,6 @@ buildscript {
   }
 }
 
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.7'
-}
-
-
 subprojects {
   apply plugin: 'groovy'
   apply plugin: 'spring-boot'
@@ -61,3 +55,8 @@ project(":web"){
     compile project(":services")
   }
 }
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.7'
+}
+
