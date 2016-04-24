@@ -18,7 +18,6 @@ class JmailerApplicationTests {
 
 	@Test
 	void shouldLoadContext() {
-    assertEquals('smtp.gmail.com', javaMailSender.host)
     assertEquals(587, javaMailSender.port)
 	}
 

@@ -1,6 +1,7 @@
 package com.jos.dem.jmailer
 
 import spock.lang.Specification
+import spock.lang.Ignore
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationContextLoader
@@ -20,6 +21,7 @@ class NotificationServiceSpec extends Specification {
 
   String email = 'joseluis.delacruz@gmail.com'
 
+  @Ignore
   void "should send an email"(){
   given:"A MessageCommand"
     def messageCommand = new MessageCommand(email:email, message:'Hello from spock')
