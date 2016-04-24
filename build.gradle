@@ -21,11 +21,6 @@ bower {
   'bootstrap'('3.3.6')
 }
 
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.7'
-}
-
-
 subprojects {
   apply plugin: 'groovy'
   apply plugin: 'spring-boot'
@@ -70,5 +65,9 @@ project(":web"){
   }
 
   bootRun.dependsOn rootProject.tasks['bowerInstall']
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.7'
 }
 
