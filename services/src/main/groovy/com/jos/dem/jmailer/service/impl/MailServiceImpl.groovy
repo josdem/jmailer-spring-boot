@@ -21,7 +21,7 @@ import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.mail.javamail.MimeMessagePreparator
 import org.springframework.stereotype.Service
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils
-import org.springframework.mail.javamail.JavaMailSenderImpl
+import org.springframework.mail.javamail.JavaMailSender
 
 import com.jos.dem.jmailer.service.MailService
 
@@ -39,7 +39,7 @@ class MailServiceImpl implements MailService {
   Configuration configuration
 
   @Autowired
-  JavaMailSenderImpl javaMailSender
+  JavaMailSender javaMailSender
 
   Log log = LogFactory.getLog(getClass())
 
