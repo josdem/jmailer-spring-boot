@@ -36,8 +36,8 @@ class EmailerServiceImpl implements EmailerService {
   Log log = LogFactory.getLog(this.class)
 
   def sendEmail(MessageCommand command){
-//    log.info 'Sending email ${command.email}'
-    throw new EmailerException()
+    log.info 'Sending email ${command.email}'
+    messageService.message(command)
   }
 
 }

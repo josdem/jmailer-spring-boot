@@ -16,20 +16,13 @@
 
 package com.jos.dem.jmailer.exception
 
-import org.springframework.beans.factory.annotation.Autowired
 import java.lang.RuntimeException
-
-import com.jos.dem.jmailer.service.LocaleService
 
 class EmailerException extends RuntimeException {
 
-  @Autowired
-  LocaleService localeService
-
   @Override
   String getMessage() {
-    println "localeService: ${localeService.dump()}"
-    localeService.message('emailer.exception')
+    'I could not send email'
   }
 
 }
