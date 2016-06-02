@@ -20,6 +20,8 @@ import org.springframework.context.MessageSource
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 
+import com.jos.dem.jmailer.service.LocaleService
+
 @Service
 class LocaleServiceImpl implements LocaleService {
 

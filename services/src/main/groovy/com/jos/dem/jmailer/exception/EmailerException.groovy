@@ -28,6 +28,7 @@ class EmailerException extends RuntimeException {
 
   @Override
   String getMessage() {
+    println "localeService: ${localeService.dump()}"
     localeService.message('emailer.exception')
   }
 
