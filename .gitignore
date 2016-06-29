@@ -1,5 +1,6 @@
 .gradle
 build
-src/main/resources/static/assets/third-party/
+src/
 web/src/main/resources/static/assets/third-party/jquery/external/
 node_modules/
+
