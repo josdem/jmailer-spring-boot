@@ -48,19 +48,29 @@ class EmailerController {
 
   Log log = LogFactory.getLog(this.class)
 
-  @RequestMapping(method = POST, value = "/message", consumes="application/json")
-  @ResponseBody
-  ResponseEntity<String> message(@RequestBody MessageCommand command) {
-    log.info "Sending contact email: ${command.email}"
-    emailerService.sendEmail(command)
-    new ResponseEntity<String>("OK", HttpStatus.OK)
+  @RequestMapping("/")
+  String index() {
+    "index"
   }
 
-  @RequestMapping(method = POST,  value = "/form")
-  String form(MessageCommand command) {
-    log.info "Sending email to: ${command.email}"
-    emailerService.sendEmail(emailerFormatter.format(command))
-    return "redirect:${redirectUrl}"
+  @RequestMapping("/command-line")
+  String commandLine() {
+    "command_line"
+  }
+
+  @RequestMapping("/form")
+  String form() {
+    "form"
+  }
+
+  @RequestMapping("/batch")
+  String batch() {
+    "batch"
+  }
+
+  @RequestMapping("/contact")
+  String contact() {
+    "contact"
   }
 
 }
