@@ -41,7 +41,7 @@ import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
 import com.jos.dem.jmailer.exception.BusinessException
 
-
+@Api(description="Knows how to send emails")
 @RestController
 class EmailerController {
 
