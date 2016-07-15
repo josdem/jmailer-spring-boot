@@ -18,14 +18,20 @@ package com.jos.dem.jmailer.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.stereotype.Controller
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
@@ -35,10 +41,8 @@ import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
 import com.jos.dem.jmailer.exception.BusinessException
 
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 
-@Controller
+@RestController
 class EmailerController {
 
   @Autowired
@@ -49,19 +53,22 @@ class EmailerController {
   @Value('${email.redirect}')
   String redirectUrl
 
-  Log log = LogFactory.getLog(this.class)
+  Logger logger = LoggerFactory.getLogger(this.class)
 
+  @ApiImplicitParams([
+    @ApiImplicitParam(name = "email", value = "email TO:", required = true, dataType = "string", paramType = "query"),
+    @ApiImplicitParam(name = "message", value = "email body", required = true, dataType = "string", paramType = "query")
+  ])
   @RequestMapping(method = POST, value = "/message", consumes="application/json")
-  @ResponseBody
   ResponseEntity<String> message(@RequestBody MessageCommand command) {
-    log.info "Sending contact email: ${command.email}"
+    logger.info "Sending contact email: ${command.email}"
     emailerService.sendEmail(command)
     new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
   @RequestMapping(method = POST,  value = "/form")
   String form(MessageCommand command) {
-    log.info "Sending email to: ${command.email}"
+    logger.info "Sending email to: ${command.email}"
     emailerService.sendEmail(emailerFormatter.format(command))
     return "redirect:${redirectUrl}"
   }
