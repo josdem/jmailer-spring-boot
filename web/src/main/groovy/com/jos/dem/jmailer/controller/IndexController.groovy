@@ -16,21 +16,8 @@
 
 package com.jos.dem.jmailer.controller
 
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.stereotype.Controller
-import org.springframework.http.ResponseEntity
-import org.springframework.http.HttpStatus
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET
-import static org.springframework.web.bind.annotation.RequestMethod.POST
-
-import com.jos.dem.jmailer.service.EmailerService
-import com.jos.dem.jmailer.service.EmailerFormatter
-import com.jos.dem.jmailer.command.MessageCommand
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -38,38 +25,35 @@ import org.apache.commons.logging.LogFactory
 @Controller
 class IndexController {
 
-  @Autowired
-  EmailerService emailerService
-  @Autowired
-  EmailerFormatter emailerFormatter
-
-  @Value('${email.redirect}')
-  String redirectUrl
-
   Log log = LogFactory.getLog(this.class)
 
   @RequestMapping("/")
   String index() {
+    log.info "Calling index"
     "index"
   }
 
   @RequestMapping("/command-line")
   String commandLine() {
+    log.info "Calling command line"
     "command_line"
   }
 
   @RequestMapping("/form")
   String form() {
+    log.info "Calling form"
     "form"
   }
 
   @RequestMapping("/batch")
   String batch() {
+    log.info "Calling batch"
     "batch"
   }
 
   @RequestMapping("/contact")
   String contact() {
+    log.info "Calling contact"
     "contact"
   }
 
