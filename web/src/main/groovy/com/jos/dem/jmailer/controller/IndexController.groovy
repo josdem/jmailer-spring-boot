@@ -19,41 +19,41 @@ package com.jos.dem.jmailer.controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.stereotype.Controller
 
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Controller
 class IndexController {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger logger = LoggerFactory.getLogger(this.class)
 
   @RequestMapping("/")
   String index() {
-    log.info "Calling index"
+    logger.info "Calling index"
     "index"
   }
 
   @RequestMapping("/command-line")
   String commandLine() {
-    log.info "Calling command line"
+    logger.info "Calling command line"
     "command_line"
   }
 
   @RequestMapping("/form")
   String form() {
-    log.info "Calling form"
+    logger.info "Calling form"
     "form"
   }
 
   @RequestMapping("/batch")
   String batch() {
-    log.info "Calling batch"
+    logger.info "Calling batch"
     "batch"
   }
 
   @RequestMapping("/contact")
   String contact() {
-    log.info "Calling contact"
+    logger.info "Calling contact"
     "contact"
   }
 
