@@ -36,7 +36,7 @@ import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 
 @Controller
-class EmailerController {
+class IndexController {
 
   @Autowired
   EmailerService emailerService
