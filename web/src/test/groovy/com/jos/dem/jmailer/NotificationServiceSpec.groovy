@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.boot.test.IntegrationTest
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.web.WebAppConfiguration
 
 import com.jos.dem.jmailer.JmailerApplication
 import com.jos.dem.jmailer.service.NotificationService
@@ -29,6 +30,7 @@ import com.jos.dem.jmailer.command.MessageCommand
 
 @ContextConfiguration(loader = SpringApplicationContextLoader.class, classes = JmailerApplication.class)
 @IntegrationTest
+@WebAppConfiguration
 class NotificationServiceSpec extends Specification {
 
   @Autowired
