@@ -24,7 +24,7 @@ bower {
 }
 
 ext {
-  springfoxVersion = '2.5.0'
+  springfoxVersion = '2.4.0'
 }
 
 subprojects {

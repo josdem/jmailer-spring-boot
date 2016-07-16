@@ -23,6 +23,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Controller
+@RequestMapping("/index/*")
 class IndexController {
 
   Logger logger = LoggerFactory.getLogger(this.class)

@@ -28,6 +28,8 @@ import org.springframework.web.servlet.ModelAndView
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import io.swagger.annotations.Api
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -41,6 +43,7 @@ import com.jos.dem.jmailer.command.PostCommand
 import com.jos.dem.jmailer.exception.BusinessException
 
 @Api(description="Knows how to send emails")
+@RequestMapping("/emailer/*")
 @RestController
 class EmailerController {
 
@@ -61,7 +64,15 @@ class EmailerController {
     new ResponseEntity<String>("OK", HttpStatus.OK)
   }
 
-  @RequestMapping(method = POST,  value = "/form")
+  @ApiImplicitParams([
+  @ApiImplicitParam(name = "email", value = "email-to@domain", required = true, dataType = "string", paramType = "query"),
+  @ApiImplicitParam(name = "message", value = "message body", required = true, dataType = "string", paramType = "query"),
+  @ApiImplicitParam(name = "name", value = "sender name", required = true, dataType = "string", paramType = "query"),
+  @ApiImplicitParam(name = "emailContact", value = "email-reference@domain", required = true, dataType = "string", paramType = "query"),
+  @ApiImplicitParam(name = "source", value = "source", required = true, dataType = "string", paramType = "query"),
+  @ApiImplicitParam(name = "type", value = "type(REGISTER)", required = true, dataType = "string", paramType = "query")
+  ])
+  @RequestMapping(method = POST,  value = "/form", consumes="application/x-www-form-urlencoded")
   ModelAndView form(PostCommand command) {
     logger.info "Sending email: ${command.dump()}"
     emailerService.sendEmail(emailerFormatter.format(command))
