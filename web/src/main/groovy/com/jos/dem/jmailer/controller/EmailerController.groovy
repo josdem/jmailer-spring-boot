@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.servlet.ModelAndView
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import io.swagger.annotations.Api
@@ -61,10 +62,10 @@ class EmailerController {
   }
 
   @RequestMapping(method = POST,  value = "/form")
-  String form(PostCommand command) {
-    logger.info "Sending email to: ${command.email}"
+  ModelAndView form(PostCommand command) {
+    logger.info "Sending email: ${command.dump()}"
     emailerService.sendEmail(emailerFormatter.format(command))
-    return "redirect:${redirectUrl}"
+    return new ModelAndView("redirect:${redirectUrl}")
   }
 
   @ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Unauthorized")
