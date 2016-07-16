@@ -39,6 +39,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.PostCommand
 import com.jos.dem.jmailer.exception.BusinessException
 
 @Api(description="Knows how to send emails")
@@ -55,10 +56,6 @@ class EmailerController {
 
   Logger logger = LoggerFactory.getLogger(this.class)
 
-  @ApiImplicitParams([
-    @ApiImplicitParam(name = "email", value = "email TO:", required = true, dataType = "string", paramType = "query"),
-    @ApiImplicitParam(name = "message", value = "email body", required = true, dataType = "string", paramType = "query")
-  ])
   @RequestMapping(method = POST, value = "/message", consumes="application/json")
   ResponseEntity<String> message(@RequestBody MessageCommand command) {
     logger.info "Sending contact email: ${command.email}"
@@ -67,7 +64,7 @@ class EmailerController {
   }
 
   @RequestMapping(method = POST,  value = "/form")
-  String form(MessageCommand command) {
+  String form(PostCommand command) {
     logger.info "Sending email to: ${command.email}"
     emailerService.sendEmail(emailerFormatter.format(command))
     return "redirect:${redirectUrl}"
