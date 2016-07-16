@@ -20,7 +20,8 @@ import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.beans.factory.annotation.Autowired
 
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
+import com.jos.dem.jmailer.command.PostCommand
 import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.service.LocaleService
 import com.jos.dem.jmailer.enums.MessageType
@@ -34,7 +35,7 @@ class EmailerFormatterImpl implements EmailerFormatter{
   @Autowired
   LocaleService localeService
 
-  MessageCommand format(MessageCommand command){
+  Command format(PostCommand command){
     if(command.type && MessageType."${command.type}".equals(MessageType.REGISTER)){
       command.email = contact
       command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"

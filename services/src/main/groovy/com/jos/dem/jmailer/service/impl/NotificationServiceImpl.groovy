@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service
 
 import com.jos.dem.jmailer.service.MailService
 import com.jos.dem.jmailer.service.NotificationService
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
 import org.springframework.beans.factory.annotation.Value
 
 import org.apache.commons.logging.Log
@@ -42,9 +42,9 @@ class NotificationServiceImpl implements NotificationService {
   private Log log = LogFactory.getLog(getClass())
 
   @Override
-  Boolean sendNotification(MessageCommand messageCommand) {
-     def data = [email:messageCommand.email, subject:subject]
-     mailService.sendMailWithTemplate(data, messageCommand.properties, template)
+  Boolean sendNotification(Command command) {
+     def data = [email:command.email, subject:subject]
+     mailService.sendMailWithTemplate(data, command.properties, template)
   }
 
 }

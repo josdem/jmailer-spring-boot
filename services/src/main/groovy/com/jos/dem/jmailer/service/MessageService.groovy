@@ -16,10 +16,10 @@
 
 package com.jos.dem.jmailer.service
 
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
 
 interface MessageService {
 
-  void message(final MessageCommand command)
+  void message(final Command command)
 
 }

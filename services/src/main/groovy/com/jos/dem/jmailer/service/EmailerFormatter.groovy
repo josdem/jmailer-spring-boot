@@ -16,11 +16,12 @@
 
 package com.jos.dem.jmailer.service
 
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
+import com.jos.dem.jmailer.command.PostCommand
 
 interface EmailerFormatter {
 
-  MessageCommand format(MessageCommand command)
+  Command format(PostCommand command)
 
 }
 

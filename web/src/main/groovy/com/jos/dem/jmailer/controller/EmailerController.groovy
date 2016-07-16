@@ -27,11 +27,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import io.swagger.annotations.Api
-import io.swagger.annotations.ApiImplicitParam
-import io.swagger.annotations.ApiImplicitParams
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST

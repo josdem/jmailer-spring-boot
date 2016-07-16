@@ -16,10 +16,10 @@
 
 package com.jos.dem.jmailer.service
 
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
 
 interface EmailerService {
 
-  def sendEmail(MessageCommand command)
+  def sendEmail(Command command)
 
 }

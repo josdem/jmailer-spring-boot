@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.service.MessageService
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
 import com.jos.dem.jmailer.exception.EmailerException
 
 import org.apache.commons.logging.Log
@@ -35,7 +35,7 @@ class EmailerServiceImpl implements EmailerService {
 
   Log log = LogFactory.getLog(this.class)
 
-  def sendEmail(MessageCommand command){
+  def sendEmail(Command command){
     log.info 'Sending email ${command.email}'
     messageService.message(command)
   }

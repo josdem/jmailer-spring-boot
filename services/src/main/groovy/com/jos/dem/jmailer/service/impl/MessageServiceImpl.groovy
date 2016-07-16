@@ -28,7 +28,7 @@ import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.core.MessageCreator
 
 import com.jos.dem.jmailer.service.MessageService
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.Command
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -42,7 +42,7 @@ class MessageServiceImpl implements MessageService {
 
   Log log = LogFactory.getLog(this.class)
 
-  void message(final MessageCommand command) {
+  void message(final Command command) {
     MessageCreator messageCreator = new MessageCreator() {
 
       @Override
