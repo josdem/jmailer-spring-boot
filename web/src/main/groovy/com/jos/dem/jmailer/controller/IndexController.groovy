@@ -16,6 +16,7 @@
 
 package com.jos.dem.jmailer.controller
 
+import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
@@ -45,11 +46,12 @@ class IndexController {
   }
 
   @RequestMapping("/form")
-  ModelAndView form() {
+  String form() {
     logger.info "Calling form"
-    ModelAndView modelAndView = new ModelAndView('form')
-    modelAndView.addObject('url', formUrl)
-    modelAndView
+    //ModelAndView modelAndView = new ModelAndView('form')
+    //modelAndView.addObject('url', formUrl)
+    //modelAndView
+    'form'
   }
 
   @RequestMapping("/batch")
