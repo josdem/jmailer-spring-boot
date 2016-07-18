@@ -21,7 +21,7 @@
         <h4>Contact</h4>
         <p>Please, send me a message and I will respond as soon as possible</p>
         <br/>
-        <form method="POST" action="http://jmailer.josdem.io/form">
+        <form th:action="@{/emailer/form}" method="post">
           <div class="panel-primary">
             <div class="panel-heading">
               <h4 class="panel-title">Please, send me more information</h4>
