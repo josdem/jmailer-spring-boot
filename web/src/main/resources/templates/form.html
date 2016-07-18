@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
   <head>
     <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
   </head>
@@ -20,7 +21,7 @@
         <h4>Form</h4>
         <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
         <br/>
-        <form method="POST" action="${urlForm}">
+        <form th:action="@{/emailer/form}" method="post">
           <div class="panel-primary">
             <div class="panel-heading">
               <h4 class="panel-title">Send you a message</h4>

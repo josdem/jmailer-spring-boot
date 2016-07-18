@@ -16,20 +16,14 @@
 
 package com.jos.dem.jmailer.controller
 
-import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Controller
-@RequestMapping("/index/*")
 class IndexController {
-
-  @Value('${url.form}')
-  String formUrl
 
   Logger logger = LoggerFactory.getLogger(this.class)
 
@@ -48,9 +42,6 @@ class IndexController {
   @RequestMapping("/form")
   String form() {
     logger.info "Calling form"
-    //ModelAndView modelAndView = new ModelAndView('form')
-    //modelAndView.addObject('url', formUrl)
-    //modelAndView
     'form'
   }
 
