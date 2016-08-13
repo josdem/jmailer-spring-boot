@@ -19,17 +19,16 @@ package com.jos.dem.jmailer.advice
 import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import com.jos.dem.jmailer.exception.BusinessException
-
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 
 @Aspect
 @Component
 class AfterThrowingAdvice {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   @AfterThrowing(pointcut = "execution(* com.jos.dem.jmailer.service..**.*(..))", throwing = "ex")
   public void doRecoveryActions(RuntimeException ex) {
