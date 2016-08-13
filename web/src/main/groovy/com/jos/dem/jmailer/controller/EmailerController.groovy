@@ -31,9 +31,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
-
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Controller
 class EmailerController {
@@ -46,7 +45,7 @@ class EmailerController {
   @Value('${email.redirect}')
   String redirectUrl
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   @RequestMapping("/")
   String index() {

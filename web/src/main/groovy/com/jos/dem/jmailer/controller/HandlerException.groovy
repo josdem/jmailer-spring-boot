@@ -23,14 +23,13 @@ import javax.servlet.http.HttpServletResponse
 import org.springframework.stereotype.Component
 import org.springframework.http.ResponseEntity
 import org.springframework.web.servlet.ModelAndView
-
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Component
 class HandlerException implements HandlerExceptionResolver {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
     log.info ex.message
