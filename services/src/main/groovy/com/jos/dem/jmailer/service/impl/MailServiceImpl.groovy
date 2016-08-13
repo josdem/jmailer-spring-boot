@@ -22,15 +22,14 @@ import org.springframework.mail.javamail.MimeMessagePreparator
 import org.springframework.stereotype.Service
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils
 import org.springframework.mail.javamail.JavaMailSender
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import com.jos.dem.jmailer.service.MailService
 
 import freemarker.template.Configuration
 import freemarker.template.Template
 import javax.mail.internet.MimeMessage
-
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 
 @Service
 class MailServiceImpl implements MailService {
@@ -41,7 +40,7 @@ class MailServiceImpl implements MailService {
   @Autowired
   JavaMailSender javaMailSender
 
-  Log log = LogFactory.getLog(getClass())
+  Logger log = LoggerFactory.getLogger(this.class)
 
   Boolean sendMailWithTemplate(final Map values, final Map model, final String template) {
     MimeMessagePreparator preparator = new MimeMessagePreparator() {

@@ -19,14 +19,15 @@ package com.jos.dem.jmailer.service.impl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 
 import com.jos.dem.jmailer.service.MailService
 import com.jos.dem.jmailer.service.NotificationService
 import com.jos.dem.jmailer.command.Command
 import org.springframework.beans.factory.annotation.Value
 
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 
 @Service
 class NotificationServiceImpl implements NotificationService {
@@ -39,7 +40,7 @@ class NotificationServiceImpl implements NotificationService {
   @Value('${email.subject}')
   String subject
 
-  private Log log = LogFactory.getLog(getClass())
+  Logger log = LoggerFactory.getLogger(this.class)
 
   @Override
   Boolean sendNotification(Command command) {
