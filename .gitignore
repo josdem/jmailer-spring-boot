@@ -5,3 +5,4 @@ node_modules/
 **.swp
 src/
 bower.json
+web/jmailer.log
