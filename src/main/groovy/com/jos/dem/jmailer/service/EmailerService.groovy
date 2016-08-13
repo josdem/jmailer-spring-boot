@@ -2,15 +2,15 @@ package com.jos.dem.jmailer.service
 
 import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
-import com.jos.dem.jmailer.exception.EmailerException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
+import com.jos.dem.jmailer.exception.EmailerException
 
 @Service
 class EmailerService {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   def sendEmail(){
     log.debug 'Sending email'
