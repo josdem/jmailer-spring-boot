@@ -19,11 +19,12 @@ package com.jos.dem.jmailer.command
 import com.jos.dem.jmailer.enums.MessageType
 
 class PostCommand implements Command {
+  String name
   String email
   String message
-  String name
-  String emailContact
   String source
+  String redirect
+  String emailContact
   MessageType type
 }
 
