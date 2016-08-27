@@ -76,7 +76,7 @@ class EmailerController {
   ModelAndView form(PostCommand command) {
     logger.info "Sending email: ${command.dump()}"
     emailerService.sendEmail(emailerFormatter.format(command))
-    return new ModelAndView("redirect:${redirectUrl}")
+    return new ModelAndView("redirect:${command.redirect}")
   }
 
   @ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Unauthorized")
