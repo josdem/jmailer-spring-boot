@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
   <head>
     <meta charset="utf-8">
-    <title>Notificación</title>
+    <title>Notification</title>
   </head>
   <body>
-    <h1>Mensaje</h1>
-    <h3>Administrator</h3>
+    <h1>Message</h1>
+    <h3>From Administrator</h3>
     <hr>
+    <p>Hello dear Jmailer user, You recived a new ${name}'s message</p>
     <p>Message: ${message}</p>
+    <p>Thank you for using Jmailer!</p>
   </body>
 </html>
 
