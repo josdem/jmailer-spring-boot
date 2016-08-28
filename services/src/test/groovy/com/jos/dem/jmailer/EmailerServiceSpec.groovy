@@ -37,8 +37,7 @@ class EmailerServiceSpec extends Specification {
   given:"A command"
     MessageCommand command = new MessageCommand(
       email:'josdem@email.com',
-      message:'Hello',
-      name:'josdem'
+      message:'Hello'
     )
   when:"We send email"
     service.sendEmail(command)

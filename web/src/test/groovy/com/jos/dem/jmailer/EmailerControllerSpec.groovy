@@ -22,7 +22,7 @@ import com.jos.dem.jmailer.controller.EmailerController
 import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.command.Command
-import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.command.PostCommand
 
 class EmailerControllerSpec extends Specification{
 
@@ -38,7 +38,7 @@ class EmailerControllerSpec extends Specification{
 
   void "should send a message from a form"(){
     given:"A messageCommand"
-      Command command = new MessageCommand(email:'josdem@email.com')
+      Command command = new PostCommand(email:'josdem@email.com')
     when:"We send message"
       emailerFormatter.format(command) >> command
       controller.form(command)
