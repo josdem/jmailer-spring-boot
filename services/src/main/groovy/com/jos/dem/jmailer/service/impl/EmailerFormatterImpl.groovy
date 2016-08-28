@@ -29,15 +29,11 @@ import com.jos.dem.jmailer.enums.MessageType
 @Service
 class EmailerFormatterImpl implements EmailerFormatter{
 
-  @Value('${email.contact}')
-  String contact
-
   @Autowired
   LocaleService localeService
 
   Command format(PostCommand command){
     if(command.type && MessageType."${command.type}".equals(MessageType.REGISTER)){
-      command.email = contact
       command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"
       return command
     }
