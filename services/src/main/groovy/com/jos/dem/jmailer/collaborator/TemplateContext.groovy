@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component
 class TemplateContext {
 
   String resolveTemplate(Command command){
-    command.type == MessageType.REGISTER ? 'register' : 'message'
+    command.type == MessageType.REGISTER ? 'register.ftl' : 'message.ftl'
   }
 
 }
