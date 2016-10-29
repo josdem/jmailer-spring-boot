@@ -1,6 +1,5 @@
 .gradle
 build
-web/src/main/resources/static/assets/third-party/
 node_modules/
 **.swp
 src/
