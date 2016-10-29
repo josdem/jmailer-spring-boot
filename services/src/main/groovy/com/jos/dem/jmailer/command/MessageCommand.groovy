@@ -25,6 +25,8 @@ class MessageCommand implements Command {
   String email
   @ApiModelProperty(value = "Email body", allowableValues = "text")
   String message
+  @ApiModelProperty(value = "User's name", allowableValues = "text")
+  String name
   MessageType type
 }
 
