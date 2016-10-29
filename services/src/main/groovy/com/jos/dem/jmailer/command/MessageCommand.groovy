@@ -16,6 +16,8 @@
 
 package com.jos.dem.jmailer.command
 
+import com.jos.dem.jmailer.enums.MessageType
+
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 

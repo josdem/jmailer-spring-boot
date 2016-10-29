@@ -25,18 +25,19 @@ import org.slf4j.LoggerFactory
 
 import com.jos.dem.jmailer.service.MailService
 import com.jos.dem.jmailer.service.NotificationService
+import com.jos.dem.jmailer.collaborator.TemplateContext
 import com.jos.dem.jmailer.command.Command
-import org.springframework.beans.factory.annotation.Value
 
+import org.springframework.beans.factory.annotation.Value
 
 @Service
 class NotificationServiceImpl implements NotificationService {
 
   @Autowired
   MailService mailService
+  @Autowired
+  TemplateContext templateContext
 
-  @Value('${email.template}')
-  String template
   @Value('${email.subject}')
   String subject
 
@@ -45,7 +46,7 @@ class NotificationServiceImpl implements NotificationService {
   @Override
   Boolean sendNotification(Command command) {
      def data = [email:command.email, subject:subject]
-     mailService.sendMailWithTemplate(data, command.properties, template)
+     mailService.sendMailWithTemplate(data, command.properties, templateContext.resolveTemplate(command))
   }
 
 }
