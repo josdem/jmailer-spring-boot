@@ -2,6 +2,6 @@
 build
 node_modules/
 **.swp
-src/
 bower.json
 web/jmailer.log
+web/src/main/resources/static/assets/third-party
