@@ -22,11 +22,13 @@ import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 import org.hibernate.validator.constraints.Email
 import javax.validation.constraints.NotNull
+import org.hibernate.validator.constraints.NotEmpty
 
 @ApiModel(value="MessageCommand", description="Generic command to send emails")
 class MessageCommand implements Command {
   @ApiModelProperty(value = "Any valid emial", allowableValues = "email@domain")
   @Email
+  @NotEmpty
   @NotNull
   String email
   @ApiModelProperty(value = "Email body", allowableValues = "text")
