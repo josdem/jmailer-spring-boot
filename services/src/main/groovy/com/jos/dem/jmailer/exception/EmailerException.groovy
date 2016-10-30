@@ -20,9 +20,8 @@ import java.lang.RuntimeException
 
 class EmailerException extends RuntimeException {
 
-  @Override
-  String getMessage() {
-    'I could not send email'
+  EmailerException(String msg){
+    super(msg)
   }
 
 }
