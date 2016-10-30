@@ -18,12 +18,11 @@ package com.jos.dem.jmailer.service.impl
 
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
+import com.jos.dem.jmailer.command.Command
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.service.MessageService
-import com.jos.dem.jmailer.command.Command
+import com.jos.dem.jmailer.collaborator.CommandValidator
 import com.jos.dem.jmailer.exception.EmailerException
 
 @Service
@@ -31,11 +30,13 @@ class EmailerServiceImpl implements EmailerService {
 
   @Autowired
   MessageService messageService
-
-  Logger log = LoggerFactory.getLogger(this.class)
+  @Autowired
+  CommandValidator validator
 
   def sendEmail(Command command){
-    log.info 'Sending email ${command.email}'
+    if(!validator.isValid(command)){
+      throw new EmailerException('Parameters do not fit the constraints')
+    }
     messageService.message(command)
   }
 
