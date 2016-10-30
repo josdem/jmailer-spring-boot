@@ -12,6 +12,7 @@
     <p>Para activar la cuenta, haga clic sobre el siguiente enlace o copie y pegue la URL completa en su navegador</p>
     <p><br></p>
     <p class="text-center"><a href="${message}">${message}</a></p>
+    <br/>
     <p>Thank you for using Jmailer!</p>
   </body>
 </html>
