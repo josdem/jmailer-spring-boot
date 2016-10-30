@@ -20,10 +20,14 @@ import com.jos.dem.jmailer.enums.MessageType
 
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
+import org.hibernate.validator.constraints.Email
+import javax.validation.constraints.NotNull
 
 @ApiModel(value="MessageCommand", description="Generic command to send emails")
 class MessageCommand implements Command {
-  @ApiModelProperty(value = "Any valid email", allowableValues = "email@domain")
+  @ApiModelProperty(value = "Any valid emial", allowableValues = "email@domain")
+  @Email
+  @NotNull
   String email
   @ApiModelProperty(value = "Email body", allowableValues = "text")
   String message
