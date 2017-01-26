@@ -33,11 +33,10 @@ class EmailerFormatterImpl implements EmailerFormatter{
   LocaleService localeService
 
   Command format(PostCommand command){
-    if(command.type && MessageType."${command.type}".equals(MessageType.REGISTER)){
+    if(command.type && MessageType."${command.type}".equals(MessageType.FORM)){
       command.message = "${command.message} Reply to: ${command.emailContact}, source: ${command.source}"
       return command
     }
-    command.message = "${command.message}, ${localeService.getMessage('thank.you')}"
     return command
   }
 
