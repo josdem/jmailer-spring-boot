@@ -37,9 +37,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 import com.jos.dem.jmailer.service.EmailerService
-import com.jos.dem.jmailer.service.EmailerFormatter
 import com.jos.dem.jmailer.command.MessageCommand
-import com.jos.dem.jmailer.command.PostCommand
 import com.jos.dem.jmailer.exception.BusinessException
 
 @Api(description="Knows how to send emails")
@@ -49,8 +47,6 @@ class EmailerController {
 
   @Autowired
   EmailerService emailerService
-  @Autowired
-  EmailerFormatter emailerFormatter
 
   @Value('${email.redirect}')
   String redirectUrl
@@ -70,12 +66,11 @@ class EmailerController {
   @ApiImplicitParam(name = "name", value = "sender name", required = true, dataType = "string", paramType = "query"),
   @ApiImplicitParam(name = "emailContact", value = "email-reference@domain", required = true, dataType = "string", paramType = "query"),
   @ApiImplicitParam(name = "source", value = "source", required = true, dataType = "string", paramType = "query"),
-  @ApiImplicitParam(name = "type", value = "type(REGISTER)", required = true, dataType = "string", paramType = "query")
   ])
   @RequestMapping(method = POST,  value = "/form", consumes="application/x-www-form-urlencoded")
-  ModelAndView form(PostCommand command) {
+  ModelAndView form(MessageCommand command) {
     logger.info "Sending email: ${command.dump()}"
-    emailerService.sendEmail(emailerFormatter.format(command))
+    emailerService.sendEmail(command)
     return new ModelAndView("redirect:${command.redirect}")
   }
 
