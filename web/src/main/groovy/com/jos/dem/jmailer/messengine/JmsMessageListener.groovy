@@ -27,6 +27,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.jos.dem.jmailer.service.NotificationService
+import com.jos.dem.jmailer.command.MessageCommand
 
 @Component
 class JmsMessageListener {

@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.jos.dem.jmailer.command
 
-class MessgeCommand implements Command {
+class MessageCommand implements Command {
   String name
   String email
   String url
@@ -24,5 +24,6 @@ class MessgeCommand implements Command {
   String source
   String redirect
   String emailContact
+  String template
 }
 
