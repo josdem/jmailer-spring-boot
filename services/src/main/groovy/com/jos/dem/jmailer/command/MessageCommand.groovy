@@ -32,7 +32,6 @@ class MessageCommand implements Command {
   String email
 
   @ApiModelProperty(value = "Email body", allowableValues = "text")
-  @NotNull
   String message
 
   @ApiModelProperty(value = "User's name", allowableValues = "text")
