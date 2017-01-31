@@ -10,6 +10,8 @@
     <hr>
     <p>Hello dear Jmailer user, You recived a new ${name}'s message</p>
     <p>Message: ${message}</p>
+    <p>Source: ${source}</p>
+    <p>Reply to: ${emailContact}</p>
     <p>Thank you for using Jmailer!</p>
   </body>
 </html>
