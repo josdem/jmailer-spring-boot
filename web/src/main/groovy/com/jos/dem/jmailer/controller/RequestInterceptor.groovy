@@ -41,8 +41,6 @@ class RequestInterceptor implements HandlerInterceptor {
     data.remoteHost = request.remoteHost
     data.requestURL = request.requestURL
 
-    log.info "Whitelist: ${whiteList}"
-
     if(!whiteList.contains(request.remoteHost)){
       data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
       log.info "data: ${data.dump()}"
