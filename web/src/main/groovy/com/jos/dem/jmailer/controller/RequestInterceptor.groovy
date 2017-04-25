@@ -19,8 +19,6 @@ package com.jos.dem.jmailer.controller
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 import javax.annotation.PostConstruct
@@ -30,27 +28,20 @@ import org.slf4j.LoggerFactory
 
 class RequestInterceptor implements HandlerInterceptor {
 
-  @Value('${email.whitelist}')
-  String emailWhiteList
-
   def whiteList = []
 
   Logger log = LoggerFactory.getLogger(this.class)
 
-  @PostConstruct
-  void setup(){
+  RequestInterceptor(String emailWhiteList){
     whiteList = emailWhiteList.tokenize(',')
   }
 
   boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
     def data = [:]
     data.remoteHost = request.remoteHost
-    data.timeInMillis = System.currentTimeMillis()
-    data.method = request.method
     data.requestURL = request.requestURL
-    data.parameters = request.parameterMap
 
-    log.info "Whitelist: ${whiteList.dump()}"
+    log.info "Whitelist: ${whiteList}"
 
     if(!whiteList.contains(request.remoteHost)){
       data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"

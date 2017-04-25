@@ -19,15 +19,19 @@ package com.jos.dem.jmailer.config
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import org.springframework.beans.factory.annotation.Value
 
 import com.jos.dem.jmailer.controller.RequestInterceptor
 
 @Configuration
 class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter{
 
+  @Value('${email.whitelist}')
+  String emailWhiteList
+
   @Override
   void addInterceptors(InterceptorRegistry registry){
-    registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");
+    registry.addInterceptor(new RequestInterceptor(emailWhiteList)).addPathPatterns("/**");
   }
 
 }
