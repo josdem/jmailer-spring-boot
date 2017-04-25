@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 import javax.annotation.PostConstruct
@@ -27,7 +28,7 @@ import javax.annotation.PostConstruct
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class LoggerInterceptor implements HandlerInterceptor {
+class RequestInterceptor implements HandlerInterceptor {
 
   @Value('${email.whitelist}')
   String emailWhiteList
@@ -37,7 +38,7 @@ class LoggerInterceptor implements HandlerInterceptor {
   Logger log = LoggerFactory.getLogger(this.class)
 
   @PostConstruct
-  public void setup(){
+  void setup(){
     whiteList = emailWhiteList.tokenize(',')
   }
 
@@ -48,6 +49,8 @@ class LoggerInterceptor implements HandlerInterceptor {
     data.method = request.method
     data.requestURL = request.requestURL
     data.parameters = request.parameterMap
+
+    log.info "Whitelist: ${whiteList.dump()}"
 
     if(!whiteList.contains(request.remoteHost)){
       data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"

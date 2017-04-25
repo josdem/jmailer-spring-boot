@@ -16,25 +16,18 @@ limitations under the License.
 
 package com.jos.dem.jmailer.config
 
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import springfox.documentation.spring.web.plugins.Docket
-import springfox.documentation.spi.DocumentationType
-import springfox.documentation.builders.PathSelectors
-import springfox.documentation.builders.RequestHandlerSelectors
-import springfox.documentation.swagger2.annotations.EnableSwagger2
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+
+import com.jos.dem.jmailer.controller.RequestInterceptor
 
 @Configuration
-@EnableSwagger2
-class SwaggerConfig {
-  @Bean
-  Docket api() {
-    return new Docket(DocumentationType.SWAGGER_2)
-    .select()
-    .apis(RequestHandlerSelectors.any())
-    .paths(PathSelectors.any())
-    .build()
+class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter{
+
+  @Override
+  void addInterceptors(InterceptorRegistry registry){
+    registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");
   }
+
 }
-
-
