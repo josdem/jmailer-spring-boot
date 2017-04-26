@@ -30,7 +30,7 @@ ext {
 
 subprojects {
   apply plugin: 'groovy'
-  apply plugin: 'spring-boot'
+  apply plugin: 'org.springframework.boot'
 
   repositories {
     mavenCentral()
