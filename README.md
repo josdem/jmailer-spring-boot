@@ -9,6 +9,6 @@ Send email from everywhere
 * You can send an email using an form in your website
 * You can send an email using a file with your email addresses
 
-#### Read this as reference
+#### Go here for more information
 
-* http://josdem.io/techtalk/camel/mailbox_reader/
+* http://jmailer.josdem.io/
