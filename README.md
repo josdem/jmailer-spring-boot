@@ -12,3 +12,7 @@ Send email from everywhere!
 #### Go here for more information
 
 * http://jmailer.josdem.io/
+
+##### To Run, Call and Configuration
+
+* https://github.com/josdem/jmailer-spring-boot/wiki/Run
