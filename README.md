@@ -15,4 +15,4 @@ Send email from everywhere!
 
 #### To Run, Call and Configuration
 
-* https://github.com/josdem/jmailer-spring-boot/wiki/Run
+* https://github.com/josdem/jmailer-spring-boot/wiki
