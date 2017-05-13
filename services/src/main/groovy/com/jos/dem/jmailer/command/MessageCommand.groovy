@@ -52,5 +52,8 @@ class MessageCommand implements Command {
 
   @ApiModelProperty(value = "Email template", allowableValues = "text")
   String template
+
+  @ApiModelProperty(value = "Contact's name", allowableValues = "text")
+  String contactName
 }
 
