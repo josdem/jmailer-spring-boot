@@ -41,8 +41,11 @@ class RequestInterceptor implements HandlerInterceptor {
     data.remoteHost = request.remoteHost
     data.requestURL = request.requestURL
     data.referer = request.getHeader('Referer')
+    data.realip = request.getHeader('X-Real-IP')
+    data.host = request.getHeader('Host')
+    data.realhost = request.getHeader('RealHost')
 
-    if(!whiteList.contains(data.referer)){
+    if(!whiteList.contains(data.realhost)){
       data.warn = "UNAUTORIZED was detected in attempt to access to resource"
       log.info "data: ${data.dump()}"
       return false
