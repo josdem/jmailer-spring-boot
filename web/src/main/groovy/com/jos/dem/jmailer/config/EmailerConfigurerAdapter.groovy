@@ -28,17 +28,16 @@ class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter{
 
   @Value('${token}')
   String token
-
   @Value('${email.whitelist}')
   String emailWhiteList
-
   @Value('${email.backlist}')
   String emailBlackList
-
+  @Value('${email.homeRequestURL}')
+  String homeRequestURL
 
   @Override
   void addInterceptors(InterceptorRegistry registry){
-    registry.addInterceptor(new RequestInterceptor(emailWhiteList, emailBlackList, token)).addPathPatterns("/**");
+    registry.addInterceptor(new RequestInterceptor(emailWhiteList, emailBlackList, homeRequestURL, token)).addPathPatterns("/**");
   }
 
 }
