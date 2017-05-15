@@ -29,10 +29,12 @@ import org.slf4j.LoggerFactory
 class RequestInterceptor implements HandlerInterceptor {
 
   def whiteList = []
+  String token
 
   Logger log = LoggerFactory.getLogger(this.class)
 
-  RequestInterceptor(String emailWhiteList){
+  RequestInterceptor(String emailWhiteList, String token){
+    this.token = token
     whiteList = emailWhiteList.tokenize(',')
   }
 
@@ -44,15 +46,16 @@ class RequestInterceptor implements HandlerInterceptor {
     data.realip = request.getHeader('X-Real-IP')
     data.host = request.getHeader('Host')
     data.realhost = request.getHeader('RealHost')
+    data.auth = request.getHeader('Authorization')
 
-    if(!whiteList.contains(data.realhost)){
-      data.warn = "UNAUTORIZED was detected in attempt to access to resource"
+    if(whiteList.contains(data.referer) || token == data.auth){
       log.info "data: ${data.dump()}"
-      return false
+      return true
     }
 
+    data.warn = "UNAUTORIZED was detected in attempt to access to resource"
     log.info "data: ${data.dump()}"
-    return true
+    return false
   }
 
 

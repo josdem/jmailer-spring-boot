@@ -26,12 +26,15 @@ import com.jos.dem.jmailer.controller.RequestInterceptor
 @Configuration
 class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter{
 
+  @Value('${token}')
+  String token
+
   @Value('${email.whitelist}')
   String emailWhiteList
 
   @Override
   void addInterceptors(InterceptorRegistry registry){
-    registry.addInterceptor(new RequestInterceptor(emailWhiteList)).addPathPatterns("/**");
+    registry.addInterceptor(new RequestInterceptor(emailWhiteList, token)).addPathPatterns("/**");
   }
 
 }
