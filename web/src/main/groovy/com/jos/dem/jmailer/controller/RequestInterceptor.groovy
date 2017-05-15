@@ -29,14 +29,16 @@ import org.slf4j.LoggerFactory
 class RequestInterceptor implements HandlerInterceptor {
 
   def whiteList = []
-  String blackList
   String token
+  String blackList
+  String homeRequestURL
 
   Logger log = LoggerFactory.getLogger(this.class)
 
-  RequestInterceptor(String emailWhiteList, String emailBlackList, String token){
+  RequestInterceptor(String emailWhiteList, String emailBlackList, String homeRequestURL, String token){
     this.token = token
     this.blackList = emailBlackList
+    this.homeRequestURL = homeRequestURL
     whiteList = emailWhiteList.tokenize(',')
   }
 
@@ -57,7 +59,7 @@ class RequestInterceptor implements HandlerInterceptor {
 
     }
 
-    if(whiteList.contains(data.referer) || token == data.auth){
+    if(whiteList.contains(data.referer) || homeRequestURL == data.requestURL || token == data.auth ){
       log.info "data: ${data.dump()}"
       return true
     }
