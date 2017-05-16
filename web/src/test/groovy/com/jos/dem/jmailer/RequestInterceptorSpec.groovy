@@ -24,4 +24,17 @@ class RequestInterceptorSpec extends Specification {
     then:"We expect it pass"
       result
   }
+
+  void "should block when blacklist"(){
+    given:"A request, response and object"
+      HttpServletRequest request = Mock(HttpServletRequest)
+      HttpServletResponse response = Mock(HttpServletResponse)
+      Object handler = new Object()
+    when:"We preHandle"
+      request.getHeader('X-Real-IP') >> 'threeshold'
+      Boolean result = interceptor.preHandle(request, response, handler)
+    then:"We expect it pass"
+      result == false
+  }
+
 }
