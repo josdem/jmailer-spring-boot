@@ -56,7 +56,6 @@ class RequestInterceptor implements HandlerInterceptor {
       data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
       log.info "data: ${data.dump()}"
       return false
-
     }
 
     if(whiteList.contains(data.referer) || homeRequestURL == data.requestURL || token == data.auth ){
