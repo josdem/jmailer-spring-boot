@@ -40,7 +40,7 @@ class NotificationServiceSpec extends Specification {
 
   void "should send an email"(){
   given:"A MessageCommand"
-    def messageCommand = new MessageCommand(email:email, message:'Hello from spock')
+    def messageCommand = new MessageCommand(email:email, message:'Hello from spock', name:'josdem', template:'message.ftl')
   when:"We send notification"
     def result = notificationService.sendNotification(messageCommand)
   then:"We expect email sent"
