@@ -30,7 +30,7 @@ class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter{
   String token
   @Value('${email.whitelist}')
   String emailWhiteList
-  @Value('${email.backlist}')
+  @Value('${email.blacklist}')
   String emailBlackList
   @Value('${email.homeRequestURL}')
   String homeRequestURL
