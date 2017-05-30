@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  <head>
-    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <a class="navbar-brand" href="/">Jmailer</a>
-    </nav>
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Command/Script</h1>
-        <p>Send email from everywhere</p>
-        <p><a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a></p>
-      </div>
-    </div>
+<head>
+  <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-25685398-4', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand" href="/">Jmailer</a>
+  </nav>
+  <div class="jumbotron">
     <div class="container">
-      <div class="row">
-        <p>You can send email using a command line or a script</p>
-        <br/>
-        <h4>CURL</h4>
-        <p>curl is an open source command line tool and library for transferring data with URL syntax</p>
-        <p>Request</p>
-        <code>curl -H "Content-Type: application/json" -v -X POST -d '{"name":"josdem","email":"joseluis.delacruz@gmail.com","message":"Hello from curl!", "template":"message.ftl"}' 'http://jmailer.josdem.io/emailer/message'</code>
-        <br/><br/><br/>
-        <h4>WSLite</h4>
-        <p>Lightweight SOAP and REST webservice clients for Groovy</p>
-        <code>
-          <p style="color:black;"><strong>@Grab</strong>(<font color="green">'com.github.groovy-wslite:groovy-wslite:1.1.2'</font>)</p>
-          <p style="color:blue;"><strong>import</strong><font color="black"> wslite.rest.RESTClient</font></p>
-          <br/>
-          <p style="color:blue;"><strong>def</strong><font color="black"> client = </font><strong>new </strong><font color="black"><strong>RESTClient</strong></font>(<font color="purple">"http://jmailer.josdem.io/emailer/"</font>)</p>
-          <p style="color:black;">client.<strong>post</strong>(path:<font color="green">'message'</font>){</p>
-          <p style="color:black;">&nbsp;&nbsp;json name:<font color="purple">"josdem"</font>,email:<font color="purple">"joseluis.delacruz@gmail.com"</font>,message:<font color="purple">"Hello from WSLite!"</font>,template:<font color="purple">"message.ftl"</font></p>
-          <p style="color:black;">}</p>
-        </code>
-      </div>
+      <h1>Command/Script</h1>
+      <p>Send email from everywhere</p>
+      <p><a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a></p>
     </div>
-    <br/><br/><br/>
-    <th:block layout:include="fragments/footer"/>
-    <script th:src="@{/javascript/analytics.js}"/>
-  </body>
+  </div>
+  <div class="container">
+    <div class="row">
+      <p>You can send email using a command line or a script</p>
+      <br/>
+      <h4>CURL</h4>
+      <p>curl is an open source command line tool and library for transferring data with URL syntax</p>
+      <p>Request</p>
+      <code>curl -H "Content-Type: application/json" -v -X POST -d '{"name":"josdem","email":"joseluis.delacruz@gmail.com","message":"Hello from curl!", "template":"message.ftl"}' 'http://jmailer.josdem.io/emailer/message'</code>
+      <br/><br/><br/>
+      <h4>WSLite</h4>
+      <p>Lightweight SOAP and REST webservice clients for Groovy</p>
+      <code>
+        <p style="color:black;"><strong>@Grab</strong>(<font color="green">'com.github.groovy-wslite:groovy-wslite:1.1.2'</font>)</p>
+        <p style="color:blue;"><strong>import</strong><font color="black"> wslite.rest.RESTClient</font></p>
+        <br/>
+        <p style="color:blue;"><strong>def</strong><font color="black"> client = </font><strong>new </strong><font color="black"><strong>RESTClient</strong></font>(<font color="purple">"http://jmailer.josdem.io/emailer/"</font>)</p>
+        <p style="color:black;">client.<strong>post</strong>(path:<font color="green">'message'</font>){</p>
+        <p style="color:black;">&nbsp;&nbsp;json name:<font color="purple">"josdem"</font>,email:<font color="purple">"joseluis.delacruz@gmail.com"</font>,message:<font color="purple">"Hello from WSLite!"</font>,template:<font color="purple">"message.ftl"</font></p>
+        <p style="color:black;">}</p>
+      </code>
+    </div>
+  </div>
+  <br/><br/><br/>
+  <th:block layout:include="fragments/footer"/>
+</body>
 </html>

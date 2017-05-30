@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  <head>
-    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <a class="navbar-brand" href="/">Jmailer</a>
-    </nav>
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Form</h1>
-        <p>Send email from everywhere</p>
-        <p><a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a></p>
-      </div>
-    </div>
+<head>
+  <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-25685398-4', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand" href="/">Jmailer</a>
+  </nav>
+  <div class="jumbotron">
     <div class="container">
-      <div class="row">
-        <p>You can send email using a form</p>
-        <br/>
-        <h4>Form</h4>
-        <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
-        <br/>
-        <form th:action="@{/emailer/form}" method="post">
-          <div class="panel-primary">
-            <div class="panel-heading">
-              <h4 class="panel-title">Send you a message</h4>
+      <h1>Form</h1>
+      <p>Send email from everywhere</p>
+      <p><a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <p>You can send email using a form</p>
+      <br/>
+      <h4>Form</h4>
+      <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
+      <br/>
+      <form th:action="@{/emailer/form}" method="post">
+        <div class="panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Send you a message</h4>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
             </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
-              </div>
-              <div class="form-group">
-                <label>Your Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
-              </div>
-              <div class="form-group">
-                <label>Message:</label>
-                <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
-              </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
             </div>
-            <input type="hidden" value="jmailer" name="source" />
-            <input type="hidden" value="message.ftl" name="template" />
-            <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
-            <div class="panel-footer">
-              <button type="submit" class="btn btn-primary">Send</button>
+            <div class="form-group">
+              <label>Message:</label>
+              <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
             </div>
           </div>
-        </form>
-      </div>
+          <input type="hidden" value="jmailer" name="source" />
+          <input type="hidden" value="message.ftl" name="template" />
+          <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <br/><br/>
-    <div class="container">
-      <div class="row">
-        <h4>Code example</h4>
-        <code>
-          <p style="color:gray;">&#60;<font color="purple">form</font><font color="green"> method="</font><font color="blue">POST</font>"<font color="green"> action="</font><font color="blue">http://jmailer.josdem.io/form</font>"&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Name</font>&#60;/<font color="purple">label</font>&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">text</font>"<font color="green"> name="</font><font color="blue">name</font>"<font color="green"> placeholder="</font><font color="blue">enter your name</font>"/&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Email</font>&#60;/<font color="purple">label</font>&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">email</font>"<font color="green"> name="</font><font color="blue">emailContact</font>"<font color="green"> placeholder="</font><font color="blue">enter your email</font>"/&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Message</font>&#60;/<font color="purple">label</font>&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">textarea</font><font color="green"> name=</font>"<font color="blue">message</font>"<font color="green"> rows=</font>"<font color="blue">3</font>"<font color="green"> placeholder="</font><font color="blue">Your message</font>"/&#62;</p>
-          <p style="color:gray;">&#160;&#160;&#60;<font color="purple">button</font><font color="green"> type=</font>"<font color="blue">submit</font>"&#62;<font color="black">Send</font>&#60;/<font color="purple">button</font>&#62;</p>
-          <p style="color:gray;">&#60;<font color="purple">/form</font>&#62;</p>
-        </code>
-      </div>
+  </div>
+  <br/><br/>
+  <div class="container">
+    <div class="row">
+      <h4>Code example</h4>
+      <code>
+        <p style="color:gray;">&#60;<font color="purple">form</font><font color="green"> method="</font><font color="blue">POST</font>"<font color="green"> action="</font><font color="blue">http://jmailer.josdem.io/form</font>"&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Name</font>&#60;/<font color="purple">label</font>&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">text</font>"<font color="green"> name="</font><font color="blue">name</font>"<font color="green"> placeholder="</font><font color="blue">enter your name</font>"/&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Email</font>&#60;/<font color="purple">label</font>&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">email</font>"<font color="green"> name="</font><font color="blue">emailContact</font>"<font color="green"> placeholder="</font><font color="blue">enter your email</font>"/&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Message</font>&#60;/<font color="purple">label</font>&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">textarea</font><font color="green"> name=</font>"<font color="blue">message</font>"<font color="green"> rows=</font>"<font color="blue">3</font>"<font color="green"> placeholder="</font><font color="blue">Your message</font>"/&#62;</p>
+        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">button</font><font color="green"> type=</font>"<font color="blue">submit</font>"&#62;<font color="black">Send</font>&#60;/<font color="purple">button</font>&#62;</p>
+        <p style="color:gray;">&#60;<font color="purple">/form</font>&#62;</p>
+      </code>
     </div>
-    <br/><br/><br/>
-    <th:block layout:include="fragments/footer"/>
-    <script th:src="@{/javascript/analytics.js}"/>
-  </body>
+  </div>
+  <br/><br/><br/>
+  <th:block layout:include="fragments/footer"/>
+</body>
 </html>
- 
