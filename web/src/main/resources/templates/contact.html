@@ -1,61 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  <head>
-    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <a class="navbar-brand" href="/">Jmailer</a>
-    </nav>
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Register</h1>
-        <p>Send email from everywhere</p>
-        <p><a class="btn btn-primary btn-lg" href="/" role="button">Home</a></p>
-      </div>
-    </div>
+<head>
+  <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.css" />
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-25685398-4', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand" href="/">Jmailer</a>
+  </nav>
+  <div class="jumbotron">
     <div class="container">
-      <div class="row">
-        <p>Thank you for your inquiry</p>
-        <br/>
-        <h4>Contact</h4>
-        <p>Please, send me a message and I will respond as soon as possible</p>
-        <br/>
-        <form th:action="@{/emailer/form}" method="post">
-          <div class="panel-primary">
-            <div class="panel-heading">
-              <h4 class="panel-title">Please, send me more information</h4>
+      <h1>Register</h1>
+      <p>Send email from everywhere</p>
+      <p><a class="btn btn-primary btn-lg" href="/" role="button">Home</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <p>Thank you for your inquiry</p>
+      <br/>
+      <h4>Contact</h4>
+      <p>Please, send me a message and I will respond as soon as possible</p>
+      <br/>
+      <form th:action="@{/emailer/form}" method="post">
+        <div class="panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Please, send me more information</h4>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
             </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
-              </div>
-              <div class="form-group">
-                <label>Your Email</label>
-                <input type="email" class="form-control" name="emailContact" placeholder="Enter your email"/>
-              </div>
-              <div class="form-group">
-                <label>Message:</label>
-                <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
-              </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" class="form-control" name="emailContact" placeholder="Enter your email"/>
             </div>
-            <input type="hidden" value="jmailer" name="source" />
-            <input type="hidden" value="message.ftl" name="template" />
-            <input type="hidden" value="joseluis.delacruz@gmail.com" name="email" />
-            <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
-            <div class="panel-footer">
-              <button type="submit" class="btn btn-primary">Send</button>
+            <div class="form-group">
+              <label>Message:</label>
+              <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
             </div>
           </div>
-        </form>
-      </div>
+          <input type="hidden" value="jmailer" name="source" />
+          <input type="hidden" value="message.ftl" name="template" />
+          <input type="hidden" value="joseluis.delacruz@gmail.com" name="email" />
+          <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <br/><br/><br/>
-    <footer>
-      <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <a class="navbar-brand" href="http://josdem.io">© josdem.io 2017</a>
-      </nav>
-    </footer>
-  </body>
+  </div>
+  <br/><br/><br/>
+  <th:block layout:include="fragments/footer"/>
+</body>
 </html>
