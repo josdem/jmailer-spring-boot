@@ -1,8 +1,7 @@
 buildscript {
   ext {
-    springBootVersion = '1.4.3.RELEASE'
+    springBootVersion = '1.5.11.RELEASE'
     sourceCompatibility = 1.8
-    targetCompatibility = 1.8
   }
   repositories {
     mavenCentral()
@@ -19,7 +18,7 @@ plugins {
 
 bower {
   installBase = 'web/src/main/resources/static/assets/third-party'
-  'bootstrap'('3.3.6'){
+  'bootstrap'('3.3.7'){
     source '**'
   }
 }
@@ -29,6 +28,7 @@ ext {
 }
 
 subprojects {
+  apply plugin: 'java'
   apply plugin: 'groovy'
   apply plugin: 'org.springframework.boot'
 
@@ -75,9 +75,5 @@ project(":web"){
   }
 
   bootRun.dependsOn rootProject.tasks['bowerInstall']
-}
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.7'
 }
 
