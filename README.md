@@ -6,6 +6,7 @@ Send email from everywhere!
 #### Features
 
 * You can send an email using curl, httpie, or using a script
+* You can send an email using a mobile application
 * You can send an email using an form in your website
 * You can send an email using a file with an email list addresses
 
