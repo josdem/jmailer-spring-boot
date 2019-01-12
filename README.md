@@ -12,7 +12,7 @@ Send email from everywhere!
 
 #### Go here for more information
 
-* http://jmailer.josdem.io/
+* https://jmailer.josdem.io/
 
 #### To Run, Call and Configuration
 
