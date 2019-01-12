@@ -54,7 +54,7 @@ class RequestInterceptor implements HandlerInterceptor {
 
     data.warn = "UNAUTORIZED request was detected in attempt to access to resource"
     log.info "data: ${data.dump()}"
-    return false
+    return true
   }
 
 
