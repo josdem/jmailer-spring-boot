@@ -65,9 +65,6 @@ project(":services"){
 }
 
 project(":web"){
-  apply plugin:"war"
-  war.archiveName "jmailer.war"
-
   dependencies{
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
