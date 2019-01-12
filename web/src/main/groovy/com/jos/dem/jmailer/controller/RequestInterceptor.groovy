@@ -52,7 +52,7 @@ class RequestInterceptor implements HandlerInterceptor {
     data.realhost = request.getHeader('RealHost')
     data.auth = request.getHeader('Authorization')
 
-    if(data.realip.startsWith(blackList)){
+    if(data.realip?.startsWith(blackList)){
       data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
       log.info "data: ${data.dump()}"
       return false
