@@ -1,0 +1,37 @@
+plugins {
+  id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+  id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+  id 'java'
+}
+
+dev springfoxVersion = '2.4.0'
+
+jar {
+  baseName = 'services'
+  version = '0.0.1-SNAPSHOT'
+}
+
+group = 'com.jos.dem.jmailer'
+sourceCompatibility = 11
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-aop'
+  implementation 'org.springframework.boot:spring-boot-starter-mail'
+  implementation 'org.springframework:spring-jms'
+  implementation 'org.apache.activemq:activemq-broker'
+  implementation 'org.freemarker:freemarker:2.3.23'
+  implementation 'org.hibernate:hibernate-validator:5.3.0.Final'
+  implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+  implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+  imports{
+    mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+  }
+}
