@@ -16,7 +16,7 @@
   </parent>
 
   <modules>
-    <module>service</module>
+    <module>services</module>
     <module>web</module>
   </modules>
 
