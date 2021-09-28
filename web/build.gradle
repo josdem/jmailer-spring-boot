@@ -4,6 +4,10 @@ plugins {
     id 'groovy'
 }
 
+ext {
+    springfoxVersion = '2.4.0'
+}
+
 group = 'com.jos.dem.jmailer'
 version = '1.0.0-SNAPSHOT'
 
@@ -13,8 +17,14 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.freemarker:freemarker:2.3.31'
     implementation 'org.codehaus.groovy:groovy'
+    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
     implementation project(':services')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
