@@ -59,7 +59,7 @@ class RequestInterceptor implements HandlerInterceptor {
     }
 
     if( whiteList.contains(data.referer)
-        || data.requestURL.toString().equals(homeRequestURL)
+        || data.requestURL.toString().startsWith(homeRequestURL)
         || token.equals(data.auth) ){
       log.info "data: ${data.dump()}"
       return true
