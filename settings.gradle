@@ -1,1 +1,4 @@
-include "services","web"
+rootProject.name = 'jmailer-spring-boot'
+
+include 'services'
+include 'web'
