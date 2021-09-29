@@ -16,66 +16,64 @@ limitations under the License.
 
 package com.jos.dem.jmailer.controller
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.web.servlet.HandlerInterceptor
+import org.springframework.web.servlet.ModelAndView
+
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.springframework.web.servlet.HandlerInterceptor
-import org.springframework.web.servlet.ModelAndView
-import javax.annotation.PostConstruct
-
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
 class RequestInterceptor implements HandlerInterceptor {
 
-  def whiteList = []
-  String token
-  String blackList
-  String homeRequestURL
+    def whiteList = []
+    String token
+    String blackList
+    String homeRequestURL
 
-  Logger log = LoggerFactory.getLogger(this.class)
+    Logger log = LoggerFactory.getLogger(this.class)
 
-  RequestInterceptor(String emailWhiteList, String emailBlackList, String homeRequestURL, String token){
-    this.token = token
-    this.blackList = emailBlackList
-    this.homeRequestURL = homeRequestURL
-    whiteList = emailWhiteList.tokenize(',')
-  }
-
-  boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-    def data = [:]
-    data.remoteHost = request.remoteHost
-    data.requestURL = request.requestURL
-    data.referer = request.getHeader('Referer')
-    data.realip = request.getHeader('X-Real-IP')
-    data.host = request.getHeader('Host')
-    data.realhost = request.getHeader('RealHost')
-    data.auth = request.getHeader('Authorization')
-
-    if(data.realip?.startsWith(blackList)){
-      data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
-      log.info "data: ${data.dump()}"
-      return false
+    RequestInterceptor(String emailWhiteList, String emailBlackList, String homeRequestURL, String token) {
+        this.token = token
+        this.blackList = emailBlackList
+        this.homeRequestURL = homeRequestURL
+        whiteList = emailWhiteList.tokenize(',')
     }
 
-    if( whiteList.contains(data.referer)
-        || data.requestURL.toString().startsWith(homeRequestURL)
-        || token.equals(data.auth) ){
-      log.info "data: ${data.dump()}"
-      return true
+    boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        def data = [:]
+        data.remoteHost = request.remoteHost
+        data.requestURL = request.requestURL
+        data.referer = request.getHeader('Referer')
+        data.realip = request.getHeader('X-Real-IP')
+        data.host = request.getHeader('Host')
+        data.realhost = request.getHeader('RealHost')
+        data.auth = request.getHeader('Authorization')
+
+        if (data.realip?.startsWith(blackList)) {
+            data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
+            log.info "data: ${data.dump()}"
+            return false
+        }
+
+        if (whiteList.contains(data.referer)
+                || data.requestURL.toString().startsWith(homeRequestURL)
+                || token == data.auth) {
+            log.info "data: ${data.dump()}"
+            return true
+        }
+
+        data.warn = "UNAUTORIZED request was detected in attempt to access to resource"
+        log.info "data: ${data.dump()}"
+        return false
     }
 
-    data.warn = "UNAUTORIZED request was detected in attempt to access to resource"
-    log.info "data: ${data.dump()}"
-    return false
-  }
+
+    void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    }
 
 
-  void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-  }
-
-
-  void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-  }
+    void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    }
 
 }

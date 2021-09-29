@@ -16,14 +16,19 @@
 
 package com.jos.dem.jmailer.controller
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model;
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Controller
 class IndexController {
+
+  @Value('${token}')
+  String token
 
   Logger logger = LoggerFactory.getLogger(this.class)
 
@@ -52,8 +57,9 @@ class IndexController {
   }
 
   @RequestMapping("/contact")
-  String contact() {
+  String contact(final Model model) {
     logger.info "Calling contact"
+    model.addAttribute("token", token)
     "contact"
   }
 
