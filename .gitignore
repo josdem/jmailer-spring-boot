@@ -4,7 +4,7 @@ build
 node_modules/
 **.swp
 **.swo
-bower.json
+**package-lock.json
 web/jmailer.log
 web/src/main/resources/static/assets/third-party
 gradle.properties
