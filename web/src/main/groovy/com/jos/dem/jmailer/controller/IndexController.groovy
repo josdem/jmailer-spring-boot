@@ -18,54 +18,52 @@ package com.jos.dem.jmailer.controller
 
 import com.jos.dem.jmailer.command.Command
 import com.jos.dem.jmailer.command.MessageCommand
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model;
-
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
 class IndexController {
 
-  @Value('${token}')
-  String token
+    @Value('${token}')
+    String token
 
-  Logger logger = LoggerFactory.getLogger(this.class)
+    Logger logger = LoggerFactory.getLogger(this.class)
 
-  @RequestMapping("/")
-  String index() {
-    logger.info "Calling index"
-    "index"
-  }
+    @RequestMapping("/")
+    String index() {
+        logger.info "Calling index"
+        "index"
+    }
 
-  @RequestMapping("/command-line")
-  String commandLine() {
-    logger.info "Calling command line"
-    "command_line"
-  }
+    @RequestMapping("/command-line")
+    String commandLine() {
+        logger.info "Calling command line"
+        "command_line"
+    }
 
-  @RequestMapping("/form")
-  String form() {
-    logger.info "Calling form"
-    'form'
-  }
+    @RequestMapping("/form")
+    String form() {
+        logger.info "Calling form"
+        'form'
+    }
 
-  @RequestMapping("/batch")
-  String batch() {
-    logger.info "Calling batch"
-    "batch"
-  }
+    @RequestMapping("/batch")
+    String batch() {
+        logger.info "Calling batch"
+        "batch"
+    }
 
-  @RequestMapping("/contact")
-  ModelAndView contact() {
-    logger.info "Calling contact"
-    ModelAndView modelAndView = new ModelAndView("contact")
-    Command message = new MessageCommand(token: token)
-    modelAndView.addObject("message", message)
-    modelAndView
-  }
+    @RequestMapping("/contact")
+    ModelAndView contact() {
+        logger.info "Calling contact"
+        ModelAndView modelAndView = new ModelAndView("contact")
+        Command message = new MessageCommand(token: token)
+        modelAndView.addObject("message", message)
+        modelAndView
+    }
 
 }
