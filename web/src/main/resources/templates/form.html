@@ -21,7 +21,7 @@
       <h4>Form</h4>
       <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
       <br/>
-      <form th:action="@{/emailer/form}" method="post">
+      <form th:action="@{/emailer/form}" method="post" th:object="${message}">
         <div class="panel-primary">
           <div class="panel-heading">
             <h4 class="panel-title">Send you a message</h4>
@@ -37,12 +37,13 @@
             </div>
             <div class="form-group">
               <label>Message:</label>
-              <textarea class="form-control" name="message" rows="3" placeholder="Your message"/>
+              <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea>
             </div>
           </div>
           <input type="hidden" value="jmailer" name="source" />
           <input type="hidden" value="message.ftl" name="template" />
           <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
+          <input type="hidden" th:field="*{token}" name="token" id="token">
           <div class="panel-footer">
             <button type="submit" class="btn btn-primary">Send</button>
           </div>
@@ -51,23 +52,6 @@
     </div>
   </div>
   <br/><br/>
-  <div class="container">
-    <div class="row">
-      <h4>Code example</h4>
-      <code>
-        <p style="color:gray;">&#60;<font color="purple">form</font><font color="green"> method="</font><font color="blue">POST</font>"<font color="green"> action="</font><font color="blue">http://jmailer.josdem.io/form</font>"&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Name</font>&#60;/<font color="purple">label</font>&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">text</font>"<font color="green"> name="</font><font color="blue">name</font>"<font color="green"> placeholder="</font><font color="blue">enter your name</font>"/&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Your Email</font>&#60;/<font color="purple">label</font>&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">input</font><font color="green"> type="</font><font color="blue">email</font>"<font color="green"> name="</font><font color="blue">emailContact</font>"<font color="green"> placeholder="</font><font color="blue">enter your email</font>"/&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">label</font>&#62;<font color="black">Message</font>&#60;/<font color="purple">label</font>&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">textarea</font><font color="green"> name=</font>"<font color="blue">message</font>"<font color="green"> rows=</font>"<font color="blue">3</font>"<font color="green"> placeholder="</font><font color="blue">Your message</font>"/&#62;</p>
-        <p style="color:gray;">&#160;&#160;&#60;<font color="purple">button</font><font color="green"> type=</font>"<font color="blue">submit</font>"&#62;<font color="black">Send</font>&#60;/<font color="purple">button</font>&#62;</p>
-        <p style="color:gray;">&#60;<font color="purple">/form</font>&#62;</p>
-      </code>
-    </div>
-  </div>
-  <br/><br/><br/>
   <th:block layout:include="fragments/footer"/>
 </body>
 </html>

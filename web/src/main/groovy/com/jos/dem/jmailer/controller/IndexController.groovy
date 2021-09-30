@@ -46,9 +46,12 @@ class IndexController {
     }
 
     @RequestMapping("/form")
-    String form() {
-        logger.info "Calling form"
-        'form'
+     ModelAndView form() {
+        logger.info "Calling contact"
+        ModelAndView modelAndView = new ModelAndView("form")
+        Command message = new MessageCommand(token: token)
+        modelAndView.addObject("message", message)
+        modelAndView
     }
 
     @RequestMapping("/batch")
