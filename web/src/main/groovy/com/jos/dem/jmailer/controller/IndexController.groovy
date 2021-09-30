@@ -16,6 +16,8 @@
 
 package com.jos.dem.jmailer.controller
 
+import com.jos.dem.jmailer.command.Command
+import com.jos.dem.jmailer.command.MessageCommand
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.stereotype.Controller
@@ -23,6 +25,7 @@ import org.springframework.ui.Model;
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.web.servlet.ModelAndView
 
 @Controller
 class IndexController {
@@ -57,10 +60,12 @@ class IndexController {
   }
 
   @RequestMapping("/contact")
-  String contact(final Model model) {
+  ModelAndView contact() {
     logger.info "Calling contact"
-    model.addAttribute("token", token)
-    "contact"
+    ModelAndView modelAndView = new ModelAndView("contact")
+    Command message = new MessageCommand(token: token)
+    modelAndView.addObject("message", message)
+    modelAndView
   }
 
 }

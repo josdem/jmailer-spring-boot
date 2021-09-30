@@ -55,5 +55,8 @@ class MessageCommand implements Command {
 
   @ApiModelProperty(value = "Contact's name", allowableValues = "text")
   String contactName
+
+  @ApiModelProperty(value = "User's identifier", allowableValues = "text")
+  String token
 }
 

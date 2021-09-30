@@ -21,7 +21,7 @@
       <h4>Contact</h4>
       <p>Please, send me a message and I will respond as soon as possible</p>
       <br/>
-      <form th:action="@{/emailer/form}" method="post">
+      <form th:action="@{/emailer/form}" method="post" th:object="${message}">
         <div class="panel-primary">
           <div class="panel-heading">
             <h4 class="panel-title">Please, send me more information</h4>
@@ -44,7 +44,7 @@
           <input type="hidden" value="message.ftl" name="template" />
           <input type="hidden" value="joseluis.delacruz@gmail.com" name="email" />
           <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
-          <input type="hidden" value="${token}" name="token" />
+          <input type="hidden" th:field="*{token}" name="token" id="token">
           <div class="panel-footer">
             <button type="submit" class="btn btn-primary">Send</button>
           </div>

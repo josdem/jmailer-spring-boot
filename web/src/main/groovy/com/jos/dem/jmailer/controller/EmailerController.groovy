@@ -50,6 +50,9 @@ class EmailerController {
   @Autowired
   EmailerService emailerService
 
+  @Value('${token}')
+  String token
+
   @Value('${email.redirect}')
   String redirectUrl
 
@@ -72,6 +75,10 @@ class EmailerController {
   @RequestMapping(method = POST,  value = "/form", consumes="application/x-www-form-urlencoded")
   ModelAndView form(MessageCommand command) {
     logger.info "Sending email: ${command.dump()}"
+    if(token != command.token){
+      logger.info "Invalid user's token"
+      return new ModelAndView("redirect:/contact")
+    }
     emailerService.sendEmail(command)
     return new ModelAndView("redirect:${command.redirect}")
   }
