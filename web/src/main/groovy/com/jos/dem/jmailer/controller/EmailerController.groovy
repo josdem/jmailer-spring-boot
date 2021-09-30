@@ -51,7 +51,10 @@ class EmailerController {
 
     @RequestMapping(method = POST, value = "/message", consumes = "application/json")
     ResponseEntity<String> message(@RequestBody MessageCommand command) {
-        logger.info "Sending contact email: ${command.email}"
+        logger.info "Request contact email: ${command.email}"
+        if (token != command.token) {
+            return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN)
+        }
         emailerService.sendEmail(command)
         new ResponseEntity<String>("OK", HttpStatus.OK)
     }
@@ -65,7 +68,7 @@ class EmailerController {
     ])
     @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
     ModelAndView form(MessageCommand command) {
-        logger.info "Sending email: ${command.dump()}"
+        logger.info "Request message: ${command.dump()}"
         if (token != command.token) {
             logger.info "Invalid user's token"
             return new ModelAndView("redirect:/contact")

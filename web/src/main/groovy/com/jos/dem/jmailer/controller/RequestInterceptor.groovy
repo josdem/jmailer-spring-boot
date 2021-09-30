@@ -41,31 +41,19 @@ class RequestInterceptor implements HandlerInterceptor {
     }
 
     boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        def data = [:]
-        data.remoteHost = request.remoteHost
-        data.requestURL = request.requestURL
-        data.referer = request.getHeader('Referer')
-        data.realip = request.getHeader('X-Real-IP')
-        data.host = request.getHeader('Host')
-        data.realhost = request.getHeader('RealHost')
-        data.auth = request.getHeader('Authorization')
-
-        if (data.realip?.startsWith(blackList)) {
-            data.warn = "UNAUTORIZED IP was detected in attempt to access to resource"
-            log.info "data: ${data.dump()}"
-            return false
-        }
-
-        if (whiteList.contains(data.referer)
-                || data.requestURL.toString().startsWith(homeRequestURL)
-                || token == data.auth) {
-            log.info "data: ${data.dump()}"
-            return true
-        }
-
-        data.warn = "UNAUTORIZED request was detected in attempt to access to resource"
-        log.info "data: ${data.dump()}"
-        return false
+        String remoteHost = request.remoteHost
+        String requestURL = request.requestURL
+        String referer = request.getHeader('Referer')
+        String realIp = request.getHeader('X-Real-IP')
+        String host = request.getHeader('Host')
+        String realHost = request.getHeader('RealHost')
+        log.info "realIp: $realIp"
+        log.info "realHost: $realHost"
+        log.info "host: $host"
+        log.info "referer: $referer"
+        log.info "remoteHost: $remoteHost"
+        log.info "requestURL: $requestURL"
+        return true
     }
 
 
