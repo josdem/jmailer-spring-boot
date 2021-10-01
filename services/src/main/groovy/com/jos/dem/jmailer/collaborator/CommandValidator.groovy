@@ -1,5 +1,5 @@
 /*
-Copyright 2016 José Luis De la Cruz Morales joseluis.delacruz@gmail.com
+Copyright 2016 Jose Morales joseluis.delacruz@gmail.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory
 import javax.validation.ConstraintViolation
 import javax.validation.Validation
 import javax.validation.Validator
-import javax.validation.constraints.Size
 import org.springframework.stereotype.Component
 
 @Component
