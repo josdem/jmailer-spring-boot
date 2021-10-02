@@ -21,12 +21,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@ApiModel(value="MessageCommand", description="Generic command to send emails")
+@ApiModel(value = "MessageCommand", description = "Generic command to send emails")
 public class MessageCommand implements Command {
 
   @ApiModelProperty(value = "Any valid email", allowableValues = "email@domain")
@@ -63,4 +64,3 @@ public class MessageCommand implements Command {
   @ApiModelProperty(value = "User's identifier", allowableValues = "text")
   String token;
 }
-

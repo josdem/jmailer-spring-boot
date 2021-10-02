@@ -26,40 +26,42 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RequestInterceptor implements HandlerInterceptor {
 
-    private String token;
-    private String blackList;
-    private String homeRequestURL;
+  private String token;
+  private String blackList;
+  private String homeRequestURL;
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public RequestInterceptor(String emailWhiteList, String emailBlackList, String homeRequestURL, String token) {
-        this.token = token;
-        this.blackList = emailBlackList;
-        this.homeRequestURL = homeRequestURL;
-    }
+  public RequestInterceptor(
+      String emailWhiteList, String emailBlackList, String homeRequestURL, String token) {
+    this.token = token;
+    this.blackList = emailBlackList;
+    this.homeRequestURL = homeRequestURL;
+  }
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String remoteHost = request.getRemoteHost();
-        String requestURL = request.getRequestURL().toString();
-        String referer = request.getHeader("Referer");
-        String realIp = request.getHeader("X-Real-IP");
-        String host = request.getHeader("Host");
-        String realHost = request.getHeader("RealHost");
-        log.info("realIp:" , realIp);
-        log.info("realHost: ", realHost);
-        log.info("host: ", host);
-        log.info("referer: ", referer);
-        log.info("remoteHost: ", remoteHost);
-        log.info("requestURL: ", requestURL);
-        return true;
-    }
+  public boolean preHandle(
+      HttpServletRequest request, HttpServletResponse response, Object handler) {
+    String remoteHost = request.getRemoteHost();
+    String requestURL = request.getRequestURL().toString();
+    String referer = request.getHeader("Referer");
+    String realIp = request.getHeader("X-Real-IP");
+    String host = request.getHeader("Host");
+    String realHost = request.getHeader("RealHost");
+    log.info("realIp: " + realIp);
+    log.info("realHost: " + realHost);
+    log.info("host: " + host);
+    log.info("referer: " + referer);
+    log.info("remoteHost: " + remoteHost);
+    log.info("requestURL: " + requestURL);
+    return true;
+  }
 
+  public void postHandle(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Object handler,
+      ModelAndView modelAndView) {}
 
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-    }
-
-
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-    }
-
+  public void afterCompletion(
+      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {}
 }

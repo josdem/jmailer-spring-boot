@@ -50,8 +50,8 @@ public class EmailerController {
 
   @RequestMapping(method = POST, value = "/message", consumes = "application/json")
   public ResponseEntity<String> message(@RequestBody MessageCommand command) {
-    logger.info("Request contact email: ", command.getEmail());
-    if (token != command.getToken()) {
+    logger.info("Request contact email: " + command.getEmail());
+    if (!token.equals(command.getToken())) {
       return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
     }
     emailerService.sendEmail(command);
