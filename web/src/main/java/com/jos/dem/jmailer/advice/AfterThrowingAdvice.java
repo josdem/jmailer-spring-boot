@@ -1,5 +1,5 @@
 /*
-  Copyright 2016 José Luis De la Cruz Morales joseluis.delacruz@gmail.com
+  Copyright 2021 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,27 +14,24 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.advice
+package com.jos.dem.jmailer.advice;
 
-import org.aspectj.lang.annotation.AfterThrowing
-import org.aspectj.lang.annotation.Aspect
-import org.springframework.stereotype.Component
-
-import com.jos.dem.jmailer.exception.BusinessException
-
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import com.jos.dem.jmailer.exception.BusinessException;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-class AfterThrowingAdvice {
+public class AfterThrowingAdvice {
 
-  Logger log = LoggerFactory.getLogger(this.class)
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @AfterThrowing(pointcut = "execution(* com.jos.dem.jmailer.service..**.*(..))", throwing = "ex")
   public void doRecoveryActions(RuntimeException ex) {
-    log.info "Wrapping exception ${ex}"
-    throw new BusinessException(ex.getMessage(), ex)
+    log.info("Wrapping exception: ", ex);
+    throw new BusinessException(ex.getMessage(), ex);
   }
-
 }
