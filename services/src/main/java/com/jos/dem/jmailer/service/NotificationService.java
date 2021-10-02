@@ -20,5 +20,5 @@ import com.jos.dem.jmailer.command.MessageCommand;
 
 public interface NotificationService {
 
-  Boolean sendNotification(MessageCommand command);
+  void sendNotification(MessageCommand command);
 }

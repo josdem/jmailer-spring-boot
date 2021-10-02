@@ -41,9 +41,9 @@ public class NotificationServiceImpl implements NotificationService {
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @Override
-  public Boolean sendNotification(MessageCommand command) {
+  public void sendNotification(MessageCommand command) {
     Map data = Map.of("email", command.getEmail(), "subject", subject);
-    return mailService.sendMailWithTemplate(
+    mailService.sendMailWithTemplate(
         data, mapper.convertValue(command, Map.class), command.getTemplate());
   }
 }

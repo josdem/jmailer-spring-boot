@@ -20,5 +20,5 @@ import java.util.Map;
 
 public interface MailService {
 
-  Boolean sendMailWithTemplate(Map values, Map model, String template);
+  void sendMailWithTemplate(Map<String, String> values, Map model, String template);
 }
