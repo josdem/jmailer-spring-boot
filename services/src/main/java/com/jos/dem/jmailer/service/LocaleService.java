@@ -1,5 +1,5 @@
 /*
-  Copyright 2016 José Luis De la Cruz Morales joseluis.delacruz@gmail.com
+  Copyright 2021 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,12 +14,8 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.service
+package com.jos.dem.jmailer.service;
 
-import com.jos.dem.jmailer.command.Command
-
-interface EmailerService {
-
-  def sendEmail(Command command)
-
+public interface LocaleService {
+  String getMessage(String code);
 }

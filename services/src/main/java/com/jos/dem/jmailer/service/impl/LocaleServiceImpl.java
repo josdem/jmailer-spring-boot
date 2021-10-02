@@ -14,15 +14,21 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.exception;
+package com.jos.dem.jmailer.service.impl;
 
-public class BusinessException extends RuntimeException {
+import com.jos.dem.jmailer.service.LocaleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 
-  public BusinessException(String message){
-    super(message);
-  }
+import java.util.Locale;
 
-  public BusinessException(String message, Throwable cause) {
-    super(message, cause);
+@Service
+public class LocaleServiceImpl implements LocaleService {
+
+  @Autowired private MessageSource messageSource;
+
+  public String getMessage(String code) {
+    return messageSource.getMessage(code, null, new Locale("en"));
   }
 }

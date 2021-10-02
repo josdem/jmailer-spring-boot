@@ -1,5 +1,5 @@
 /*
-  Copyright 2016 José Luis De la Cruz Morales joseluis.delacruz@gmail.com
+  Copyright 2021 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,23 +14,11 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.service.impl
+package com.jos.dem.jmailer.service;
 
-import org.springframework.context.MessageSource
-import org.springframework.stereotype.Service
-import org.springframework.beans.factory.annotation.Autowired
+import java.util.Map;
 
-import com.jos.dem.jmailer.service.LocaleService
+public interface MailService {
 
-@Service
-class LocaleServiceImpl implements LocaleService {
-
-  @Autowired
-  MessageSource messageSource
-
-  String getMessage(String code){
-    messageSource.getMessage(code, null, new Locale("en"))
-  }
-
+  Boolean sendMailWithTemplate(Map values, Map model, String template);
 }
-

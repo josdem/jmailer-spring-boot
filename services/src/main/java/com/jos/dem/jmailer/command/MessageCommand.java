@@ -18,10 +18,14 @@ package com.jos.dem.jmailer.command;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
+@Getter
+@Setter
 @ApiModel(value="MessageCommand", description="Generic command to send emails")
 public class MessageCommand implements Command {
 

@@ -1,7 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.5.5' apply false
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'groovy'
     id 'java'
 }
 
@@ -10,6 +9,12 @@ ext {
 }
 
 group = 'com.jos.dem.jmailer'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
@@ -25,6 +30,8 @@ dependencies {
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
     implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
     implementation 'org.codehaus.groovy:groovy'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
