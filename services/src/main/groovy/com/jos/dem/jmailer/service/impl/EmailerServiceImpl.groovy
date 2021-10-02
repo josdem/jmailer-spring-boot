@@ -23,7 +23,6 @@ import com.jos.dem.jmailer.command.Command
 import com.jos.dem.jmailer.service.EmailerService
 import com.jos.dem.jmailer.service.MessageService
 import com.jos.dem.jmailer.collaborator.CommandValidator
-import com.jos.dem.jmailer.exception.EmailerException
 
 @Service
 class EmailerServiceImpl implements EmailerService {

@@ -1,5 +1,5 @@
 /*
-  Copyright 2016 José Luis De la Cruz Morales joseluis.delacruz@gmail.com
+  Copyright 2021 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,19 +14,11 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.exception
+package com.jos.dem.jmailer.exception;
 
-import org.springframework.core.NestedRuntimeException
-
-class BusinessException extends NestedRuntimeException {
-
-  BusinessException(String msg){
-    super(msg)
-  }
+class BusinessException extends RuntimeException {
 
   BusinessException(String msg, Throwable cause) {
-    super(msg, cause)
+    super(msg, cause);
   }
-
 }
-
