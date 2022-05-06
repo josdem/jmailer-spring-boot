@@ -1,12 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.5'
+    id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
-ext {
-    springfoxVersion = '2.4.0'
-}
+def springfoxVersion = '3.0.0'
+def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.jmailer'
 version = '1.0.0-SNAPSHOT'
@@ -24,7 +23,7 @@ dependencies {
     implementation 'org.freemarker:freemarker:2.3.31'
     implementation 'org.codehaus.groovy:groovy'
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-    implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
     implementation project(':services')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
