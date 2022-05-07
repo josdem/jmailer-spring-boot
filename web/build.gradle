@@ -10,6 +10,12 @@ def springfoxUiVersion = '2.9.2'
 group = 'com.jos.dem.jmailer'
 version = '1.0.0-SNAPSHOT'
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -22,6 +28,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-activemq'
     implementation 'org.freemarker:freemarker:2.3.31'
     implementation 'org.codehaus.groovy:groovy'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
     implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
     implementation project(':services')
