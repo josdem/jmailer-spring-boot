@@ -19,19 +19,17 @@ package com.jos.dem.jmailer.controller;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -41,80 +39,48 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class EmailerController {
 
-  @Autowired private EmailerService emailerService;
+    @Autowired
+    private EmailerService emailerService;
 
-  @Value("${token}")
-  private String token;
+    @Value("${token}")
+    private String token;
 
-  @Value("${email.redirect}")
-  private String redirectUrl;
+    @Value("${email.redirect}")
+    private String redirectUrl;
 
-  private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  @ApiOperation(value = "Send an email with JSON")
-  @ApiResponses(
-          value = {
-                  @ApiResponse(code = 200, message = "User created"),
-                  @ApiResponse(code = 400, message = "Bad request"),
-                  @ApiResponse(code = 500, message = "Something went wrong")
-          })
-  @RequestMapping(method = POST, value = "/message", consumes = "application/json")
-  public ResponseEntity<String> message(@RequestBody MessageCommand command) {
-    logger.info("Request contact email: " + command.getEmail());
-    if (!token.equals(command.getToken())) {
-      return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
+    @ApiOperation(value = "Send an email with JSON")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "User created"),
+                    @ApiResponse(code = 400, message = "Bad request"),
+                    @ApiResponse(code = 500, message = "Something went wrong")
+            })
+    @RequestMapping(method = POST, value = "/message", consumes = "application/json")
+    public ResponseEntity<String> message(@RequestBody MessageCommand command) {
+        logger.info("Request contact email: " + command.getEmail());
+        if (!token.equals(command.getToken())) {
+            return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
+        }
+        emailerService.sendEmail(command);
+        return new ResponseEntity<String>("OK", HttpStatus.OK);
     }
-    emailerService.sendEmail(command);
-    return new ResponseEntity<String>("OK", HttpStatus.OK);
-  }
 
-  @ApiImplicitParams(
-      value = {
-        @ApiImplicitParam(
-            name = "email",
-            value = "email-to@domain",
-            required = true,
-            dataType = "string",
-            paramType = "query"),
-        @ApiImplicitParam(
-            name = "message",
-            value = "message body",
-            required = true,
-            dataType = "string",
-            paramType = "query"),
-        @ApiImplicitParam(
-            name = "name",
-            value = "sender name",
-            required = true,
-            dataType = "string",
-            paramType = "query"),
-        @ApiImplicitParam(
-            name = "emailContact",
-            value = "email-reference@domain",
-            required = true,
-            dataType = "string",
-            paramType = "query"),
-        @ApiImplicitParam(
-            name = "source",
-            value = "source",
-            required = true,
-            dataType = "string",
-            paramType = "query"),
-      })
-  @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
-  public ModelAndView form(MessageCommand command) {
-    logger.info("Request message from: ", command.getEmail());
-    if (!token.equals(command.getToken())) {
-      logger.info("Invalid user's token");
-      return new ModelAndView("redirect:/contact");
+    @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
+    public ModelAndView form(MessageCommand command) {
+        logger.info("Request message from: ", command.getEmail());
+        if (!token.equals(command.getToken())) {
+            logger.info("Invalid user's token");
+            return new ModelAndView("redirect:/contact");
+        }
+        emailerService.sendEmail(command);
+        return new ModelAndView("redirect:" + command.getRedirect());
     }
-    emailerService.sendEmail(command);
-    return new ModelAndView("redirect:" + command.getRedirect());
-  }
 
-  @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
-  @ExceptionHandler(BusinessException.class)
-  public ResponseEntity<String> handleException(BusinessException be) {
-    return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
-  }
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<String> handleException(BusinessException be) {
+        return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+    }
 }
