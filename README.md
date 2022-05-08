@@ -10,6 +10,11 @@ Send email from everywhere!
 * You can send an email using a form in your website
 * You can send an email using a file with an email list addresses
 
+#### Swagger
+
+https://jmailer.josdem.io/swagger-ui.html
+
+
 #### Go here for more information
 
 * https://jmailer.josdem.io/
