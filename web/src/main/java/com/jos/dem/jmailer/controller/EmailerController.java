@@ -24,6 +24,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Api(tags = "Knows how to send emails")
 @RequestMapping("/emailer/*")
 @RestController
+@RequiredArgsConstructor
 public class EmailerController {
 
     @Autowired
@@ -52,6 +56,8 @@ public class EmailerController {
 
     @Value("${email.redirect}")
     private String redirectUrl;
+
+    private final List<String> spamTokens;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -79,6 +85,13 @@ public class EmailerController {
             logger.info("Invalid user's token");
             return new ModelAndView("redirect:/contact");
         }
+        spamTokens.forEach(token -> {
+            logger.info("TOKEN: " + token);
+            if (command.getMessage().contains(token)) {
+                logger.info("Spam token detected");
+                throw new BusinessException("Spam token detected: " + token);
+            }
+        });
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
