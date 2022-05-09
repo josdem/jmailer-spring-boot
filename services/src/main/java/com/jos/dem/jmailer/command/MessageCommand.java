@@ -29,5 +29,4 @@ public class MessageCommand implements Command {
     String message;
     String template;
     String token;
-    String redirect;
 }
