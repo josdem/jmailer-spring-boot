@@ -21,14 +21,15 @@ import com.jos.dem.jmailer.command.Command;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
 import com.jos.dem.jmailer.service.MessageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EmailerServiceImpl implements EmailerService {
 
-  @Autowired private MessageService messageService;
-  @Autowired private CommandValidator validator;
+  private final MessageService messageService;
+  private final CommandValidator validator;
 
   public void sendEmail(Command command) {
     if (!validator.isValid(command)) {

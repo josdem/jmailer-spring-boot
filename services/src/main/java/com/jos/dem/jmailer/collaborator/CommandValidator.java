@@ -17,8 +17,7 @@ limitations under the License.
 package com.jos.dem.jmailer.collaborator;
 
 import com.jos.dem.jmailer.command.Command;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
@@ -26,19 +25,18 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
+@Slf4j
 @Component
 public class CommandValidator {
 
-  Logger log = LoggerFactory.getLogger(this.getClass());
-
-  public Boolean isValid(Command command) {
-    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-    Set<ConstraintViolation<Command>> constraintViolations = validator.validate(command);
-    log.info("violations:" + constraintViolations.size());
-    if (!constraintViolations.isEmpty()) {
-      log.info("field:" + constraintViolations.iterator().next().getPropertyPath());
-      log.info("message:" + constraintViolations.iterator().next().getMessage());
+    public Boolean isValid(Command command) {
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<Command>> constraintViolations = validator.validate(command);
+        log.info("violations: {}", constraintViolations.size());
+        if (!constraintViolations.isEmpty()) {
+            log.info("field:" + constraintViolations.iterator().next().getPropertyPath());
+            log.info("message: {}", constraintViolations.iterator().next().getMessage());
+        }
+        return constraintViolations.isEmpty();
     }
-    return constraintViolations.isEmpty();
-  }
 }
