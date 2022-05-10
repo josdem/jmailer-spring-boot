@@ -80,13 +80,15 @@ public class EmailerController {
     @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
     public ModelAndView form(FormCommand command) {
         logger.info("Request message from: ", command.getEmailContact());
-        emailProperties.getSpamTokens().forEach(token -> {
-            logger.info("TOKEN: " + token);
-        });
         if (!token.equals(command.getToken())) {
             logger.info("Invalid user's token");
             return new ModelAndView("redirect:/contact");
         }
+        emailProperties.getSpamTokens().forEach(token -> {
+            if (command.getMessage().contains(token)) {
+                throw new BusinessException("Spam token detected: " + token);
+            }
+        });
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
