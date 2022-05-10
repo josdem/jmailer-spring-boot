@@ -18,6 +18,7 @@ package com.jos.dem.jmailer.controller;
 
 import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
+import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
 import io.swagger.annotations.Api;
@@ -38,8 +39,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Api(tags = "Knows how to send emails")
@@ -57,7 +56,7 @@ public class EmailerController {
     @Value("${email.redirect}")
     private String redirectUrl;
 
-    private final List<String> spamTokens;
+    private final EmailProperties emailProperties;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -80,18 +79,14 @@ public class EmailerController {
 
     @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
     public ModelAndView form(FormCommand command) {
-        logger.info("Request message from: ", command.getEmail());
+        logger.info("Request message from: ", command.getEmailContact());
+        emailProperties.getSpamTokens().forEach(token -> {
+            logger.info("TOKEN: " + token);
+        });
         if (!token.equals(command.getToken())) {
             logger.info("Invalid user's token");
             return new ModelAndView("redirect:/contact");
         }
-        spamTokens.forEach(token -> {
-            logger.info("TOKEN: " + token);
-            if (command.getMessage().contains(token)) {
-                logger.info("Spam token detected");
-                throw new BusinessException("Spam token detected: " + token);
-            }
-        });
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
