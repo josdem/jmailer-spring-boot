@@ -8,7 +8,7 @@ def springfoxVersion = '3.0.0'
 def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.jmailer'
-version = '1.0.0-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 
 configurations {
     compileOnly {
@@ -35,6 +35,8 @@ dependencies {
     implementation project(':services')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 test {
