@@ -16,8 +16,7 @@
 
 package com.jos.dem.jmailer.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,17 +25,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class HandlerException implements HandlerExceptionResolver {
 
-  private Logger log = LoggerFactory.getLogger(this.getClass());
-
-  public ModelAndView resolveException(
-      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-    log.info("Exception: ", ex.getMessage());
-    Map data = Map.of("message", ex.getMessage());
-    ModelAndView modelAndView = new ModelAndView("error");
-    modelAndView.addObject("data", data);
-    return modelAndView;
-  }
+    public ModelAndView resolveException(
+            HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        log.info("Exception: {}", ex.getMessage());
+        Map data = Map.of("message", ex.getMessage());
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("data", data);
+        return modelAndView;
+    }
 }

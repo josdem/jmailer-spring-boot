@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.jos.dem.jmailer.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,13 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 public class RequestInterceptor implements HandlerInterceptor {
 
   private String token;
   private String blackList;
   private String homeRequestURL;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   public RequestInterceptor(
       String emailWhiteList, String emailBlackList, String homeRequestURL, String token) {
@@ -47,12 +47,12 @@ public class RequestInterceptor implements HandlerInterceptor {
     String realIp = request.getHeader("X-Real-IP");
     String host = request.getHeader("Host");
     String realHost = request.getHeader("RealHost");
-    log.info("realIp: " + realIp);
-    log.info("realHost: " + realHost);
-    log.info("host: " + host);
-    log.info("referer: " + referer);
-    log.info("remoteHost: " + remoteHost);
-    log.info("requestURL: " + requestURL);
+    log.info("realIp: {}", realIp);
+    log.info("realHost: {}", realHost);
+    log.info("host: {}", host);
+    log.info("referer: {}", referer);
+    log.info("remoteHost: {}", remoteHost);
+    log.info("requestURL: {}", requestURL);
     return true;
   }
 

@@ -26,8 +26,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -41,6 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+@Slf4j
 @Api(tags = "Knows how to send emails")
 @RequestMapping("/emailer/*")
 @RestController
@@ -58,8 +58,6 @@ public class EmailerController {
 
     private final EmailProperties emailProperties;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @ApiOperation(value = "Send an email with JSON")
     @ApiResponses(
             value = {
@@ -69,7 +67,7 @@ public class EmailerController {
             })
     @RequestMapping(method = POST, value = "/message", consumes = "application/json")
     public ResponseEntity<String> message(@RequestBody MessageCommand command) {
-        logger.info("Request contact email: " + command.getEmail());
+        log.info("Request contact email: {}", command.getEmail());
         if (!token.equals(command.getToken())) {
             return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
         }
@@ -79,9 +77,9 @@ public class EmailerController {
 
     @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
     public ModelAndView form(FormCommand command) {
-        logger.info("Request message from: ", command.getEmailContact());
+        log.info("Request message from: {}", command.getEmailContact());
         if (!token.equals(command.getToken())) {
-            logger.info("Invalid user's token");
+            log.info("Invalid user's token");
             return new ModelAndView("redirect:/contact");
         }
         emailProperties.getSpamTokens().forEach(token -> {

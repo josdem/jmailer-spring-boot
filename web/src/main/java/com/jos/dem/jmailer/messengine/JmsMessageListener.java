@@ -18,9 +18,8 @@ package com.jos.dem.jmailer.messengine;
 
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.service.NotificationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -28,17 +27,17 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.ObjectMessage;
 
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class JmsMessageListener {
 
-  @Autowired private NotificationService notificationService;
+    private final NotificationService notificationService;
 
-  private Logger log = LoggerFactory.getLogger(this.getClass());
-
-  @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
-  public void receiveMessage(Message message) throws JMSException {
-    Object command = ((ObjectMessage) message).getObject();
-    log.info("Message received");
-    notificationService.sendNotification((MessageCommand) command);
-  }
+    @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
+    public void receiveMessage(Message message) throws JMSException {
+        Object command = ((ObjectMessage) message).getObject();
+        log.info("Message received");
+        notificationService.sendNotification((MessageCommand) command);
+    }
 }

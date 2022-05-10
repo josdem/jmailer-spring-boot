@@ -17,36 +17,34 @@
 package com.jos.dem.jmailer.controller;
 
 import com.jos.dem.jmailer.command.MessageCommand;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @Controller
 public class IndexController {
 
     @Value("${token}")
     private String token;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @RequestMapping("/")
     public String index() {
-        logger.info("Calling index");
+        log.info("Calling index");
         return "index";
     }
 
     @RequestMapping("/command-line")
     public String commandLine() {
-        logger.info("Calling command line");
+        log.info("Calling command line");
         return "command_line";
     }
 
     @RequestMapping("/form")
-     public ModelAndView form() {
-        logger.info("Calling contact");
+    public ModelAndView form() {
+        log.info("Calling contact");
         ModelAndView modelAndView = new ModelAndView("form");
         MessageCommand message = new MessageCommand();
         message.setToken(token);
@@ -56,13 +54,13 @@ public class IndexController {
 
     @RequestMapping("/batch")
     public String batch() {
-        logger.info("Calling batch");
+        log.info("Calling batch");
         return "batch";
     }
 
     @RequestMapping("/contact")
     public ModelAndView contact() {
-        logger.info("Calling contact");
+        log.info("Calling contact");
         ModelAndView modelAndView = new ModelAndView("contact");
         MessageCommand message = new MessageCommand();
         message.setToken(token);
