@@ -8,7 +8,7 @@ def springfoxVersion = '3.0.0'
 def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.jmailer'
-version = '1.0.2'
+version = '1.0.3'
 
 configurations {
     compileOnly {
