@@ -10,7 +10,7 @@ public class MessageValidator {
 
   public boolean isValid(String message) {
     return message.length() <= MIN_LENGTH
-        && countUppercase(message) >= MIN_UPPERCASE
+        && message.length() - countUppercase(message) >= MIN_UPPERCASE
         && !message.contains(" ");
   }
 
