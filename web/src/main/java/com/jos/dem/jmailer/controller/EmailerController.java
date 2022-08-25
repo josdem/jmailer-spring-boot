@@ -28,7 +28,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,7 +87,7 @@ public class EmailerController {
                 throw new BusinessException("Spam token detected: " + token);
             }
         });
-        if(!messageValidator.isValid(command.getMessage())){
+        if(messageValidator.isInvalid(command.getMessage())){
             throw new BusinessException("Invalid message");
         }
         emailerService.sendEmail(command);
