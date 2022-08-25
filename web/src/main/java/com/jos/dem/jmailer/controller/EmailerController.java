@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.jos.dem.jmailer.controller;
 
+import com.jos.dem.jmailer.collaborator.MessageValidator;
 import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
@@ -47,8 +48,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequiredArgsConstructor
 public class EmailerController {
 
-    @Autowired
-    private EmailerService emailerService;
+    private final EmailerService emailerService;
+    private final MessageValidator messageValidator;
 
     @Value("${token}")
     private String token;
@@ -87,6 +88,9 @@ public class EmailerController {
                 throw new BusinessException("Spam token detected: " + token);
             }
         });
+        if(!messageValidator.isValid(command.getMessage())){
+            throw new BusinessException("Invalid message");
+        }
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
