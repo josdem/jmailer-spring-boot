@@ -27,5 +27,4 @@ import lombok.*;
 public class FormCommand extends MessageCommand implements Command {
     String redirect;
     String source;
-    String emailContact;
 }

@@ -22,6 +22,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MessageCommand implements Command {
     @NonNull
     String name;
