@@ -13,4 +13,5 @@ import java.util.List;
 @ConfigurationProperties("email")
 public class EmailProperties {
     private List<String> spamTokens;
+    private List<String> spamNames;
 }

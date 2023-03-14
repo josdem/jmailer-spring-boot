@@ -87,12 +87,14 @@ public class EmailerController {
                 throw new BusinessException("Spam token detected: " + token);
             }
         });
-        if(messageValidator.isInvalid(command.getMessage())){
+        if (messageValidator.isInvalid(command.getMessage())) {
             throw new BusinessException("Invalid message");
         }
-        if(messageValidator.isInvalidContact(command.getEmailContact())){
-            throw new BusinessException("Invalid message");
-        }
+        emailProperties.getSpamNames().forEach(token -> {
+            if (command.getMessage().contains(token)) {
+                throw new BusinessException("Spam name detected: " + token);
+            }
+        });
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
