@@ -77,7 +77,7 @@ public class EmailerController {
 
     @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
     public ModelAndView form(FormCommand command) {
-        log.info("Request message from: {}", command.getEmailContact());
+        log.info("Request message from: {}", command);
         if (!token.equals(command.getToken())) {
             log.info("Invalid user's token");
             return new ModelAndView("redirect:/contact");

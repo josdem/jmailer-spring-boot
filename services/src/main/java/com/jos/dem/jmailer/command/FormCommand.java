@@ -17,15 +17,13 @@ limitations under the License.
 package com.jos.dem.jmailer.command;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class FormCommand extends MessageCommand implements Command {
     String redirect;
     String source;
