@@ -90,6 +90,9 @@ public class EmailerController {
         if(messageValidator.isInvalid(command.getMessage())){
             throw new BusinessException("Invalid message");
         }
+        if(messageValidator.isInvalidContact(command.getEmailContact())){
+            throw new BusinessException("Invalid message");
+        }
         emailerService.sendEmail(command);
         return new ModelAndView("redirect:" + command.getRedirect());
     }
