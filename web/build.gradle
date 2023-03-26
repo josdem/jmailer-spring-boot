@@ -5,7 +5,6 @@ plugins {
 }
 
 def springfoxVersion = '3.0.0'
-def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.jmailer'
 version = '1.0.7.1'
@@ -31,7 +30,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-    implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
     implementation project(':services')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'

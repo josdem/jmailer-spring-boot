@@ -4,9 +4,7 @@ plugins {
     id 'java'
 }
 
-ext {
-    springfoxVersion = '2.4.0'
-}
+def springfoxVersion = '3.0.0'
 
 group = 'com.jos.dem.jmailer'
 
