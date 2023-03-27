@@ -20,6 +20,7 @@ import com.jos.dem.jmailer.command.MessageCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,45 +28,44 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-    @Value("${token}")
-    private String token;
+  @Value("${token}")
+  private String token;
 
-    @RequestMapping("/")
-    public String index() {
-        log.info("Calling index");
-        return "index";
-    }
+  @GetMapping("/")
+  public String index() {
+    log.info("Calling index");
+    return "index";
+  }
 
-    @RequestMapping("/command-line")
-    public String commandLine() {
-        log.info("Calling command line");
-        return "command_line";
-    }
+  @RequestMapping("/command-line")
+  public String commandLine() {
+    log.info("Calling command line");
+    return "command_line";
+  }
 
-    @RequestMapping("/form")
-    public ModelAndView form() {
-        log.info("Calling contact");
-        ModelAndView modelAndView = new ModelAndView("form");
-        MessageCommand message = new MessageCommand();
-        message.setToken(token);
-        modelAndView.addObject("message", message);
-        return modelAndView;
-    }
+  @RequestMapping("/form")
+  public ModelAndView form() {
+    log.info("Calling contact");
+    ModelAndView modelAndView = new ModelAndView("form");
+    MessageCommand message = new MessageCommand();
+    message.setToken(token);
+    modelAndView.addObject("message", message);
+    return modelAndView;
+  }
 
-    @RequestMapping("/batch")
-    public String batch() {
-        log.info("Calling batch");
-        return "batch";
-    }
+  @RequestMapping("/batch")
+  public String batch() {
+    log.info("Calling batch");
+    return "batch";
+  }
 
-    @RequestMapping("/contact")
-    public ModelAndView contact() {
-        log.info("Calling contact");
-        ModelAndView modelAndView = new ModelAndView("contact");
-        MessageCommand message = new MessageCommand();
-        message.setToken(token);
-        modelAndView.addObject("message", message);
-        return modelAndView;
-    }
-
+  @RequestMapping("/contact")
+  public ModelAndView contact() {
+    log.info("Calling contact");
+    ModelAndView modelAndView = new ModelAndView("contact");
+    MessageCommand message = new MessageCommand();
+    message.setToken(token);
+    modelAndView.addObject("message", message);
+    return modelAndView;
+  }
 }
