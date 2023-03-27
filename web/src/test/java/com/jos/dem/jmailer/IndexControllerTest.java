@@ -26,6 +26,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -51,5 +52,16 @@ class IndexControllerTest {
         .perform(get("/command-line"))
         .andExpect(status().isOk())
         .andExpect(view().name("command_line"));
+  }
+
+  @Test
+  @DisplayName("showing form page")
+  void shouldShowFormPage(TestInfo testInfo) throws Exception {
+    log.info("Running: {}", testInfo.getDisplayName());
+    mockMvc
+        .perform(get("/form"))
+        .andExpect(status().isOk())
+        .andExpect(model().attributeExists("message"))
+        .andExpect(view().name("form"));
   }
 }

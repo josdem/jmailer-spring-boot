@@ -43,7 +43,7 @@ public class IndexController {
     return "command_line";
   }
 
-  @RequestMapping("/form")
+  @GetMapping("/form")
   public ModelAndView form() {
     log.info("Calling contact");
     ModelAndView modelAndView = new ModelAndView("form");
