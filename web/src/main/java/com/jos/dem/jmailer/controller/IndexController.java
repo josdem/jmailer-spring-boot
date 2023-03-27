@@ -37,7 +37,7 @@ public class IndexController {
     return "index";
   }
 
-  @RequestMapping("/command-line")
+  @GetMapping("/command-line")
   public String commandLine() {
     log.info("Calling command line");
     return "command_line";

@@ -34,13 +34,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class IndexControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-    @Test
-    @DisplayName("showing home page")
-    void shouldShowHomePage(TestInfo testInfo) throws Exception {
-        log.info("Running: {}", testInfo.getDisplayName());
-        mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
-    }
+  @Test
+  @DisplayName("showing home page")
+  void shouldShowHomePage(TestInfo testInfo) throws Exception {
+    log.info("Running: {}", testInfo.getDisplayName());
+    mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
+  }
+
+  @Test
+  @DisplayName("showing command line page")
+  void shouldShowCommandLinePage(TestInfo testInfo) throws Exception {
+    log.info("Running: {}", testInfo.getDisplayName());
+    mockMvc
+        .perform(get("/command-line"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("command_line"));
+  }
 }
