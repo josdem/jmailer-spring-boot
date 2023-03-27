@@ -69,9 +69,17 @@ class IndexControllerTest {
   @DisplayName("showing batch page")
   void shouldShowBatchPage(TestInfo testInfo) throws Exception {
     log.info("Running: {}", testInfo.getDisplayName());
+    mockMvc.perform(get("/batch")).andExpect(status().isOk()).andExpect(view().name("batch"));
+  }
+
+  @Test
+  @DisplayName("showing contact page")
+  void shouldShowContactPage(TestInfo testInfo) throws Exception {
+    log.info("Running: {}", testInfo.getDisplayName());
     mockMvc
-            .perform(get("/batch"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("batch"));
+        .perform(get("/contact"))
+        .andExpect(status().isOk())
+        .andExpect(model().attributeExists("message"))
+        .andExpect(view().name("contact"));
   }
 }
