@@ -25,8 +25,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @Slf4j
 class EmailServiceTest {
@@ -46,9 +49,9 @@ class EmailServiceTest {
   @DisplayName("send a message")
   void shouldSendMessage(TestInfo testInfo) {
     log.info("Running {}", testInfo.getDisplayName());
-    Command command = Mockito.mock(Command.class);
-    Mockito.when(validator.isValid(command)).thenReturn(true);
+    Command command = mock(Command.class);
+    when(validator.isValid(command)).thenReturn(true);
     emailerService.sendEmail(command);
-    Mockito.verify(messageService).message(command);
+    verify(messageService).message(command);
   }
 }
