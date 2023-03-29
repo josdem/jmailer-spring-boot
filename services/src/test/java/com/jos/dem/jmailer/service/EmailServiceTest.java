@@ -48,6 +48,7 @@ class EmailServiceTest {
     log.info("Running {}", testInfo.getDisplayName());
     Command command = Mockito.mock(Command.class);
     Mockito.when(validator.isValid(command)).thenReturn(true);
+    emailerService.sendEmail(command);
     Mockito.verify(messageService).message(command);
   }
 }
