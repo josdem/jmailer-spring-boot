@@ -26,31 +26,27 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
-import javax.mail.internet.MimeMessage;
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
 
-    private final Configuration configuration;
+  private final Configuration configuration;
+  private final JavaMailSender javaMailSender;
 
-    private final JavaMailSender javaMailSender;
+  public void sendMailWithTemplate(Map<String, String> values, Map model, String template) {
 
-    public void sendMailWithTemplate(Map<String, String> values, Map model, String template) {
-
-        MimeMessagePreparator preparator = new MimeMessagePreparator() {
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);
-                Template myTemplate = configuration.getTemplate(template);
-                message.setTo(values.get("email"));
-                message.setSubject(values.get("subject"));
-                String text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
-                message.setText(text, true);
-            }
+    MimeMessagePreparator mailer =
+        mimeMessage -> {
+          MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);
+          Template myTemplate = configuration.getTemplate(template);
+          message.setTo(values.get("email"));
+          message.setSubject(values.get("subject"));
+          String text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
+          message.setText(text, true);
         };
 
-        this.javaMailSender.send(preparator);
-    }
-
+    javaMailSender.send(mailer);
+  }
 }
