@@ -25,10 +25,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.ObjectMessage;
-import javax.jms.Session;
 
 @Slf4j
 @Service
@@ -36,21 +33,17 @@ import javax.jms.Session;
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-    private final JmsTemplate jmsTemplate;
+  private final JmsTemplate jmsTemplate;
 
-    public void message(final Command command) {
-        MessageCreator messageCreator =
-                new MessageCreator() {
+  public void message(final Command command) {
+    MessageCreator messageCreator =
+        session -> {
+          ObjectMessage message = session.createObjectMessage();
+          message.setObject(command);
+          return message;
+        };
 
-                    @Override
-                    public Message createMessage(Session session) throws JMSException {
-                        ObjectMessage message = session.createObjectMessage();
-                        message.setObject(command);
-                        return message;
-                    }
-                };
-
-        log.info("Sending a new message");
-        jmsTemplate.send("destination", messageCreator);
-    }
+    log.info("Sending a new message");
+    jmsTemplate.send("destination", messageCreator);
+  }
 }
