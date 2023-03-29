@@ -14,7 +14,7 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer;
+package com.jos.dem.jmailer.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
