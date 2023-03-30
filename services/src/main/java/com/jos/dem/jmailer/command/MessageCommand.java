@@ -19,9 +19,11 @@ package com.jos.dem.jmailer.command;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -29,10 +31,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class MessageCommand implements Command {
-    @NonNull
+    @NotNull
     String name;
     String email;
     String token;
+    @Min(15)
     String message;
     String contactName;
     String emailContact;

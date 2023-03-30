@@ -87,9 +87,6 @@ public class EmailerController {
                 throw new BusinessException("Spam token detected: " + token);
             }
         });
-        if (messageValidator.isInvalid(command.getMessage())) {
-            throw new BusinessException("Invalid message");
-        }
         emailProperties.getSpamNames().forEach(token -> {
             if (command.getName().equalsIgnoreCase(token)) {
                 throw new BusinessException("Spam name detected: " + token);
