@@ -22,6 +22,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,14 +33,18 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @ToString
 public class MessageCommand implements Command {
-  @NotNull String name;
-  String email;
-  String token;
+  @NotNull private String name;
+
+  @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+  @NotEmpty
+  private String email;
+
+  @NotNull private String token;
 
   @Size(min = 15)
-  String message;
+  private String message;
 
-  String contactName;
-  String emailContact;
-  String template;
+  private String contactName;
+  private String emailContact;
+  @NotNull private String template;
 }
