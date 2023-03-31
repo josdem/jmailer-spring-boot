@@ -16,9 +16,7 @@
 
 package com.jos.dem.jmailer.service.impl;
 
-import com.jos.dem.jmailer.collaborator.CommandValidator;
 import com.jos.dem.jmailer.command.Command;
-import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
 import com.jos.dem.jmailer.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +27,8 @@ import org.springframework.stereotype.Service;
 public class EmailerServiceImpl implements EmailerService {
 
   private final MessageService messageService;
-  private final CommandValidator validator;
 
   public void sendEmail(Command command) {
-    if (!validator.isValid(command)) {
-      throw new BusinessException("Parameters do not fit the constraints");
-    }
     messageService.message(command);
   }
 }

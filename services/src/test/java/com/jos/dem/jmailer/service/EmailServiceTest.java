@@ -16,9 +16,7 @@
 
 package com.jos.dem.jmailer.service;
 
-import com.jos.dem.jmailer.collaborator.CommandValidator;
 import com.jos.dem.jmailer.command.Command;
-import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.impl.EmailerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,10 +26,8 @@ import org.junit.jupiter.api.TestInfo;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @Slf4j
 class EmailServiceTest {
@@ -39,12 +35,11 @@ class EmailServiceTest {
   private EmailerService emailerService;
 
   @Mock private MessageService messageService;
-  @Mock private CommandValidator validator;
 
   @BeforeEach
   void setup() {
     MockitoAnnotations.openMocks(this);
-    emailerService = new EmailerServiceImpl(messageService, validator);
+    emailerService = new EmailerServiceImpl(messageService);
   }
 
   @Test
@@ -52,17 +47,7 @@ class EmailServiceTest {
   void shouldSendMessage(TestInfo testInfo) {
     log.info("Running {}", testInfo.getDisplayName());
     Command command = mock(Command.class);
-    when(validator.isValid(command)).thenReturn(true);
     emailerService.sendEmail(command);
     verify(messageService).message(command);
-  }
-
-  @Test
-  @DisplayName("not send a message")
-  void shouldNotSendMessage(TestInfo testInfo) {
-    log.info("Running {}", testInfo.getDisplayName());
-    Command command = mock(Command.class);
-    when(validator.isValid(command)).thenReturn(false);
-    assertThrows(BusinessException.class, () -> emailerService.sendEmail(command));
   }
 }

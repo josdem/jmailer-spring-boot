@@ -16,10 +16,8 @@ limitations under the License.
 
 package com.jos.dem.jmailer.controller;
 
-import com.jos.dem.jmailer.collaborator.MessageValidator;
 import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
-import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
 import io.swagger.annotations.Api;
@@ -38,6 +36,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Slf4j
@@ -47,58 +47,45 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequiredArgsConstructor
 public class EmailerController {
 
-    private final EmailerService emailerService;
-    private final MessageValidator messageValidator;
+  private final EmailerService emailerService;
 
-    @Value("${token}")
-    private String token;
+  @Value("${token}")
+  private String token;
 
-    @Value("${email.redirect}")
-    private String redirectUrl;
+  @Value("${email.redirect}")
+  private String redirectUrl;
 
-    private final EmailProperties emailProperties;
-
-    @ApiOperation(value = "Send an email with JSON")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(code = 200, message = "User created"),
-                    @ApiResponse(code = 400, message = "Bad request"),
-                    @ApiResponse(code = 500, message = "Something went wrong")
-            })
-    @RequestMapping(method = POST, value = "/message", consumes = "application/json")
-    public ResponseEntity<String> message(@RequestBody MessageCommand command) {
-        log.info("Request contact email: {}", command.getEmail());
-        if (!token.equals(command.getToken())) {
-            return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
-        }
-        emailerService.sendEmail(command);
-        return new ResponseEntity<String>("OK", HttpStatus.OK);
+  @ApiOperation(value = "Send an email with JSON")
+  @ApiResponses(
+      value = {
+        @ApiResponse(code = 200, message = "User created"),
+        @ApiResponse(code = 400, message = "Bad request"),
+        @ApiResponse(code = 500, message = "Something went wrong")
+      })
+  @RequestMapping(method = POST, value = "/message", consumes = "application/json")
+  public ResponseEntity<String> message(@RequestBody MessageCommand command) {
+    log.info("Request contact email: {}", command.getEmail());
+    if (!token.equals(command.getToken())) {
+      return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
     }
+    emailerService.sendEmail(command);
+    return new ResponseEntity<String>("OK", HttpStatus.OK);
+  }
 
-    @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
-    public ModelAndView form(FormCommand command) {
-        log.info("Request message from: {}", command);
-        if (!token.equals(command.getToken())) {
-            log.info("Invalid user's token");
-            return new ModelAndView("redirect:/contact");
-        }
-        emailProperties.getSpamTokens().forEach(token -> {
-            if (command.getMessage().contains(token)) {
-                throw new BusinessException("Spam token detected: " + token);
-            }
-        });
-        emailProperties.getSpamNames().forEach(token -> {
-            if (command.getName().equalsIgnoreCase(token)) {
-                throw new BusinessException("Spam name detected: " + token);
-            }
-        });
-        emailerService.sendEmail(command);
-        return new ModelAndView("redirect:" + command.getRedirect());
+  @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
+  public ModelAndView form(@Valid FormCommand command) {
+    log.info("Request message from: {}", command);
+    if (!token.equals(command.getToken())) {
+      log.info("Invalid user's token");
+      return new ModelAndView("redirect:/contact");
     }
+    emailerService.sendEmail(command);
+    return new ModelAndView("redirect:" + command.getRedirect());
+  }
 
-    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<String> handleException(BusinessException be) {
-        return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
-    }
+  @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
+  @ExceptionHandler(BusinessException.class)
+  public ResponseEntity<String> handleException(BusinessException be) {
+    return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+  }
 }

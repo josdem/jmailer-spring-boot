@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.freemarker:freemarker:2.3.31'
     implementation 'org.codehaus.groovy:groovy'
     compileOnly 'org.projectlombok:lombok'
