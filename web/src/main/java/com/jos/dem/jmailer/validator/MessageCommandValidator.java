@@ -39,6 +39,7 @@ public class MessageCommandValidator implements Validator {
   public void validate(Object command, Errors errors) {
     MessageCommand messageCommand = (MessageCommand) command;
     validateMessage(messageCommand.getMessage());
+    validateName(messageCommand.getName());
   }
 
   private void validateMessage(String message) {
@@ -48,6 +49,17 @@ public class MessageCommandValidator implements Validator {
             token -> {
               if (message.contains(token)) {
                 throw new BusinessException("Spam token detected: " + token);
+              }
+            });
+  }
+
+  private void validateName(String name) {
+    emailProperties
+        .getSpamNames()
+        .forEach(
+            token -> {
+              if (name.equalsIgnoreCase(token)) {
+                throw new BusinessException("Spam name detected: " + token);
               }
             });
   }

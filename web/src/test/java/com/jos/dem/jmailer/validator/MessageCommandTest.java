@@ -50,4 +50,18 @@ class MessageCommandTest {
     Errors errors = mock(Errors.class);
     assertThrows(BusinessException.class, () -> validator.validate(command, errors));
   }
+
+  @Test
+  @DisplayName("validating spam by name")
+  void shouldFilterSpamByName(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+    MessageCommand command = new MessageCommand();
+    command.setMessage("Hello from Junit5!");
+    command.setName("one");
+    command.setToken("userToken");
+    command.setTemplate("message.ftl");
+    command.setEmail("contact@josdem.io");
+    Errors errors = mock(Errors.class);
+    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
+  }
 }
