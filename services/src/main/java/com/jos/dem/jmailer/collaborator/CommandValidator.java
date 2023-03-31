@@ -29,14 +29,14 @@ import java.util.Set;
 @Component
 public class CommandValidator {
 
-    public Boolean isValid(Command command) {
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<Command>> constraintViolations = validator.validate(command);
-        log.info("violations: {}", constraintViolations.size());
-        if (!constraintViolations.isEmpty()) {
-            log.info("field:" + constraintViolations.iterator().next().getPropertyPath());
-            log.info("message: {}", constraintViolations.iterator().next().getMessage());
-        }
-        return constraintViolations.isEmpty();
+  public Boolean isValid(Command command) {
+    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+    Set<ConstraintViolation<Command>> constraintViolations = validator.validate(command);
+    log.info("violations: {}", constraintViolations.size());
+    if (!constraintViolations.isEmpty()) {
+      log.info("field: {}", constraintViolations.iterator().next().getPropertyPath());
+      log.info("message: {}", constraintViolations.iterator().next().getMessage());
     }
+    return constraintViolations.isEmpty();
+  }
 }

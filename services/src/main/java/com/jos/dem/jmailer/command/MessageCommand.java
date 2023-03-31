@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -31,13 +31,14 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @ToString
 public class MessageCommand implements Command {
-    @NotNull
-    String name;
-    String email;
-    String token;
-    @Min(15)
-    String message;
-    String contactName;
-    String emailContact;
-    String template;
+  @NotNull String name;
+  String email;
+  String token;
+
+  @Size(min = 15)
+  String message;
+
+  String contactName;
+  String emailContact;
+  String template;
 }
