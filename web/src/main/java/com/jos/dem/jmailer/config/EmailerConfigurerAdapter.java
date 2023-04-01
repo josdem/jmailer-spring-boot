@@ -20,10 +20,10 @@ import com.jos.dem.jmailer.controller.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class EmailerConfigurerAdapter extends WebMvcConfigurerAdapter {
+public class EmailerConfigurerAdapter implements WebMvcConfigurer {
 
   @Value("${token}")
   String token;

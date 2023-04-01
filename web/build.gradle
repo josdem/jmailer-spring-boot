@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.10'
+    id 'org.springframework.boot' version '3.0.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -25,10 +25,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.springframework.amqp:spring-amqp'
+    implementation 'org.apache.activemq:activemq-client:5.18.0'
+    implementation 'org.springframework:spring-jms'
+    implementation 'jakarta.jms:jakarta.jms-api:3.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.freemarker:freemarker:2.3.31'
-    implementation 'org.codehaus.groovy:groovy'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
