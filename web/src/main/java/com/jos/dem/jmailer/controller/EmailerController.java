@@ -20,6 +20,7 @@ import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
+import com.jos.dem.jmailer.validator.MessageCommandValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -48,6 +49,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class EmailerController {
 
   private final EmailerService emailerService;
+  private final MessageCommandValidator messageCommandValidator;
 
   @Value("${token}")
   private String token;
@@ -79,6 +81,7 @@ public class EmailerController {
       log.info("Invalid user's token");
       return new ModelAndView("redirect:/contact");
     }
+    messageCommandValidator.validate(command, null);
     emailerService.sendEmail(command);
     return new ModelAndView("redirect:" + command.getRedirect());
   }
