@@ -16,6 +16,7 @@
 
 package com.jos.dem.jmailer.validator;
 
+import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
@@ -33,15 +34,15 @@ import static org.mockito.Mockito.mock;
 @Slf4j
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-class MessageCommandTest {
+class CommandValidatorTest {
 
-  private final MessageCommandValidator validator;
+  private final CommandValidator validator;
 
   @Test
   @DisplayName("validating spam by message")
   void shouldFilterSpamByMessage(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    MessageCommand command = new MessageCommand();
+    FormCommand command = new FormCommand();
     command.setMessage("one");
     command.setName("josdem");
     command.setToken("userToken");
@@ -55,7 +56,7 @@ class MessageCommandTest {
   @DisplayName("validating spam by name")
   void shouldFilterSpamByName(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    MessageCommand command = new MessageCommand();
+    FormCommand command = new FormCommand();
     command.setMessage("Hello from Junit5!");
     command.setName("one");
     command.setToken("userToken");
