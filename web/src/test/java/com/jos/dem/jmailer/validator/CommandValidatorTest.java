@@ -17,7 +17,6 @@
 package com.jos.dem.jmailer.validator;
 
 import com.jos.dem.jmailer.command.FormCommand;
-import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,12 +41,8 @@ class CommandValidatorTest {
   @DisplayName("validating spam by message")
   void shouldFilterSpamByMessage(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = new FormCommand();
+    FormCommand command = getFormCommand();
     command.setMessage("one");
-    command.setName("josdem");
-    command.setToken("userToken");
-    command.setTemplate("message.ftl");
-    command.setEmail("contact@josdem.io");
     Errors errors = mock(Errors.class);
     assertThrows(BusinessException.class, () -> validator.validate(command, errors));
   }
@@ -56,13 +51,19 @@ class CommandValidatorTest {
   @DisplayName("validating spam by name")
   void shouldFilterSpamByName(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = new FormCommand();
+    FormCommand command = getFormCommand();
     command.setMessage("Hello from Junit5!");
     command.setName("one");
+    Errors errors = mock(Errors.class);
+    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
+  }
+
+  private FormCommand getFormCommand() {
+    FormCommand command = new FormCommand();
+    command.setName("josdem");
     command.setToken("userToken");
     command.setTemplate("message.ftl");
     command.setEmail("contact@josdem.io");
-    Errors errors = mock(Errors.class);
-    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
+    return command;
   }
 }
