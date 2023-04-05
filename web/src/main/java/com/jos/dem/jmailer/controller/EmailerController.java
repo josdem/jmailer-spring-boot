@@ -20,6 +20,7 @@ import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
+import com.jos.dem.jmailer.validator.CommandValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -29,7 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -48,12 +51,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class EmailerController {
 
   private final EmailerService emailerService;
+  private final CommandValidator commandValidator;
 
   @Value("${token}")
   private String token;
 
   @Value("${email.redirect}")
   private String redirectUrl;
+
+  @InitBinder("formCommand")
+  private void initBinder(WebDataBinder binder) {
+    binder.addValidators(commandValidator);
+  }
 
   @ApiOperation(value = "Send an email with JSON")
   @ApiResponses(

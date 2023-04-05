@@ -16,7 +16,7 @@
 
 package com.jos.dem.jmailer.validator;
 
-import com.jos.dem.jmailer.command.MessageCommand;
+import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
@@ -26,18 +26,18 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class MessageCommandValidator implements Validator {
+public class CommandValidator implements Validator {
 
   private final EmailProperties emailProperties;
 
   @Override
   public boolean supports(Class<?> clazz) {
-    return MessageCommand.class.equals(clazz);
+    return FormCommand.class.equals(clazz);
   }
 
   @Override
   public void validate(Object command, Errors errors) {
-    MessageCommand messageCommand = (MessageCommand) command;
+    FormCommand messageCommand = (FormCommand) command;
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
   }
