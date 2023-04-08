@@ -17,6 +17,7 @@
 package com.jos.dem.jmailer.service.impl;
 
 import com.jos.dem.jmailer.command.Command;
+import com.jos.dem.jmailer.service.EmailValidatorService;
 import com.jos.dem.jmailer.service.EmailerService;
 import com.jos.dem.jmailer.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +28,10 @@ import org.springframework.stereotype.Service;
 public class EmailerServiceImpl implements EmailerService {
 
   private final MessageService messageService;
+  private final EmailValidatorService validatorService;
 
   public void sendEmail(Command command) {
+    validatorService.validate(command);
     messageService.message(command);
   }
 }

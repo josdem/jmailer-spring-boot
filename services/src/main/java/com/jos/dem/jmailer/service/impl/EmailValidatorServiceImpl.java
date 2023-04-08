@@ -17,12 +17,45 @@
 package com.jos.dem.jmailer.service.impl;
 
 import com.jos.dem.jmailer.command.Command;
+import com.jos.dem.jmailer.command.FormCommand;
+import com.jos.dem.jmailer.config.EmailProperties;
+import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailValidatorService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class EmailValidatorServiceImpl implements EmailValidatorService {
 
+  private final EmailProperties emailProperties;
+
   @Override
-  public boolean isValid(Command command) {
-    return false;
+  public void validate(Command command) {
+    FormCommand messageCommand = (FormCommand) command;
+    validateMessage(messageCommand.getMessage());
+    validateName(messageCommand.getName());
+  }
+
+  private void validateMessage(String message) {
+    emailProperties
+        .getSpamTokens()
+        .forEach(
+            token -> {
+              if (message.contains(token)) {
+                throw new BusinessException("Spam token detected: " + token);
+              }
+            });
+  }
+
+  private void validateName(String name) {
+    emailProperties
+        .getSpamNames()
+        .forEach(
+            token -> {
+              if (name.equalsIgnoreCase(token)) {
+                throw new BusinessException("Spam name detected: " + token);
+              }
+            });
   }
 }

@@ -16,19 +16,10 @@
 
 package com.jos.dem.jmailer.validator;
 
-import com.jos.dem.jmailer.command.FormCommand;
-import com.jos.dem.jmailer.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.validation.Errors;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 
 @Slf4j
 @SpringBootTest
@@ -36,34 +27,4 @@ import static org.mockito.Mockito.mock;
 class CommandValidatorTest {
 
   private final CommandValidator validator;
-
-  @Test
-  @DisplayName("validating spam by message")
-  void shouldFilterSpamByMessage(TestInfo testInfo) {
-    log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = getFormCommand();
-    command.setMessage("one");
-    Errors errors = mock(Errors.class);
-    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
-  }
-
-  @Test
-  @DisplayName("validating spam by name")
-  void shouldFilterSpamByName(TestInfo testInfo) {
-    log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = getFormCommand();
-    command.setMessage("Hello from Junit5!");
-    command.setName("one");
-    Errors errors = mock(Errors.class);
-    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
-  }
-
-  private FormCommand getFormCommand() {
-    FormCommand command = new FormCommand();
-    command.setName("josdem");
-    command.setToken("userToken");
-    command.setTemplate("message.ftl");
-    command.setEmail("contact@josdem.io");
-    return command;
-  }
 }

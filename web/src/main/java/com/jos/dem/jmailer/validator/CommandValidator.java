@@ -18,7 +18,6 @@ package com.jos.dem.jmailer.validator;
 
 import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
-import com.jos.dem.jmailer.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -38,29 +37,5 @@ public class CommandValidator implements Validator {
   @Override
   public void validate(Object command, Errors errors) {
     FormCommand messageCommand = (FormCommand) command;
-    validateMessage(messageCommand.getMessage());
-    validateName(messageCommand.getName());
-  }
-
-  private void validateMessage(String message) {
-    emailProperties
-        .getSpamTokens()
-        .forEach(
-            token -> {
-              if (message.contains(token)) {
-                throw new BusinessException("Spam token detected: " + token);
-              }
-            });
-  }
-
-  private void validateName(String name) {
-    emailProperties
-        .getSpamNames()
-        .forEach(
-            token -> {
-              if (name.equalsIgnoreCase(token)) {
-                throw new BusinessException("Spam name detected: " + token);
-              }
-            });
   }
 }

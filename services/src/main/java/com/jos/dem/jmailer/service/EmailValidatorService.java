@@ -20,5 +20,5 @@ import com.jos.dem.jmailer.command.Command;
 
 public interface EmailValidatorService {
 
-  boolean isValid(Command command);
+  void validate(Command command);
 }
