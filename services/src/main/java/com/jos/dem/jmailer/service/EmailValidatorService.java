@@ -14,24 +14,11 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.service.impl;
+package com.jos.dem.jmailer.service;
 
 import com.jos.dem.jmailer.command.Command;
-import com.jos.dem.jmailer.service.EmailValidatorService;
-import com.jos.dem.jmailer.service.EmailerService;
-import com.jos.dem.jmailer.service.MessageService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class EmailerServiceImpl implements EmailerService {
+public interface EmailValidatorService {
 
-  private final MessageService messageService;
-  private final EmailValidatorService validatorService;
-
-  public void sendEmail(Command command) {
-    validatorService.validate(command);
-    messageService.message(command);
-  }
+  void validate(Command command);
 }

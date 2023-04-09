@@ -14,29 +14,24 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.validator;
+package com.jos.dem.jmailer.service.impl;
 
+import com.jos.dem.jmailer.command.Command;
 import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
+import com.jos.dem.jmailer.service.EmailValidatorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class CommandValidator implements Validator {
+public class EmailValidatorServiceImpl implements EmailValidatorService {
 
   private final EmailProperties emailProperties;
 
   @Override
-  public boolean supports(Class<?> clazz) {
-    return FormCommand.class.equals(clazz);
-  }
-
-  @Override
-  public void validate(Object command, Errors errors) {
+  public void validate(Command command) {
     FormCommand messageCommand = (FormCommand) command;
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());

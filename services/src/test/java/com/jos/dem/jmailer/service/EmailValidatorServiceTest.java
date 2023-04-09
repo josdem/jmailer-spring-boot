@@ -1,12 +1,9 @@
 /*
   Copyright 2023 Jose Morales joseluis.delacruz@gmail.com
-
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-
   http://www.apache.org/licenses/LICENSE-2.0
-
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,28 +11,40 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.validator;
+package com.jos.dem.jmailer.service;
 
 import com.jos.dem.jmailer.command.FormCommand;
+import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
-import lombok.RequiredArgsConstructor;
+import com.jos.dem.jmailer.service.impl.EmailValidatorServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.validation.Errors;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @Slf4j
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
-class CommandValidatorTest {
+class EmailValidatorServiceTest {
 
-  private final CommandValidator validator;
+  private EmailValidatorService emailValidatorService;
+
+  @Mock private EmailProperties emailProperties;
+
+  private List<String> spamTokens = Arrays.asList("one", "two", "three");
+
+  @BeforeEach
+  void setup() {
+    MockitoAnnotations.openMocks(this);
+    emailValidatorService = new EmailValidatorServiceImpl(emailProperties);
+  }
 
   @Test
   @DisplayName("validating spam by message")
@@ -43,8 +52,8 @@ class CommandValidatorTest {
     log.info("Running: {}", testInfo.getDisplayName());
     FormCommand command = getFormCommand();
     command.setMessage("one");
-    Errors errors = mock(Errors.class);
-    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
+    when(emailProperties.getSpamTokens()).thenReturn(spamTokens);
+    assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
   @Test
@@ -54,8 +63,8 @@ class CommandValidatorTest {
     FormCommand command = getFormCommand();
     command.setMessage("Hello from Junit5!");
     command.setName("one");
-    Errors errors = mock(Errors.class);
-    assertThrows(BusinessException.class, () -> validator.validate(command, errors));
+    when(emailProperties.getSpamNames()).thenReturn(spamTokens);
+    assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
   private FormCommand getFormCommand() {

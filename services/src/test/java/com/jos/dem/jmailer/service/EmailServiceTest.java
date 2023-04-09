@@ -35,11 +35,12 @@ class EmailServiceTest {
   private EmailerService emailerService;
 
   @Mock private MessageService messageService;
+  @Mock private EmailValidatorService emailValidatorService;
 
   @BeforeEach
   void setup() {
     MockitoAnnotations.openMocks(this);
-    emailerService = new EmailerServiceImpl(messageService);
+    emailerService = new EmailerServiceImpl(messageService, emailValidatorService);
   }
 
   @Test
@@ -49,5 +50,6 @@ class EmailServiceTest {
     Command command = mock(Command.class);
     emailerService.sendEmail(command);
     verify(messageService).message(command);
+    verify(emailValidatorService).validate(command);
   }
 }
