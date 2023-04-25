@@ -35,9 +35,13 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
     FormCommand messageCommand = (FormCommand) command;
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
+    validateContainSpaces(messageCommand.getMessage());
   }
 
-  private void validateMessage(String message) {
+    private void validateContainSpaces(String message) {
+    }
+
+    private void validateMessage(String message) {
     emailProperties
         .getSpamTokens()
         .forEach(
