@@ -1,7 +1,7 @@
 Jmailer Spring Boot
 ------------------------------------
 
-![Jenkins](icon.svg)
+![Jenkins](https://jenkins.josdem.io/job/jmailer-spring-boot/badge/icon)
 
 Send email from everywhere!
 
