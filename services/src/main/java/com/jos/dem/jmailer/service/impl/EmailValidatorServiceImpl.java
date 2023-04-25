@@ -39,6 +39,9 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
   }
 
     private void validateContainSpaces(String message) {
+      if(!message.contains(" ")){
+          throw new BusinessException("Spam message detected: " + message);
+      }
     }
 
     private void validateMessage(String message) {
