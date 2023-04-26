@@ -49,10 +49,10 @@ jacocoTestReport {
     }
 }
 
-
 test {
     useJUnitPlatform()
     systemProperties = System.properties
+    systemProperties['user.dir'] = workingDir
 }
 
 bootRun {
