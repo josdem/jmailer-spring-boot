@@ -20,10 +20,10 @@ import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +41,7 @@ import javax.validation.Valid;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Slf4j
-@Api(tags = "Knows how to send emails")
+@Tag(name="email", description = "Knows how to send emails")
 @RequestMapping("/emailer/*")
 @RestController
 @RequiredArgsConstructor
@@ -55,12 +55,12 @@ public class EmailerController {
   @Value("${email.redirect}")
   private String redirectUrl;
 
-  @ApiOperation(value = "Send an email with JSON")
+  @Operation(summary = "Send an email with JSON")
   @ApiResponses(
       value = {
-        @ApiResponse(code = 200, message = "User created"),
-        @ApiResponse(code = 400, message = "Bad request"),
-        @ApiResponse(code = 500, message = "Something went wrong")
+        @ApiResponse(responseCode = "200", description = "User created"),
+        @ApiResponse(responseCode = "400", description = "Bad request"),
+        @ApiResponse(responseCode = "500", description = "Something went wrong")
       })
   @RequestMapping(method = POST, value = "/message", consumes = "application/json")
   public ResponseEntity<String> message(@RequestBody MessageCommand command) {
