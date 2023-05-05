@@ -30,17 +30,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
-    private final MailService mailService;
+  private final MailService mailService;
 
-    @Value("${email.subject}")
-    private String subject;
+  @Value("${email.subject}")
+  private String subject;
 
-    private final ObjectMapper mapper;
+  private final ObjectMapper mapper;
 
-    @Override
-    public void sendNotification(MessageCommand command) {
-        Map data = Map.of("email", command.getEmail(), "subject", subject);
-        mailService.sendMailWithTemplate(
-                data, mapper.convertValue(command, Map.class), command.getTemplate());
-    }
+  @Override
+  public void sendNotification(MessageCommand command) {
+    Map data = Map.of("email", command.getEmail(), "subject", subject);
+    mailService.sendMailWithTemplate(
+        data, mapper.convertValue(command, Map.class), command.getTemplate());
+  }
 }
