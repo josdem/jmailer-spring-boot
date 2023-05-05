@@ -47,9 +47,15 @@ class NotificationServiceTest {
   void shouldSendNotification() {
     Map model = mock(Map.class);
     Map data = Map.of("email", EMAIL, "subject", SUBJECT);
-    MessageCommand messageCommand = new MessageCommand();
-    messageCommand.setEmail(EMAIL);
-    messageCommand.setTemplate(TEMPLATE);
+    MessageCommand messageCommand =
+        new MessageCommand(
+            "Jose Morales",
+            EMAIL,
+            "token",
+            "Hello from Jmailer!",
+            "contactName",
+            "emailContact",
+            TEMPLATE);
     ReflectionTestUtils.setField(notificationService, "subject", SUBJECT);
     when(mapper.convertValue(messageCommand, Map.class)).thenReturn(model);
     notificationService.sendNotification(messageCommand);
