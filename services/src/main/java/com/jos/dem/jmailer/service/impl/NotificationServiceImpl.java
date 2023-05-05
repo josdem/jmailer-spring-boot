@@ -31,11 +31,10 @@ import java.util.Map;
 public class NotificationServiceImpl implements NotificationService {
 
   private final MailService mailService;
+  private final ObjectMapper mapper;
 
   @Value("${email.subject}")
   private String subject;
-
-  private final ObjectMapper mapper;
 
   @Override
   public void sendNotification(MessageCommand command) {
