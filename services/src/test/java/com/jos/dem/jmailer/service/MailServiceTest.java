@@ -19,39 +19,39 @@ import freemarker.template.Template;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import java.io.IOException;
 import java.util.Map;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 class MailServiceTest {
+
+  private static final String TEMPLATE = "message.ftl";
+
   private MailService mailService;
-  private Configuration configuration = mock(Configuration.class);
-  private JavaMailSender javaMailSender = mock(JavaMailSender.class);
+  private final Map model = mock(Map.class);
+  private final Configuration configuration = mock(Configuration.class);
+  private final JavaMailSender javaMailSender = mock(JavaMailSender.class);
+  private final Template freeMarkerTemplate = mock(Template.class);
+  private final Map<String, String> values =
+      Map.of("email", "contact@josdem.io", "subject", "Hello from Jmailer!");
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.openMocks(this);
     mailService = new MailServiceImpl(configuration, javaMailSender);
   }
 
   @Test
   @DisplayName("sending mail with template")
   void shouldSendMailWithTemplate() throws IOException {
-    Map<String, String> values =
-        Map.of("email", "contact@josdem.io", "subject", "Hello from Jmailer!");
-    Map model = mock(Map.class);
-    String template = "message.ftl";
-    Template freeMarkerTemplate = mock(Template.class);
-    mailService.sendMailWithTemplate(values, model, template);
-    when(configuration.getTemplate(template)).thenReturn(freeMarkerTemplate);
+    given(configuration.getTemplate(TEMPLATE)).willReturn(freeMarkerTemplate);
+    mailService.sendMailWithTemplate(values, model, TEMPLATE);
     verify(javaMailSender).send(isA(MimeMessagePreparator.class));
   }
 }

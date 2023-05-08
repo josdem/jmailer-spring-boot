@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.mockito.MockitoAnnotations;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
@@ -20,12 +19,11 @@ class MessageServiceTest {
 
   private MessageService messageService;
 
-  private JmsTemplate jmsTemplate = mock(JmsTemplate.class);
+  private final JmsTemplate jmsTemplate = mock(JmsTemplate.class);
   private final FormCommand command = new FormCommand("redirect", "source");
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.openMocks(this);
     messageService = new MessageServiceImpl(jmsTemplate);
   }
 

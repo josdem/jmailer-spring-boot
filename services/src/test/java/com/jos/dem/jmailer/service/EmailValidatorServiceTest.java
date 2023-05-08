@@ -22,7 +22,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,12 +34,11 @@ class EmailValidatorServiceTest {
   private EmailValidatorService emailValidatorService;
   private final EmailProperties emailProperties = new EmailProperties();
 
-  private List<String> spamTokens = Arrays.asList("one", "two", "three");
-  private List<String> spamNames = Arrays.asList("John", "Edward", "Sebastian");
+  private final List<String> spamTokens = Arrays.asList("one", "two", "three");
+  private final List<String> spamNames = Arrays.asList("John", "Edward", "Sebastian");
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.openMocks(this);
     emailValidatorService = new EmailValidatorServiceImpl(emailProperties);
     emailProperties.setSpamNames(spamNames);
     emailProperties.setSpamTokens(spamTokens);

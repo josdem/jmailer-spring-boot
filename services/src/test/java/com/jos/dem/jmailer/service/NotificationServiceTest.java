@@ -19,7 +19,6 @@ import com.jos.dem.jmailer.service.impl.NotificationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Map;
 
@@ -39,7 +38,7 @@ class NotificationServiceTest {
 
   @BeforeEach
   void setup() {
-    notificationService = new NotificationServiceImpl(mailService, mapper);
+    notificationService = new NotificationServiceImpl(mailService, mapper, SUBJECT);
   }
 
   @Test
@@ -56,7 +55,6 @@ class NotificationServiceTest {
             "contactName",
             "emailContact",
             TEMPLATE);
-    ReflectionTestUtils.setField(notificationService, "subject", SUBJECT);
     when(mapper.convertValue(messageCommand, Map.class)).thenReturn(model);
     notificationService.sendNotification(messageCommand);
     verify(mailService).sendMailWithTemplate(data, model, TEMPLATE);

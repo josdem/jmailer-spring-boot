@@ -20,21 +20,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.service.MailService;
 import com.jos.dem.jmailer.service.NotificationService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
   private final MailService mailService;
   private final ObjectMapper mapper;
-
-  @Value("${email.subject}")
   private String subject;
+
+  public NotificationServiceImpl(
+      MailService mailService, ObjectMapper mapper, @Value("${email.subject}") String subject) {
+    this.mailService = mailService;
+    this.mapper = mapper;
+    this.subject = subject;
+  }
 
   @Override
   public void sendNotification(MessageCommand command) {
