@@ -22,28 +22,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 @Slf4j
 class EmailValidatorServiceTest {
 
   private EmailValidatorService emailValidatorService;
+  private final EmailProperties emailProperties = new EmailProperties();
 
-  @Mock private EmailProperties emailProperties;
-
-  private List<String> spamTokens = Arrays.asList("one", "two", "three");
+  private final List<String> spamTokens = Arrays.asList("one", "two", "three");
+  private final List<String> spamNames = Arrays.asList("John", "Edward", "Sebastian");
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.openMocks(this);
     emailValidatorService = new EmailValidatorServiceImpl(emailProperties);
+    emailProperties.setSpamNames(spamNames);
+    emailProperties.setSpamTokens(spamTokens);
   }
 
   @Test
@@ -52,7 +50,6 @@ class EmailValidatorServiceTest {
     log.info("Running: {}", testInfo.getDisplayName());
     FormCommand command = getFormCommand();
     command.setMessage("one");
-    when(emailProperties.getSpamTokens()).thenReturn(spamTokens);
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
@@ -62,14 +59,13 @@ class EmailValidatorServiceTest {
     log.info("Running: {}", testInfo.getDisplayName());
     FormCommand command = getFormCommand();
     command.setMessage("Hello from Junit5!");
-    command.setName("one");
-    when(emailProperties.getSpamNames()).thenReturn(spamTokens);
+    command.setName("John");
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
   @Test
   @DisplayName("validating spam by message not having spaces")
-  void shouldFilterSpamMessagesWithoutSpaces(TestInfo testInfo){
+  void shouldFilterSpamMessagesWithoutSpaces(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
     FormCommand command = getFormCommand();
     command.setMessage("hello");
@@ -82,6 +78,8 @@ class EmailValidatorServiceTest {
     command.setToken("userToken");
     command.setTemplate("message.ftl");
     command.setEmail("contact@josdem.io");
+    command.setRedirect("redirect");
+    command.setSource("source");
     return command;
   }
 }
