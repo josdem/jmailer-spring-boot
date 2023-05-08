@@ -47,4 +47,6 @@ public class MessageCommand implements Command {
   private String contactName;
   private String emailContact;
   @NotNull private String template;
+  private String redirect;
+  private String source;
 }
