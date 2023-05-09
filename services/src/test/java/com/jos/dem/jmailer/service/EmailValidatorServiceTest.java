@@ -13,7 +13,7 @@
 
 package com.jos.dem.jmailer.service;
 
-import com.jos.dem.jmailer.command.FormCommand;
+import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.impl.EmailValidatorServiceImpl;
@@ -48,7 +48,7 @@ class EmailValidatorServiceTest {
   @DisplayName("validating spam by message")
   void shouldFilterSpamByMessage(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = getFormCommand();
+    MessageCommand command = getMessageCommand();
     command.setMessage("one");
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
@@ -57,7 +57,7 @@ class EmailValidatorServiceTest {
   @DisplayName("validating spam by name")
   void shouldFilterSpamByName(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = getFormCommand();
+    MessageCommand command = getMessageCommand();
     command.setMessage("Hello from Junit5!");
     command.setName("John");
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
@@ -67,13 +67,13 @@ class EmailValidatorServiceTest {
   @DisplayName("validating spam by message not having spaces")
   void shouldFilterSpamMessagesWithoutSpaces(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
-    FormCommand command = getFormCommand();
+    MessageCommand command = getMessageCommand();
     command.setMessage("hello");
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
-  private FormCommand getFormCommand() {
-    FormCommand command = new FormCommand();
+  private MessageCommand getMessageCommand() {
+    MessageCommand command = new MessageCommand();
     command.setName("josdem");
     command.setToken("userToken");
     command.setTemplate("message.ftl");

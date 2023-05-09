@@ -17,7 +17,7 @@
 package com.jos.dem.jmailer.service.impl;
 
 import com.jos.dem.jmailer.command.Command;
-import com.jos.dem.jmailer.command.FormCommand;
+import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailValidatorService;
@@ -32,19 +32,19 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
 
   @Override
   public void validate(Command command) {
-    FormCommand messageCommand = (FormCommand) command;
+    MessageCommand messageCommand = (MessageCommand) command;
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
     validateContainSpaces(messageCommand.getMessage());
   }
 
-    private void validateContainSpaces(String message) {
-      if(!message.contains(" ")){
-          throw new BusinessException("Spam message detected: " + message);
-      }
+  private void validateContainSpaces(String message) {
+    if (!message.contains(" ")) {
+      throw new BusinessException("Spam message detected: " + message);
     }
+  }
 
-    private void validateMessage(String message) {
+  private void validateMessage(String message) {
     emailProperties
         .getSpamTokens()
         .forEach(

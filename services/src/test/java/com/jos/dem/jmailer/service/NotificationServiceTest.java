@@ -54,7 +54,9 @@ class NotificationServiceTest {
             "Hello from Jmailer!",
             "contactName",
             "emailContact",
-            TEMPLATE);
+            TEMPLATE,
+            "redirect",
+            "source");
     when(mapper.convertValue(messageCommand, Map.class)).thenReturn(model);
     notificationService.sendNotification(messageCommand);
     verify(mailService).sendMailWithTemplate(data, model, TEMPLATE);

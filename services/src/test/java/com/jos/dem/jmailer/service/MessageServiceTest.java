@@ -1,6 +1,6 @@
 package com.jos.dem.jmailer.service;
 
-import com.jos.dem.jmailer.command.FormCommand;
+import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.service.impl.MessageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ class MessageServiceTest {
   private MessageService messageService;
 
   private final JmsTemplate jmsTemplate = mock(JmsTemplate.class);
-  private final FormCommand command = new FormCommand("redirect", "source");
+  private final MessageCommand command = new MessageCommand();
 
   @BeforeEach
   void setup() {

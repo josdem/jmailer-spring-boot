@@ -16,7 +16,6 @@ limitations under the License.
 
 package com.jos.dem.jmailer.controller;
 
-import com.jos.dem.jmailer.command.FormCommand;
 import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailerService;
@@ -41,7 +40,7 @@ import javax.validation.Valid;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Slf4j
-@Tag(name="email", description = "Knows how to send emails")
+@Tag(name = "email", description = "Knows how to send emails")
 @RequestMapping("/emailer/*")
 @RestController
 @RequiredArgsConstructor
@@ -73,7 +72,7 @@ public class EmailerController {
   }
 
   @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
-  public ModelAndView form(@Valid FormCommand command) {
+  public ModelAndView form(@Valid MessageCommand command) {
     log.info("Request message from: {}", command);
     if (!token.equals(command.getToken())) {
       log.info("Invalid user's token");
