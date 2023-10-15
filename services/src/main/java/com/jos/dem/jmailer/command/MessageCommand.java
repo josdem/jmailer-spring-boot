@@ -41,7 +41,7 @@ public class MessageCommand implements Command {
 
   @NotNull private String token;
 
-  @Size(min = 15)
+  @Size(min = 9)
   private String message;
 
   private String contactName;

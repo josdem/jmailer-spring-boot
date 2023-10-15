@@ -35,13 +35,6 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
     MessageCommand messageCommand = (MessageCommand) command;
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
-    validateContainSpaces(messageCommand.getMessage());
-  }
-
-  private void validateContainSpaces(String message) {
-    if (!message.contains(" ")) {
-      throw new BusinessException("Spam message detected: " + message);
-    }
   }
 
   private void validateMessage(String message) {
