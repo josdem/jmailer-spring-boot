@@ -72,7 +72,6 @@ class EmailValidatorServiceTest {
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
-
   private MessageCommand getMessageCommand() {
     MessageCommand command = new MessageCommand();
     command.setName("josdem");
