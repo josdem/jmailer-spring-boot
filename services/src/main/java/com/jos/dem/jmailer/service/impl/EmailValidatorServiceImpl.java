@@ -28,14 +28,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailValidatorServiceImpl implements EmailValidatorService {
 
+  private static final String REGEX = "[a-zA-Z]+";
   private final EmailProperties emailProperties;
 
   @Override
   public void validate(Command command) {
     MessageCommand messageCommand = (MessageCommand) command;
+    validateContainSpaces(messageCommand.getMessage());
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
   }
+
+    private void validateContainSpaces(String message) {
+        if(!message.contains(" ") && message.matches(REGEX)){
+            throw new BusinessException("Spam message detected: " + message);
+        }
+    }
 
   private void validateMessage(String message) {
     emailProperties
