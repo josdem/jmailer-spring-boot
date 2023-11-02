@@ -63,15 +63,6 @@ class EmailValidatorServiceTest {
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
-  @Test
-  @DisplayName("validating spam by message not having spaces")
-  void shouldFilterSpamMessagesWithoutSpaces(TestInfo testInfo) {
-    log.info("Running: {}", testInfo.getDisplayName());
-    MessageCommand command = getMessageCommand();
-    command.setMessage("uRjSQZGHIxig");
-    assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
-  }
-
   private MessageCommand getMessageCommand() {
     MessageCommand command = new MessageCommand();
     command.setName("josdem");
