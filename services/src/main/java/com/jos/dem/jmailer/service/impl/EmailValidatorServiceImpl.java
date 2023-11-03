@@ -39,11 +39,11 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
     validateName(messageCommand.getName());
   }
 
-    private void validateContainSpaces(String message) {
-        if(!message.contains(" ") && !message.contains("/")){
+  private void validateContainSpaces(String message) {
+      if(!message.contains(" ") && !message.contains("/")){
             throw new BusinessException("Spam message detected: " + message);
-        }
-    }
+      }
+  }
 
   private void validateMessage(String message) {
     emailProperties
