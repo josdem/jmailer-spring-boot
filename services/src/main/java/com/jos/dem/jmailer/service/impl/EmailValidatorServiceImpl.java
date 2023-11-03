@@ -40,7 +40,7 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
   }
 
     private void validateContainSpaces(String message) {
-        if(!message.contains(" ") && message.matches(REGEX)){
+        if(!message.contains(" ") && !message.contains("/")){
             throw new BusinessException("Spam message detected: " + message);
         }
     }
