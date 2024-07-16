@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailValidatorServiceImpl implements EmailValidatorService {
 
-  private static final String REGEX = "[a-zA-Z]+";
+  private static final String REGEX = "[0-9]+";
   private final EmailProperties emailProperties;
 
   @Override
@@ -40,8 +40,11 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
   }
 
   private void validateContainSpaces(String message) {
+      if(message.matches(REGEX)){
+          return;
+      }
       if(!message.contains(" ") && !message.contains("/")){
-            throw new BusinessException("Spam message detected: " + message);
+          throw new BusinessException("Spam message detected: " + message);
       }
   }
 

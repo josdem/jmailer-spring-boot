@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.jos.dem.jmailer'
-version = '1.0.10.3'
+version = '1.0.10.4'
 
 configurations {
     compileOnly {

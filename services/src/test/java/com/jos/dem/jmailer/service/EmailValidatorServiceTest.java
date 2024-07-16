@@ -63,6 +63,15 @@ class EmailValidatorServiceTest {
     assertThrows(BusinessException.class, () -> emailValidatorService.validate(command));
   }
 
+  @Test
+  @DisplayName("validating adoption by message")
+  void shouldSendAdoptionTemplate(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+    MessageCommand command = getMessageCommand();
+    command.setMessage("5610184061");
+    emailValidatorService.validate(command);
+  }
+
   private MessageCommand getMessageCommand() {
     MessageCommand command = new MessageCommand();
     command.setName("josdem");
