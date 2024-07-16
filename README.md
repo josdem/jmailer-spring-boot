@@ -38,7 +38,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mslowiak"><img src="https://avatars.githubusercontent.com/u/18486535?v=4?s=100" width="100px;" alt="Marcin Słowiak"/><br /><sub><b>Marcin Słowiak</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=mslowiak" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mslowiak"><img src="https://avatars.githubusercontent.com/u/18486535?v=4?s=100" width="100px;" alt="Marcin Słowiak"/><br /><sub><b>Marcin Słowiak</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=mslowiak" title="Code">💻</a> <a href="https://github.com/josdem/jmailer-spring-boot/pulls?q=is%3Apr+reviewed-by%3Amslowiak" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
