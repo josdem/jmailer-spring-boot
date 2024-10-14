@@ -1,6 +1,7 @@
 Jmailer Spring Boot
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![GitHub](https://github.com/josdem/jmailer-spring-boot/actions/workflows/test.yml/badge.svg)](https://github.com/josdem/jmailer-spring-boot/actions)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ------------------------------------
 
