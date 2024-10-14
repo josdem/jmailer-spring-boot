@@ -4,9 +4,6 @@ Jmailer Spring Boot
 [![GitHub](https://github.com/josdem/jmailer-spring-boot/actions/workflows/test.yml/badge.svg)](https://github.com/josdem/jmailer-spring-boot/actions)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ------------------------------------
-
-[![Jenkins](https://jenkins.josdem.io/job/jmailer-spring-boot/badge/icon)](https://jenkins.josdem.io/job/jmailer-spring-boot/)
-
 Send email from everywhere!
 
 #### Features
@@ -41,6 +38,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mslowiak"><img src="https://avatars.githubusercontent.com/u/18486535?v=4?s=100" width="100px;" alt="Marcin Słowiak"/><br /><sub><b>Marcin Słowiak</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=mslowiak" title="Code">💻</a> <a href="https://github.com/josdem/jmailer-spring-boot/pulls?q=is%3Apr+reviewed-by%3Amslowiak" title="Reviewed Pull Requests">👀</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ArianeZan"><img src="https://avatars.githubusercontent.com/u/103047736?v=4?s=100" width="100px;" alt="Ari"/><br /><sub><b>Ari</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=ArianeZan" title="Code">💻</a> <a href="#infra-ArianeZan" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/JoseFRH17"><img src="https://avatars.githubusercontent.com/u/64493634?v=4?s=100" width="100px;" alt="José Fco Rodríguez Hernández"/><br /><sub><b>José Fco Rodríguez Hernández</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=JoseFRH17" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
