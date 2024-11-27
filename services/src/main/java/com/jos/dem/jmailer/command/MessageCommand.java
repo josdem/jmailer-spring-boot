@@ -16,16 +16,16 @@ limitations under the License.
 
 package com.jos.dem.jmailer.command;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -33,7 +33,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @ToString
 public class MessageCommand implements Command {
-  @NotNull private String name;
+  @NotNull
+  private String name;
 
   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
   @NotEmpty
