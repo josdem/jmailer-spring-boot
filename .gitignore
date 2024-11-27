@@ -9,7 +9,4 @@ web/jmailer.log
 web/src/main/resources/static/assets/third-party
 gradle.properties
 lib/
-gradle/
-gradlew
-gradlew.bat
 
