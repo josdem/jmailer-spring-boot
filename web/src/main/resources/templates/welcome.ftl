@@ -10,6 +10,7 @@
     <hr>
     <p>Hello dear Vetlog ${name}, we are glad to have you</p>
     <p>Now you have an account feel free to: ${message}</p>
+    <p>Visit our <a href="https://vetlog.org/privacy/show">privacy policy</a></p>
     <p>Thank you for using Vetlog!</p>
   </body>
 </html>
