@@ -18,6 +18,7 @@ package com.jos.dem.jmailer.service.impl;
 
 import com.jos.dem.jmailer.command.Command;
 import com.jos.dem.jmailer.service.MessageService;
+import jakarta.jms.ObjectMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.EnableJms;
@@ -25,7 +26,6 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
-import javax.jms.ObjectMessage;
 
 @Slf4j
 @Service
