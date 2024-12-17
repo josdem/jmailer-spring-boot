@@ -1,5 +1,5 @@
 /*
-  Copyright 2023 Jose Morales joseluis.delacruz@gmail.com
+  Copyright 2024 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.jos.dem.jmailer.command.MessageCommand;
 import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.exception.BusinessException;
 import com.jos.dem.jmailer.service.EmailValidatorService;
+import com.jos.dem.jmailer.service.FilterService;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,7 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
 
   private static final String REGEX = "[0-9]+";
   private final EmailProperties emailProperties;
+  private final FilterService filterService;
 
   @Override
   public void validate(Command command) {
@@ -37,9 +40,16 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
     validateContainSpaces(messageCommand.getMessage());
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
+    validateByKeyword(messageCommand.getName());
   }
 
-  private void validateContainSpaces(String message) {
+    private void validateByKeyword(@NotNull String name) {
+        if(!filterService.isValidUser(name)){
+            throw new BusinessException("Spam detected by keyword: " + name);
+        }
+    }
+
+    private void validateContainSpaces(String message) {
       if(message.matches(REGEX)){
           return;
       }
