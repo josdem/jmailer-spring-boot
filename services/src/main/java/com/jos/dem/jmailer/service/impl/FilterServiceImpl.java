@@ -1,5 +1,5 @@
 /*
-  Copyright 2023 Jose Morales joseluis.delacruz@gmail.com
+  Copyright 2024 Jose Morales joseluis.delacruz@gmail.com
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public boolean isValidUser(String keyword) {
-        return true;
+        var upperCount = keyword.chars().filter(Character::isUpperCase).toArray().length;
+        return (double) upperCount / keyword.length() < 0.5;
     }
 }
