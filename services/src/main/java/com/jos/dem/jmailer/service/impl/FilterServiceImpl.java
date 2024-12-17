@@ -14,9 +14,14 @@
   limitations under the License.
 */
 
-package com.jos.dem.jmailer.service;
+package com.jos.dem.jmailer.service.impl;
 
-public interface FilterService {
+import com.jos.dem.jmailer.service.FilterService;
 
-    boolean isValidUser(String keyword);
+public class FilterServiceImpl implements FilterService {
+
+    @Override
+    public boolean isValidUser(String keyword) {
+        return true;
+    }
 }
