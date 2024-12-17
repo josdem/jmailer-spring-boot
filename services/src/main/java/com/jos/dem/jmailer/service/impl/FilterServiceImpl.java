@@ -17,7 +17,9 @@
 package com.jos.dem.jmailer.service.impl;
 
 import com.jos.dem.jmailer.service.FilterService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FilterServiceImpl implements FilterService {
 
     private static final double FACTOR = 0.5;
