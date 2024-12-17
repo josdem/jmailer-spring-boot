@@ -21,19 +21,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 class FilterServiceTest {
 
     private final FilterService filterService = new FilterServiceImpl();
 
-    @Test
+    @ValueSource(strings = {"NHUQfuLarRMDj", "rJVyFMNsmXhPUvG", "rVhBLNPSNIPE", "SxeQsgXI", "NDDmMAUftYXkxO"})
+    @ParameterizedTest
     @DisplayName("filtering user")
-    void shouldFilterUser(TestInfo testInfo) {
-        log.info(testInfo.getDisplayName());
-        var keyword = "NHUQfuLarRMDj";
+    void shouldFilterUser(String keyword) {
         assertFalse(filterService.isValidUser(keyword));
+    }
+
+    @ValueSource(strings = {"josdem", "johndoe"})
+    @ParameterizedTest
+    @DisplayName("accepting user")
+    void shouldAcceptUser(String keyword) {
+        assertTrue(filterService.isValidUser(keyword));
     }
 }

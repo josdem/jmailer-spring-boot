@@ -20,9 +20,11 @@ import com.jos.dem.jmailer.service.FilterService;
 
 public class FilterServiceImpl implements FilterService {
 
+    private static final double FACTOR = 0.5;
+
     @Override
     public boolean isValidUser(String keyword) {
         var upperCount = keyword.chars().filter(Character::isUpperCase).toArray().length;
-        return (double) upperCount / keyword.length() < 0.5;
+        return (double) upperCount / keyword.length() < FACTOR;
     }
 }
