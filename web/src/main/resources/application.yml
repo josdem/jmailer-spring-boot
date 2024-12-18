@@ -7,6 +7,7 @@ email:
   whitelist: http://localhost:8080/
   blacklist: 180.76.15.
   homeRequestURL: http://localhost:8080/
+  factor: 0.5
   spamTokens:
     - one
   spamNames:
@@ -16,9 +17,6 @@ spring:
     basename: i18n/messages
   logging:
     file: jmailer.log
-  activemq:
-    packages:
-      trusted: com.jos.dem.jmailer
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER

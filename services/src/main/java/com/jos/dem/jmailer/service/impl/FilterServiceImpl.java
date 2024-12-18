@@ -16,17 +16,20 @@
 
 package com.jos.dem.jmailer.service.impl;
 
+import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.service.FilterService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class FilterServiceImpl implements FilterService {
 
-    private static final double FACTOR = 0.5;
+    private final EmailProperties emailProperties;
 
     @Override
     public boolean isValidUser(String keyword) {
         var upperCount = keyword.chars().filter(Character::isUpperCase).toArray().length;
-        return (double) upperCount / keyword.length() < FACTOR;
+        return (double) upperCount / keyword.length() < emailProperties.getFactor();
     }
 }

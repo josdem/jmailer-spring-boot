@@ -37,16 +37,17 @@ class EmailValidatorServiceTest {
 
   private EmailValidatorService emailValidatorService;
   private final EmailProperties emailProperties = new EmailProperties();
-  private final FilterService filterService = new FilterServiceImpl();
 
   private final List<String> spamTokens = Arrays.asList("one", "two", "three");
   private final List<String> spamNames = Arrays.asList("John", "Edward", "Sebastian");
 
   @BeforeEach
   void setup() {
-    emailValidatorService = new EmailValidatorServiceImpl(emailProperties, filterService);
     emailProperties.setSpamNames(spamNames);
     emailProperties.setSpamTokens(spamTokens);
+    emailProperties.setFactor(0.5);
+    var filterService = new FilterServiceImpl(emailProperties);
+    emailValidatorService = new EmailValidatorServiceImpl(emailProperties, filterService);
   }
 
   @Test

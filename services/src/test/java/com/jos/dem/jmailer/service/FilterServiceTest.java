@@ -16,8 +16,10 @@
 
 package com.jos.dem.jmailer.service;
 
+import com.jos.dem.jmailer.config.EmailProperties;
 import com.jos.dem.jmailer.service.impl.FilterServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
@@ -31,7 +33,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Slf4j
 class FilterServiceTest {
 
-    private final FilterService filterService = new FilterServiceImpl();
+    private FilterService filterService;
+
+    @BeforeEach
+    void setup() {
+        var emailProperties = new EmailProperties();
+        emailProperties.setFactor(0.5);
+        filterService = new FilterServiceImpl(emailProperties);
+    }
 
     @ValueSource(strings = {"NHUQfuLarRMDj", "rJVyFMNsmXhPUvG", "rVhBLNPSNIPE", "SxeQsgXI", "NDDmMAUftYXkxO"})
     @ParameterizedTest
