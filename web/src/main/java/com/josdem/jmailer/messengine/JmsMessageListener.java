@@ -26,18 +26,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class JmsMessageListener {
 
-    private final NotificationService notificationService;
+  private final NotificationService notificationService;
 
-    @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
-    public void receiveMessage(Message message) throws JMSException {
-        Object command = ((ObjectMessage) message).getObject();
-        log.info("Message received");
-        notificationService.sendNotification((MessageCommand) command);
-    }
+  @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
+  public void receiveMessage(Message message) throws JMSException {
+    Object command = ((ObjectMessage) message).getObject();
+    log.info("Message received");
+    notificationService.sendNotification((MessageCommand) command);
+  }
 }

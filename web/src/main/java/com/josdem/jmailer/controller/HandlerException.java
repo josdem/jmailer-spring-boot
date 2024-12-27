@@ -18,23 +18,22 @@ package com.josdem.jmailer.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
-
 @Slf4j
 @Component
 public class HandlerException implements HandlerExceptionResolver {
 
-    public ModelAndView resolveException(
-            HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        log.info("Exception: {}", ex.getMessage());
-        Map data = Map.of("message", ex.getMessage());
-        ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("data", data);
-        return modelAndView;
-    }
+  public ModelAndView resolveException(
+      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    log.info("Exception: {}", ex.getMessage());
+    Map data = Map.of("message", ex.getMessage());
+    ModelAndView modelAndView = new ModelAndView("error");
+    modelAndView.addObject("data", data);
+    return modelAndView;
+  }
 }

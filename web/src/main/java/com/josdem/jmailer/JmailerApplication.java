@@ -17,6 +17,7 @@ limitations under the License.
 package com.josdem.jmailer;
 
 import jakarta.jms.ConnectionFactory;
+import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +25,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-
-import java.util.Properties;
 
 @SpringBootApplication
 public class JmailerApplication {
