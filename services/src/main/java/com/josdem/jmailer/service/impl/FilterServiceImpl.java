@@ -25,11 +25,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FilterServiceImpl implements FilterService {
 
-    private final EmailProperties emailProperties;
+  private final EmailProperties emailProperties;
 
-    @Override
-    public boolean isValidUser(String keyword) {
-        var upperCount = keyword.chars().filter(Character::isUpperCase).toArray().length;
-        return (double) upperCount / keyword.length() < emailProperties.getFactor();
-    }
+  @Override
+  public boolean isValidUser(String keyword) {
+    var upperCount = keyword.chars().filter(Character::isUpperCase).toArray().length;
+    return (double) upperCount / keyword.length() < emailProperties.getFactor();
+  }
 }

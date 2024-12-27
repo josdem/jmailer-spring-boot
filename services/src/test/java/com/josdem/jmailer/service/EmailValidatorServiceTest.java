@@ -16,21 +16,20 @@
 
 package com.josdem.jmailer.service;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.josdem.jmailer.command.MessageCommand;
 import com.josdem.jmailer.config.EmailProperties;
 import com.josdem.jmailer.exception.BusinessException;
 import com.josdem.jmailer.service.impl.EmailValidatorServiceImpl;
 import com.josdem.jmailer.service.impl.FilterServiceImpl;
+import java.util.Arrays;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
 class EmailValidatorServiceTest {

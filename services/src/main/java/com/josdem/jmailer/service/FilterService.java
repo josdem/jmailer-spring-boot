@@ -18,5 +18,5 @@ package com.josdem.jmailer.service;
 
 public interface FilterService {
 
-    boolean isValidUser(String keyword);
+  boolean isValidUser(String keyword);
 }

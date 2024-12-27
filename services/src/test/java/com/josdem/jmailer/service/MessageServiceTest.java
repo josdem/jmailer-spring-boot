@@ -1,5 +1,9 @@
 package com.josdem.jmailer.service;
 
+import static org.mockito.Mockito.isA;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import com.josdem.jmailer.command.MessageCommand;
 import com.josdem.jmailer.service.impl.MessageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
-
-import static org.mockito.Mockito.isA;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @Slf4j
 class MessageServiceTest {

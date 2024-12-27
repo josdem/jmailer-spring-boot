@@ -13,22 +13,21 @@
 
 package com.josdem.jmailer.service;
 
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.isA;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import com.josdem.jmailer.service.impl.MailServiceImpl;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import java.io.IOException;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
-
-import java.io.IOException;
-import java.util.Map;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.isA;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 class MailServiceTest {
 

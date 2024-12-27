@@ -16,6 +16,9 @@
 
 package com.josdem.jmailer.service;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import com.josdem.jmailer.command.Command;
 import com.josdem.jmailer.service.impl.EmailerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +28,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @Slf4j
 class EmailServiceTest {
