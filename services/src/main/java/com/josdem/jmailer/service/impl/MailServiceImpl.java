@@ -19,14 +19,13 @@ package com.josdem.jmailer.service.impl;
 import com.josdem.jmailer.service.MailService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

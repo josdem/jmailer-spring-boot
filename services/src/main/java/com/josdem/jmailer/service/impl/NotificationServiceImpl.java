@@ -20,10 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
 import com.josdem.jmailer.service.MailService;
 import com.josdem.jmailer.service.NotificationService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {

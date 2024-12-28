@@ -43,19 +43,19 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
     validateByKeyword(messageCommand.getName());
   }
 
-    private void validateByKeyword(@NotNull String name) {
-        if(!filterService.isValidUser(name)){
-            throw new BusinessException("Spam detected by keyword: " + name);
-        }
+  private void validateByKeyword(@NotNull String name) {
+    if (!filterService.isValidUser(name)) {
+      throw new BusinessException("Spam detected by keyword: " + name);
     }
+  }
 
-    private void validateContainSpaces(String message) {
-      if(message.matches(REGEX)){
-          return;
-      }
-      if(!message.contains(" ") && !message.contains("/")){
-          throw new BusinessException("Spam message detected: " + message);
-      }
+  private void validateContainSpaces(String message) {
+    if (message.matches(REGEX)) {
+      return;
+    }
+    if (!message.contains(" ") && !message.contains("/")) {
+      throw new BusinessException("Spam message detected: " + message);
+    }
   }
 
   private void validateMessage(String message) {

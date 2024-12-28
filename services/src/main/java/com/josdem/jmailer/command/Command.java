@@ -19,4 +19,3 @@ package com.josdem.jmailer.command;
 import java.io.Serializable;
 
 public interface Command extends Serializable {}
-

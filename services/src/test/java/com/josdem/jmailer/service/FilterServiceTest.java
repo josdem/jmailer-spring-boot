@@ -16,6 +16,9 @@
 
 package com.josdem.jmailer.service;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.josdem.jmailer.config.EmailProperties;
 import com.josdem.jmailer.service.impl.FilterServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -24,32 +27,30 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @Slf4j
 class FilterServiceTest {
 
-    private FilterService filterService;
+  private FilterService filterService;
 
-    @BeforeEach
-    void setup() {
-        var emailProperties = new EmailProperties();
-        emailProperties.setFactor(0.5);
-        filterService = new FilterServiceImpl(emailProperties);
-    }
+  @BeforeEach
+  void setup() {
+    var emailProperties = new EmailProperties();
+    emailProperties.setFactor(0.5);
+    filterService = new FilterServiceImpl(emailProperties);
+  }
 
-    @ValueSource(strings = {"NHUQfuLarRMDj", "rJVyFMNsmXhPUvG", "rVhBLNPSNIPE", "SxeQsgXI", "NDDmMAUftYXkxO"})
-    @ParameterizedTest
-    @DisplayName("filtering user")
-    void shouldFilterUser(String keyword) {
-        assertFalse(filterService.isValidUser(keyword));
-    }
+  @ValueSource(
+      strings = {"NHUQfuLarRMDj", "rJVyFMNsmXhPUvG", "rVhBLNPSNIPE", "SxeQsgXI", "NDDmMAUftYXkxO"})
+  @ParameterizedTest
+  @DisplayName("filtering user")
+  void shouldFilterUser(String keyword) {
+    assertFalse(filterService.isValidUser(keyword));
+  }
 
-    @ValueSource(strings = {"josdem", "johndoe"})
-    @ParameterizedTest
-    @DisplayName("accepting user")
-    void shouldAcceptUser(String keyword) {
-        assertTrue(filterService.isValidUser(keyword));
-    }
+  @ValueSource(strings = {"josdem", "johndoe"})
+  @ParameterizedTest
+  @DisplayName("accepting user")
+  void shouldAcceptUser(String keyword) {
+    assertTrue(filterService.isValidUser(keyword));
+  }
 }

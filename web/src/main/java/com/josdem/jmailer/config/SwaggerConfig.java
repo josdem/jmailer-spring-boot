@@ -26,20 +26,16 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class SwaggerConfig {
 
-    private final ApplicationProperties applicationProperties;
+  private final ApplicationProperties applicationProperties;
 
-    @Bean
-    public OpenAPI springShopOpenAPI() {
-        return new OpenAPI()
-                .info(
-                        new Info()
-                                .title(applicationProperties.getTitle())
-                                .description(applicationProperties.getDescription())
-                                .version(applicationProperties.getVersion())
-                                .termsOfService(applicationProperties.getTerms())
-                );
-    }
-
+  @Bean
+  public OpenAPI springShopOpenAPI() {
+    return new OpenAPI()
+        .info(
+            new Info()
+                .title(applicationProperties.getTitle())
+                .description(applicationProperties.getDescription())
+                .version(applicationProperties.getVersion())
+                .termsOfService(applicationProperties.getTerms()));
+  }
 }
-
-
