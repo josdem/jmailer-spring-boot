@@ -13,27 +13,31 @@
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Welcome!</h1>
       <p class="col-md-8 fs-4">Send email from everywhere</p>
-      <p><a class="btn btn-primary btn-lg" href="contact" type="button">Register Here</a></p>
+      <button class="btn btn-primary btn-lg" href="contact" type="button">Register Here</button>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
+  <div class="row align-items-md-stretch">
       <div class="col-md-4">
-        <h4>Send it by command-line</h4>
-        <p>You can send an email using curl, httpie or using a script</p>
-        <a class="btn btn-success" href="command-line" role="button">View details</a>
+        <div class="h-100 p-5 text-bg-white rounded-3">
+          <h4>Send it by command-line</h4>
+          <p>You can send an email using curl, httpie or using a script</p>
+          <button class="btn btn-success" href="command-line" type="button">View details</button>
+        </div>
       </div>
       <div class="col-md-4">
-        <h4>Send it by form</h4>
-        <p>You can send an email using an form in your website</p>
-        <a class="btn btn-success" href="form" role="button">View details</a>
+        <div class="h-100 p-5 text-bg-white rounded-3">
+          <h4>Send it by form</h4>
+          <p>You can send an email using an form in your website</p>
+          <button class="btn btn-success" href="form" type="button">View details</button>
+        </div>
       </div>
       <div class="col-md-4">
-        <h4>Send it by file</h4>
-        <p>You can send an email using a file with an email list addresses</p>
-        <a class="btn btn-success" href="batch" role="button">View details</a>
+        <div class="h-100 p-5 text-bg-white rounded-3">
+          <h4>Send it by file</h4>
+          <p>You can send an email using a file with an email list addresses</p>
+          <button class="btn btn-success" href="batch" type="button">View details</button>
+        </div>
       </div>
-    </div>
   </div>
   <th:block layout:include="fragments/footer"/>
 </body>
