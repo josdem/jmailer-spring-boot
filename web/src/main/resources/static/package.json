@@ -1,6 +1,6 @@
 {
   "name": "static",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "jmailer",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
   "author": "josdem",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.4"
+    "bootstrap": "^5.2.3"
   }
 }
