@@ -71,4 +71,8 @@ bootRun {
     systemProperties = System.properties
 }
 
+springBoot {
+    buildInfo()
+}
+
 test.dependsOn("spotlessApply")
