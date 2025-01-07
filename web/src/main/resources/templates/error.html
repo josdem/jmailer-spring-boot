@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <a class="navbar-brand" href="/">Jmailer</a>
-</nav>
-<div class="jumbotron">
-  <div class="container">
-    <h1>Access Denied</h1>
-    <p>Unauthorized</p>
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <a class="navbar-brand" href="/">Jmailer</a>
+  </nav>
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Access Denied</h1>
+      <p class="col-md-8 fs-4">Unauthorized</p>
+    </div>
   </div>
-</div>
-<div class="container">
-  <div class="row">
-    <p>Invalid token or spam detected</p>
-    <code>Server returned a 401</code>
-    <br/><br/><br/>
+  <div class="row align-items-md-stretch">
+    <div class="col-md-8">
+      <div class="h-100 p-5 text-bg-white rounded-3">
+        <p>Invalid token or spam detected</p>
+        <code>Server returned a 401</code>
+        <br/>
+      </div>
+    </div>
   </div>
-</div>
-<br/><br/><br/>
-<th:block layout:include="fragments/footer"/>
-</body>
+  <br/>
+    <footer class="pt-3 mt-4 text-body-secondary border-top">
+      <a class="navbar-brand" href="http://josdem.io">© 2025 - josdem.io</a>
+    </footer>
+  </body>
 </html>

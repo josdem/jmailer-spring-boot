@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
     <a class="navbar-brand" href="/">Jmailer</a>
   </nav>
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Form</h1>
-      <p>Send email from everywhere</p>
-      <p><a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a></p>
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Form</h1>
+      <p class="col-md-8 fs-4">Send email from everywhere</p>
+      <a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <p>You can send email using a form</p>
-      <br/>
-      <h4>Form</h4>
-      <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
-      <br/>
-      <form th:action="@{/emailer/form}" method="post" th:object="${message}">
-        <div class="panel-primary">
-          <div class="panel-heading">
-            <h4 class="panel-title">Send you a message</h4>
-          </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-bg-white rounded-3">
+        <h4>Form</h4>
+        <p>A form is a component of a Web page that has form controls, such as text fields, textarea and buttons</p>
+        <br/>
+        <form th:action="@{/emailer/form}" method="post" th:object="${message}">
+          <div class="panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">Send you a message</h4>
             </div>
-            <div class="form-group">
-              <label>Your Email</label>
-              <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
-            </div>
-            <div class="form-group">
-              <label>Message:</label>
-              <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea>
-            </div>
-          </div>
-          <input type="hidden" value="jmailer" name="source" />
-          <input type="hidden" value="message.ftl" name="template" />
-          <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
-          <input type="hidden" th:field="*{token}" name="token" id="token">
-          <div class="panel-footer">
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+              </div>
+              <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
+              </div>
+              <div class="form-group">
+                <label>Message:</label>
+                <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea></div>
+              </div>
+            <input type="hidden" value="jmailer" name="source" />
+            <input type="hidden" value="message.ftl" name="template" />
+            <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
+            <input type="hidden" th:field="*{token}" name="token" id="token">
+            <br>
             <button type="submit" class="btn btn-primary">Send</button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-  <br/><br/>
-  <th:block layout:include="fragments/footer"/>
+  <br/>
+  <footer class="pt-3 mt-4 text-body-secondary border-top">
+    <a class="navbar-brand" href="http://josdem.io">© 2025 - josdem.io</a>
+  </footer>
 </body>
 </html>
