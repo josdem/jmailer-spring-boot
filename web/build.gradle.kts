@@ -73,7 +73,7 @@ springBoot {
         properties {
             group = "com.josdem.jmailer"
             artifact = "jmailer-spring-boot"
-            version = "1.1.9"
+            version = "1.1.10"
         }
     }
 }
