@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.josdem.jmailer.command;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -31,21 +32,36 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Schema(description = "Message to send")
 public class MessageCommand implements Command {
-  @NotNull private String name;
 
+  @Schema(description = "Destination email's name")
+  @NotNull
+  private String name;
+
+  @Schema(description = "Destination email")
   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
   @NotEmpty
   private String email;
 
-  @NotNull private String token;
+  @Schema(description = "Sever token")
+  @NotNull
+  private String token;
 
+  @Schema(description = "Message to send")
   @Size(min = 9)
   private String message;
 
   private String contactName;
   private String emailContact;
-  @NotNull private String template;
+
+  @Schema(description = "FreeMarker template")
+  @NotNull
+  private String template;
+
+  @Schema(description = "URL to redirect after send email")
   private String redirect;
+
+  @Schema(description = "Application source name")
   private String source;
 }

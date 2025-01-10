@@ -31,3 +31,5 @@ api:
   basePackage: com.jos.dem.swagger
   description: Automated JSON API documentation for API's built with Spring
   terms: https://josdem.io/
+swagger:
+  server: "http://localhost:8080"

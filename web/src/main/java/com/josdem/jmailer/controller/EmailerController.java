@@ -16,8 +16,6 @@
 
 package com.josdem.jmailer.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import com.josdem.jmailer.command.MessageCommand;
 import com.josdem.jmailer.exception.BusinessException;
 import com.josdem.jmailer.service.EmailerService;
@@ -32,6 +30,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -60,7 +59,7 @@ public class EmailerController {
         @ApiResponse(responseCode = "400", description = "Bad request"),
         @ApiResponse(responseCode = "500", description = "Something went wrong")
       })
-  @RequestMapping(method = POST, value = "/message", consumes = "application/json")
+  @PostMapping(value = "/message", consumes = "application/json")
   public ResponseEntity<String> message(@RequestBody MessageCommand command) {
     log.info("Request contact email: {}", command.getEmail());
     if (!token.equals(command.getToken())) {
@@ -70,7 +69,7 @@ public class EmailerController {
     return new ResponseEntity<String>("OK", HttpStatus.OK);
   }
 
-  @RequestMapping(method = POST, value = "/form", consumes = "application/x-www-form-urlencoded")
+  @PostMapping(value = "/form", consumes = "application/x-www-form-urlencoded")
   public ModelAndView form(@Valid MessageCommand command) {
     log.info("Request message from: {}", command);
     if (!token.equals(command.getToken())) {
