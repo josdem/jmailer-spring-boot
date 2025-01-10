@@ -29,12 +29,19 @@
         <h4>WSLite</h4>
         <p>Lightweight SOAP and REST webservice clients for Groovy</p>
         <code>
-          <p style="color:black;"><strong>@Grab</strong>(<font color="green">'com.github.groovy-wslite:groovy-wslite:1.1.2'</font>)</p>
-          <p style="color:blue;"><strong>import</strong><font color="black"> wslite.rest.RESTClient</font></p>
-          <br/>
-          <p style="color:blue;"><strong>def</strong><font color="black"> client = </font><strong>new </strong><font color="black"><strong>RESTClient</strong></font>(<font color="purple">"http://jmailer.josdem.io/emailer/"</font>)</p>
-          <p style="color:black;">client.<strong>post</strong>(path:<font color="green">'message'</font>){</p>
-          <p style="color:black;">&nbsp;&nbsp;json name:<font color="purple">"josdem"</font>,email:<font color="purple">"joseluis.delacruz@gmail.com"</font>,message:<font color="purple">"Hello from WSLite!"</font>,template:<font color="purple">"message.ftl"</font>,token:<font color="purple">"userToken"</font></p>
+          <p style="color:#999900;">@Throws<font color="black">(IOException::class)</font> </p>
+          <p style="color:#FF8000;">fun<font color="blue"> post</font><font color="black">(url: String, json: String): String {</font></p>
+          <p style="color:#FF8000;">&nbsp;&nbsp;val<font color="black"> body: RequestBody = RequestBody.create(<font color="green">"application/json"</font><font color="blue">.toMediaType()</font>, json)</font> </p>
+          <p style="color:#FF8000;">&nbsp;&nbsp;val<font color="black"> request: Request = url.<font color="blue">let</font> {</font></p>
+          <p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;Request.Builder()</p>
+          <p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;.url(url)</p>
+          <p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;.post(body)</p>
+          <p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;.build()</p>
+          <p style="color:black;">&nbsp;&nbsp;}</p>
+          <br/><br/>
+          <p style="color:#990000;">&nbsp;&nbsp;client<font color="black">.newCall(request).execute().use { response</font><font color="FF8000"> -></font></p>
+          <p style="color:#FF8000;">&nbsp;&nbsp;&nbsp;&nbsp;return<font color="black"> response.</font><font color="#990000">body</font><font color="black">!!.string()</font> </p>
+          <p style="color:black;">&nbsp;&nbsp;}</p>
           <p style="color:black;">}</p>
         </code>
       </div>
