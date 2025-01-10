@@ -26,8 +26,9 @@
         <p>Request</p>
         <code>curl -H "Content-Type: application/json" -v -X POST -d '{"name":"josdem","email":"joseluis.delacruz@gmail.com","message":"Hello from curl!", "template":"message.ftl","token":"userToken"}' 'https://jmailer.josdem.io/emailer/message'</code>
         <br/><br/><br/>
-        <h4>WSLite</h4>
-        <p>Lightweight SOAP and REST webservice clients for Groovy</p>
+        <h4>OkHttp</h4>
+        <p>HTTP is the way modern applications network. It’s how we exchange data & media. Doing HTTP efficiently makes your stuff load faster and saves bandwidth.</p>
+        <br/>
         <code>
           <p style="color:#999900;">@Throws<font color="black">(IOException::class)</font> </p>
           <p style="color:#FF8000;">fun<font color="blue"> post</font><font color="black">(url: String, json: String): String {</font></p>
@@ -44,6 +45,8 @@
           <p style="color:black;">&nbsp;&nbsp;}</p>
           <p style="color:black;">}</p>
         </code>
+        <p>To see the complete HTTP client code go <a href="https://github.com/josdem/stand-alone-http-client">here</a></p>
+        <p><strong>Note:</strong> it should be a valid token to send the request successfully.</p>
       </div>
     </div>
   </div>
