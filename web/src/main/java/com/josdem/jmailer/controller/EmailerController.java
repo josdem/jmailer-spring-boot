@@ -77,7 +77,7 @@ public class EmailerController {
       return new ModelAndView("redirect:/contact");
     }
     emailerService.sendEmail(command);
-    return new ModelAndView("redirect:" + command.getRedirect());
+    return new ModelAndView("redirect:" + redirectUrl);
   }
 
   @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
