@@ -40,14 +40,14 @@ class IndexControllerTest {
   @Test
   @DisplayName("showing home page")
   void shouldShowHomePage(TestInfo testInfo) throws Exception {
-    log.info("Running: {}", testInfo.getDisplayName());
+    log.info(testInfo.getDisplayName());
     mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
   }
 
   @Test
   @DisplayName("showing command line page")
   void shouldShowCommandLinePage(TestInfo testInfo) throws Exception {
-    log.info("Running: {}", testInfo.getDisplayName());
+    log.info(testInfo.getDisplayName());
     mockMvc
         .perform(get("/command-line"))
         .andExpect(status().isOk())
@@ -57,7 +57,7 @@ class IndexControllerTest {
   @Test
   @DisplayName("showing form page")
   void shouldShowFormPage(TestInfo testInfo) throws Exception {
-    log.info("Running: {}", testInfo.getDisplayName());
+    log.info(testInfo.getDisplayName());
     mockMvc
         .perform(get("/form"))
         .andExpect(status().isOk())
@@ -68,18 +68,25 @@ class IndexControllerTest {
   @Test
   @DisplayName("showing batch page")
   void shouldShowBatchPage(TestInfo testInfo) throws Exception {
-    log.info("Running: {}", testInfo.getDisplayName());
+    log.info(testInfo.getDisplayName());
     mockMvc.perform(get("/batch")).andExpect(status().isOk()).andExpect(view().name("batch"));
   }
 
   @Test
   @DisplayName("showing contact page")
   void shouldShowContactPage(TestInfo testInfo) throws Exception {
-    log.info("Running: {}", testInfo.getDisplayName());
+    log.info(testInfo.getDisplayName());
     mockMvc
         .perform(get("/contact"))
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("message"))
         .andExpect(view().name("contact"));
+  }
+
+  @Test
+  @DisplayName("showing flyer page")
+  void shouldShowFlyerPage(TestInfo testInfo) throws Exception {
+    log.info("Running: {}", testInfo.getDisplayName());
+    mockMvc.perform(get("/flyer")).andExpect(status().isOk()).andExpect(view().name("flyer"));
   }
 }
