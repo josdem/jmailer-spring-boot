@@ -67,4 +67,10 @@ public class IndexController {
     modelAndView.addObject("message", message);
     return modelAndView;
   }
+
+  @GetMapping("/flyer")
+  public String flyer() {
+    log.info("Calling flyer");
+    return "flyer";
+  }
 }
