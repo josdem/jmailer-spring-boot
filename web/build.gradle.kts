@@ -11,7 +11,7 @@ plugins {
 
 var springdocVersion = "2.4.0"
 group = "com.josdem.jmailer"
-version = "1.2.0.2"
+version = "1.2.1"
 
 
 java {
@@ -75,7 +75,6 @@ springBoot {
         properties {
             group = "com.josdem.jmailer"
             artifact = "jmailer-spring-boot"
-            version = "1.2.0.2"
         }
     }
 }

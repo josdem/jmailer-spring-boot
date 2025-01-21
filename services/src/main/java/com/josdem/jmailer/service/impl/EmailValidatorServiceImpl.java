@@ -36,7 +36,7 @@ public class EmailValidatorServiceImpl implements EmailValidatorService {
 
   @Override
   public void validate(Command command) {
-    MessageCommand messageCommand = (MessageCommand) command;
+    var messageCommand = (MessageCommand) command;
     validateContainSpaces(messageCommand.getMessage());
     validateMessage(messageCommand.getMessage());
     validateName(messageCommand.getName());
