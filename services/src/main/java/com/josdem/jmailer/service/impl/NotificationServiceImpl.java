@@ -29,7 +29,7 @@ public class NotificationServiceImpl implements NotificationService {
 
   private final MailService mailService;
   private final ObjectMapper mapper;
-  private String subject;
+  private final String subject;
 
   public NotificationServiceImpl(
       MailService mailService, ObjectMapper mapper, @Value("${email.subject}") String subject) {
@@ -40,7 +40,7 @@ public class NotificationServiceImpl implements NotificationService {
 
   @Override
   public void sendNotification(MessageCommand command) {
-    Map data = Map.of("email", command.getEmail(), "subject", subject);
+    var data = Map.of("email", command.getEmail(), "subject", subject);
     mailService.sendMailWithTemplate(
         data, mapper.convertValue(command, Map.class), command.getTemplate());
   }

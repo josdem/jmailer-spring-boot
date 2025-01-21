@@ -18,7 +18,6 @@ package com.josdem.jmailer.service.impl;
 
 import com.josdem.jmailer.command.Command;
 import com.josdem.jmailer.service.MessageService;
-import jakarta.jms.ObjectMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.EnableJms;
@@ -37,7 +36,7 @@ public class MessageServiceImpl implements MessageService {
   public void message(final Command command) {
     MessageCreator messageCreator =
         session -> {
-          ObjectMessage message = session.createObjectMessage();
+          var message = session.createObjectMessage();
           message.setObject(command);
           return message;
         };

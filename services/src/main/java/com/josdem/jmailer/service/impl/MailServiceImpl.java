@@ -18,7 +18,6 @@ package com.josdem.jmailer.service.impl;
 
 import com.josdem.jmailer.service.MailService;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -38,11 +37,11 @@ public class MailServiceImpl implements MailService {
 
     MimeMessagePreparator mailer =
         mimeMessage -> {
-          MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);
-          Template myTemplate = configuration.getTemplate(template);
+          var message = new MimeMessageHelper(mimeMessage, true);
+          var myTemplate = configuration.getTemplate(template);
           message.setTo(values.get("email"));
           message.setSubject(values.get("subject"));
-          String text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
+          var text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
           message.setText(text, true);
         };
 
