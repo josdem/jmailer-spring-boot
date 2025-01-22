@@ -19,7 +19,7 @@ package com.josdem.jmailer.config;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
-import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +40,7 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI springShopOpenAPI() {
     return new OpenAPI()
-        .servers(Arrays.asList(new Server().url(swaggerServer)))
+        .servers(List.of(new Server().url(swaggerServer)))
         .info(
             new Info()
                 .title(applicationProperties.getTitle())
