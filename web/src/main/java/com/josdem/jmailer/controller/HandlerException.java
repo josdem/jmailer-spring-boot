@@ -31,8 +31,8 @@ public class HandlerException implements HandlerExceptionResolver {
   public ModelAndView resolveException(
       HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
     log.info("Exception: {}", ex.getMessage());
-    Map data = Map.of("message", ex.getMessage());
-    ModelAndView modelAndView = new ModelAndView("error");
+    var data = Map.of("message", ex.getMessage());
+    var modelAndView = new ModelAndView("error");
     modelAndView.addObject("data", data);
     return modelAndView;
   }

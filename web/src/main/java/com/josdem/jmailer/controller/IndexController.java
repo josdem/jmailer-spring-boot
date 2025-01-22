@@ -44,9 +44,9 @@ public class IndexController {
 
   @GetMapping("/form")
   public ModelAndView form() {
-    log.info("Calling contact");
-    ModelAndView modelAndView = new ModelAndView("form");
-    MessageCommand message = new MessageCommand();
+    log.info("Calling form");
+    var modelAndView = new ModelAndView("form");
+    var message = new MessageCommand();
     message.setToken(token);
     modelAndView.addObject("message", message);
     return modelAndView;
@@ -61,8 +61,8 @@ public class IndexController {
   @GetMapping("/contact")
   public ModelAndView contact() {
     log.info("Calling contact");
-    ModelAndView modelAndView = new ModelAndView("contact");
-    MessageCommand message = new MessageCommand();
+    var modelAndView = new ModelAndView("contact");
+    var message = new MessageCommand();
     message.setToken(token);
     modelAndView.addObject("message", message);
     return modelAndView;
