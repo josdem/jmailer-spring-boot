@@ -25,8 +25,7 @@ import org.springframework.context.annotation.Configuration;
 public class ActiveMQConfig {
   @Bean
   public ConnectionFactory connectionFactory() {
-    ActiveMQConnectionFactory factory =
-        new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
+    var factory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
     factory.setTrustAllPackages(true);
     return factory;
   }

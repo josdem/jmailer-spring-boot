@@ -11,7 +11,7 @@ plugins {
 
 var springdocVersion = "2.4.0"
 group = "com.josdem.jmailer"
-version = "1.2.1"
+version = "1.2.2"
 
 
 java {

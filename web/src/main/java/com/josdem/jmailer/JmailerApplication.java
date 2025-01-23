@@ -17,7 +17,6 @@ limitations under the License.
 package com.josdem.jmailer;
 
 import jakarta.jms.ConnectionFactory;
-import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,19 +36,19 @@ public class JmailerApplication {
 
   @Bean
   public JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
-    SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
+    var factory = new SimpleJmsListenerContainerFactory();
     factory.setConnectionFactory(connectionFactory);
     return factory;
   }
 
   @Bean
   JavaMailSenderImpl javaMailSenderImpl() {
-    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    var mailSender = new JavaMailSenderImpl();
     mailSender.setHost("smtp.gmail.com");
     mailSender.setPort(587);
     mailSender.setUsername(username);
     mailSender.setPassword(password);
-    Properties prop = mailSender.getJavaMailProperties();
+    var prop = mailSender.getJavaMailProperties();
     prop.put("mail.transport.protocol", "smtp");
     prop.put("mail.smtp.auth", "true");
     prop.put("mail.smtp.starttls.enable", "true");

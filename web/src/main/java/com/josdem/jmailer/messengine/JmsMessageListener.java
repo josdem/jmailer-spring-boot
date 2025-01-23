@@ -35,7 +35,7 @@ public class JmsMessageListener {
 
   @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
   public void receiveMessage(Message message) throws JMSException {
-    Object command = ((ObjectMessage) message).getObject();
+    var command = ((ObjectMessage) message).getObject();
     log.info("Message received");
     notificationService.sendNotification((MessageCommand) command);
   }
