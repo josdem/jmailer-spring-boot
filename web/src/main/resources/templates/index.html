@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Welcome!</h1>
       <p class="col-md-8 fs-4">Send email from everywhere</p>
-      <a class="btn btn-primary btn-lg" href="contact" type="button">Register Here</a>
+      <a th:data-testid="registerHereButton" class="btn btn-primary btn-lg" href="contact" type="button">Register Here</a>
     </div>
   </div>
   <div class="row align-items-md-stretch">
@@ -21,21 +21,21 @@
         <div class="h-100 p-5 text-bg-white rounded-3">
           <h4>Send it by command-line</h4>
           <p>You can send an email using curl, httpie or using a script</p>
-          <a class="btn btn-success" href="command-line" type="button">View details</a>
+          <a th:data-testid="commandLineButton" class="btn btn-success" href="command-line" type="button">View details</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="h-100 p-5 text-bg-white rounded-3">
           <h4>Send it by form</h4>
           <p>You can send an email using an form in your website</p>
-          <a class="btn btn-success" href="form" type="button">View details</a>
+          <a th:data-testid="formButton" class="btn btn-success" href="form" type="button">View details</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="h-100 p-5 text-bg-white rounded-3">
           <h4>Send it by file</h4>
           <p>You can send an email using a file with an email list addresses</p>
-          <a class="btn btn-success" href="batch" type="button">View details</a>
+          <a th:data-testid="batchButton" class="btn btn-success" href="batch" type="button">View details</a>
         </div>
       </div>
   </div>
