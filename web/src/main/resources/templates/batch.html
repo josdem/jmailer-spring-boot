@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Batch</h1>
       <p class="col-md-8 fs-4">Send email from everywhere</p>
-      <a class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a>
+      <a th:data-testid="registerHereButton" class="btn btn-primary btn-lg" href="contact" role="button">Register Here</a>
     </div>
   </div>
   <div class="row align-items-md-stretch">
