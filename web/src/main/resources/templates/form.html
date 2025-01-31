@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
+  <title>Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
@@ -30,22 +31,22 @@
             <div class="panel-body">
               <div class="form-group">
                 <label>Your Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+                <input th:data-testid="nameInput" type="text" class="form-control" name="name" placeholder="Enter your name"/>
               </div>
               <div class="form-group">
                 <label>Your Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
+                <input th:data-testid="emailInput" type="email" class="form-control" name="email" placeholder="Enter your email"/>
               </div>
               <div class="form-group">
                 <label>Message:</label>
-                <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea></div>
+                <textarea th:data-testid="messageTextArea" class="form-control" name="message" rows="3" placeholder="Your message"></textarea></div>
               </div>
             <input type="hidden" value="jmailer" name="source" />
             <input type="hidden" value="message.ftl" name="template" />
             <input type="hidden" value="http://josdem.io/flyer/jmailer" name="redirect" />
             <input type="hidden" th:field="*{token}" name="token" id="token">
             <br>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button th:data-testid="submitButton" type="submit" class="btn btn-primary">Send</button>
           </div>
         </form>
       </div>
