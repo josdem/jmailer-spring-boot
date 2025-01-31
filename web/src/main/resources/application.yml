@@ -2,7 +2,7 @@ email:
   username: ${EMAIL_USERNAME}
   password: ${EMAIL_PASSWORD}
   subject: Hello from Jmailer!
-  contact: joseluis.delacruz@gmail.com
+  contact: contact@josdem.io
   redirect: https://jmailer.josdem.io/flyer
   whitelist: http://localhost:8080/
   blacklist: 180.76.15.
