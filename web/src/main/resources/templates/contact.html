@@ -29,15 +29,15 @@
           <div class="panel-body">
             <div class="form-group">
               <label>Your Name</label>
-              <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+              <input th:data-testid="nameInput" type="text" class="form-control" name="name" placeholder="Enter your name"/>
             </div>
             <div class="form-group">
               <label>Your Email</label>
-              <input type="email" class="form-control" name="emailContact" placeholder="Enter your email"/>
+              <input th:data-testid="emailInput" type="email" class="form-control" name="emailContact" placeholder="Enter your email"/>
             </div>
             <div class="form-group">
               <label>Message:</label>
-              <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea>
+              <textarea th:data-testid="messageTextArea" class="form-control" name="message" rows="3" placeholder="Your message"></textarea>
             </div>
           </div>
           <input type="hidden" value="jmailer" name="source" />
@@ -45,7 +45,7 @@
           <input type="hidden" value="joseluis.delacruz@gmail.com" name="email" />
           <input type="hidden" th:field="*{token}" name="token" id="token">
           <br>
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button th:data-testid="submitButton" type="submit" class="btn btn-primary">Send</button>
         </div>
       </form>
       </div>
