@@ -13,7 +13,7 @@ val springdocVersion = "2.8.3"
 val freeMarkerVersion = "2.3.34"
 
 group = "com.josdem.jmailer"
-version = "1.2.7"
+version = "1.3.0"
 
 
 java {
