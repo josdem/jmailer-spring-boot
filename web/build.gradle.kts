@@ -2,16 +2,18 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     java
-    id("org.springframework.boot") version "3.3.5"
-    id("io.spring.dependency-management") version "1.1.6"
-    id ("com.diffplug.spotless") version "6.25.0"
+    id("org.springframework.boot") version "3.4.1"
+    id("io.spring.dependency-management") version "1.1.7"
+    id ("com.diffplug.spotless") version "7.0.2"
     id ("java")
     id ("jacoco")
 }
 
-var springdocVersion = "2.4.0"
+val springdocVersion = "2.8.3"
+val freeMarkerVersion = "2.3.34"
+
 group = "com.josdem.jmailer"
-version = "1.2.7"
+version = "1.3.0"
 
 
 java {
@@ -47,7 +49,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-activemq")
     implementation ("org.springframework.boot:spring-boot-starter-validation")
     implementation ("javax.jms:javax.jms-api:2.0.1")
-    implementation ("org.freemarker:freemarker:2.3.31")
+    implementation ("org.freemarker:freemarker:$freeMarkerVersion")
     implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
     implementation (project (":services"))
     compileOnly ("org.projectlombok:lombok")
