@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 public class EmailProperties {
   private String username;
   private String password;
+  private String redirect;
   private List<String> spamTokens;
   private List<String> spamNames;
   private double factor;

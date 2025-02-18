@@ -18,7 +18,6 @@ package com.josdem.jmailer.config;
 
 import jakarta.jms.ConnectionFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.JmsListenerContainerFactory;
