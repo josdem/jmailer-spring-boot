@@ -27,6 +27,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("email")
 public class EmailProperties {
+  private String username;
+  private String password;
   private List<String> spamTokens;
   private List<String> spamNames;
   private double factor;
