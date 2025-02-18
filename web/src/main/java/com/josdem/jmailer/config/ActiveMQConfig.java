@@ -30,5 +30,4 @@ public class ActiveMQConfig {
     factory.setTrustAllPackages(true);
     return factory;
   }
-
 }
