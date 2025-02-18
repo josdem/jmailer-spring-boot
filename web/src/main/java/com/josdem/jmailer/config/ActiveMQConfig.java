@@ -23,10 +23,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ActiveMQConfig {
+
   @Bean
   public ConnectionFactory connectionFactory() {
     var factory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
     factory.setTrustAllPackages(true);
     return factory;
   }
+
 }
