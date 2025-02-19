@@ -19,7 +19,7 @@ package com.josdem.jmailer.model;
 import java.util.List;
 
 public class Client {
-    private int id;
-    private String email;
-    private List<String> templates;
+  private int id;
+  private String email;
+  private List<String> templates;
 }
