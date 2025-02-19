@@ -32,11 +32,20 @@ public class ApplicationConfig {
 
   @Bean
   JavaMailSenderImpl defaultMailSender() {
+    return getMailSenderConfig(emailProperties.getUsername(), emailProperties.getPassword());
+  }
+
+  @Bean
+  JavaMailSenderImpl vetlogMailSender() {
+    return getMailSenderConfig(emailProperties.getVetlogUsername(), emailProperties.getVetlogPassword());
+  }
+
+  private JavaMailSenderImpl getMailSenderConfig(String username, String password) {
     var mailSender = new JavaMailSenderImpl();
     mailSender.setHost("smtp.gmail.com");
     mailSender.setPort(587);
-    mailSender.setUsername(emailProperties.getUsername());
-    mailSender.setPassword(emailProperties.getPassword());
+    mailSender.setUsername(username);
+    mailSender.setPassword(password);
     var prop = mailSender.getJavaMailProperties();
     prop.put("mail.transport.protocol", "smtp");
     prop.put("mail.smtp.auth", "true");

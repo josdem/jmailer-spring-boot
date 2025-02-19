@@ -31,9 +31,9 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 public class MailServiceImpl implements MailService {
 
   private final Configuration configuration;
-  private final JavaMailSender javaMailSender;
+  private final JavaMailSender defaultMailSender;
 
-  public void sendMailWithTemplate(Map<String, String> values, Map model, String template) {
+  public void sendMailWithTemplate(Map<String, String> values, Map<String, String> model, String template) {
 
     MimeMessagePreparator mailer =
         mimeMessage -> {
@@ -45,6 +45,6 @@ public class MailServiceImpl implements MailService {
           message.setText(text, true);
         };
 
-    javaMailSender.send(mailer);
+    defaultMailSender.send(mailer);
   }
 }
