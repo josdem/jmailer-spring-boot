@@ -18,7 +18,6 @@ package com.josdem.jmailer.config;
 
 import jakarta.jms.ConnectionFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.JmsListenerContainerFactory;
@@ -29,19 +28,15 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-  @Value("${email.username}")
-  private String username;
-
-  @Value("${email.password}")
-  private String password;
+  private final EmailProperties emailProperties;
 
   @Bean
   JavaMailSenderImpl javaMailSenderImpl() {
     var mailSender = new JavaMailSenderImpl();
     mailSender.setHost("smtp.gmail.com");
     mailSender.setPort(587);
-    mailSender.setUsername(username);
-    mailSender.setPassword(password);
+    mailSender.setUsername(emailProperties.getUsername());
+    mailSender.setPassword(emailProperties.getPassword());
     var prop = mailSender.getJavaMailProperties();
     prop.put("mail.transport.protocol", "smtp");
     prop.put("mail.smtp.auth", "true");

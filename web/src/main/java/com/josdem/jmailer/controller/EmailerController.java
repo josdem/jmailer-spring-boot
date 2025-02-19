@@ -17,6 +17,7 @@
 package com.josdem.jmailer.controller;
 
 import com.josdem.jmailer.command.MessageCommand;
+import com.josdem.jmailer.config.EmailProperties;
 import com.josdem.jmailer.exception.BusinessException;
 import com.josdem.jmailer.service.EmailerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,12 +46,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class EmailerController {
 
   private final EmailerService emailerService;
+  private final EmailProperties emailProperties;
 
   @Value("${token}")
   private String token;
-
-  @Value("${email.redirect}")
-  private String redirectUrl;
 
   @Operation(summary = "Send an email with JSON")
   @ApiResponses(
@@ -77,7 +76,7 @@ public class EmailerController {
       return new ModelAndView("redirect:/contact");
     }
     emailerService.sendEmail(command);
-    return new ModelAndView("redirect:" + redirectUrl);
+    return new ModelAndView("redirect:" + emailProperties.getRedirect());
   }
 
   @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
