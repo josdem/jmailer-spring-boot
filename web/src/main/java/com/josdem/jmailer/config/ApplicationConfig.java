@@ -37,7 +37,8 @@ public class ApplicationConfig {
 
   @Bean
   JavaMailSenderImpl vetlogMailSender() {
-    return getMailSenderConfig(emailProperties.getVetlogUsername(), emailProperties.getVetlogPassword());
+    return getMailSenderConfig(
+        emailProperties.getVetlogUsername(), emailProperties.getVetlogPassword());
   }
 
   private JavaMailSenderImpl getMailSenderConfig(String username, String password) {
