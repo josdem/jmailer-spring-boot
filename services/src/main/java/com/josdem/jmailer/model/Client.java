@@ -14,25 +14,12 @@
   limitations under the License.
 */
 
-package com.josdem.jmailer.config;
+package com.josdem.jmailer.model;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
-@Component
-@ConfigurationProperties("email")
-public class EmailProperties {
-  private String username;
-  private String password;
-  private String vetlogUsername;
-  private String vetlogPassword;
-  private String redirect;
-  private List<String> spamTokens;
-  private List<String> spamNames;
-  private double factor;
+public class Client {
+    private int id;
+    private String email;
+    private List<String> templates;
 }
