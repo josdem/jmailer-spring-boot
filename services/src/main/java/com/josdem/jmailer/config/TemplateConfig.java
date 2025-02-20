@@ -16,28 +16,29 @@
 
 package com.josdem.jmailer.config;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 
 @Configuration
 @RequiredArgsConstructor
 public class TemplateConfig {
 
-    private final JavaMailSender defaultMailSender;
-    private final JavaMailSender vetlogMailSender;
+  private final JavaMailSender defaultMailSender;
+  private final JavaMailSender vetlogMailSender;
 
-    public Map<String, JavaMailSender> templateStrategy() {
-        Map<String, JavaMailSender> templateStrategy = new HashMap<>();
-        templateStrategy.put("welcome.ftl", vetlogMailSender);
-        templateStrategy.put("adoption.ftl", vetlogMailSender);
-        templateStrategy.put("forgotPassword.ftl", vetlogMailSender);
-        templateStrategy.put("message.ftl", defaultMailSender);
-        templateStrategy.put("register.ftl", defaultMailSender);
-        templateStrategy.put("third_party.ftl", defaultMailSender);
-        return templateStrategy;
-    }
+  @Bean
+  public Map<String, JavaMailSender> templateStrategy() {
+    Map<String, JavaMailSender> templateStrategy = new HashMap<>();
+    templateStrategy.put("welcome.ftl", vetlogMailSender);
+    templateStrategy.put("adoption.ftl", vetlogMailSender);
+    templateStrategy.put("forgotPassword.ftl", vetlogMailSender);
+    templateStrategy.put("message.ftl", defaultMailSender);
+    templateStrategy.put("register.ftl", defaultMailSender);
+    templateStrategy.put("third_party.ftl", defaultMailSender);
+    return templateStrategy;
+  }
 }
