@@ -38,7 +38,6 @@ public class TemplateConfig {
     templateStrategy.put("forgotPassword.ftl", vetlogMailSender);
     templateStrategy.put("message.ftl", defaultMailSender);
     templateStrategy.put("register.ftl", defaultMailSender);
-    templateStrategy.put("third_party.ftl", defaultMailSender);
     return templateStrategy;
   }
 }
