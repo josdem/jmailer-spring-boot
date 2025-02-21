@@ -19,6 +19,7 @@ package com.josdem.jmailer.service.impl;
 import com.josdem.jmailer.service.MailService;
 import freemarker.template.Configuration;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -32,6 +33,7 @@ public class MailServiceImpl implements MailService {
 
   private final Configuration configuration;
   private final JavaMailSender defaultMailSender;
+  private final Map<String, JavaMailSender> templateStrategy;
 
   public void sendMailWithTemplate(
       Map<String, String> values, Map<String, String> model, String template) {
@@ -46,6 +48,7 @@ public class MailServiceImpl implements MailService {
           message.setText(text, true);
         };
 
-    defaultMailSender.send(mailer);
+    Optional<JavaMailSender> strategy = Optional.ofNullable(templateStrategy.get(template));
+    strategy.orElse(defaultMailSender).send(mailer);
   }
 }
