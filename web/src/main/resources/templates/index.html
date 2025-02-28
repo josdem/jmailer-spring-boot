@@ -1,47 +1,47 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <title>Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-  <a class="navbar-brand" href="/">Jmailer</a>
+    <a class="navbar-brand" href="/">Jmailer</a>
 </nav>
 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-  <div class="container-fluid py-5">
-    <h1 class="display-5 fw-bold">Welcome!</h1>
-    <p class="col-md-8 fs-4">Send email from everywhere</p>
-    <a th:data-testid="registerHereButton" class="btn btn-primary btn-lg" href="contact" type="button">Register Here</a>
-  </div>
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome!</h1>
+        <p class="col-md-8 fs-4">Send email from everywhere</p>
+        <a th:data-testid="registerHereButton" class="btn btn-primary btn-lg" href="contact" type="button">Register Here</a>
+    </div>
 </div>
 <div class="row align-items-md-stretch">
-  <div class="col-md-4">
-    <div class="h-100 p-5 text-bg-white rounded-3">
-      <h4>Send it by command-line</h4>
-      <p>You can send an email using curl, httpie or using a script</p>
-      <a th:data-testid="commandLineButton" class="btn btn-success" href="command-line" type="button">View details</a>
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-bg-white rounded-3">
+            <h4>Send it by command-line</h4>
+            <p>You can send an email using curl, httpie or using a script</p>
+            <a th:data-testid="commandLineButton" class="btn btn-success" href="command-line" type="button">View details</a>
+        </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="h-100 p-5 text-bg-white rounded-3">
-      <h4>Send it by form</h4>
-      <p>You can send an email using an form in your website</p>
-      <a th:data-testid="formButton" class="btn btn-success" href="form" type="button">View details</a>
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-bg-white rounded-3">
+            <h4>Send it by form</h4>
+            <p>You can send an email using an form in your website</p>
+            <a th:data-testid="formButton" class="btn btn-success" href="form" type="button">View details</a>
+        </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="h-100 p-5 text-bg-white rounded-3">
-      <h4>Send it by file</h4>
-      <p>You can send an email using a file with an email list addresses</p>
-      <a th:data-testid="batchButton" class="btn btn-success" href="batch" type="button">View details</a>
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-bg-white rounded-3">
+            <h4>Send it by file</h4>
+            <p>You can send an email using a file with an email list addresses</p>
+            <a th:data-testid="batchButton" class="btn btn-success" href="batch" type="button">View details</a>
+        </div>
     </div>
-  </div>
 </div>
 <footer class="pt-3 mt-4 text-body-secondary border-top">
-  <a class="navbar-brand" href="http://josdem.io">© 2025 - josdem.io</a>
+    <a class="navbar-brand" href="http://josdem.io">© 2025 - josdem.io</a>
 </footer>
 </body>
 </html>
