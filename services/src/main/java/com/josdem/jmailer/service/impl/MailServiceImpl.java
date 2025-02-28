@@ -16,6 +16,9 @@
 
 package com.josdem.jmailer.service.impl;
 
+import com.josdem.jmailer.config.EmailProperties;
+import com.josdem.jmailer.exception.BusinessException;
+import com.josdem.jmailer.model.Client;
 import com.josdem.jmailer.service.MailService;
 import freemarker.template.Configuration;
 import java.util.Map;
@@ -32,23 +35,24 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 public class MailServiceImpl implements MailService {
 
   private final Configuration configuration;
-  private final JavaMailSender defaultMailSender;
-  private final Map<String, JavaMailSender> templateStrategy;
+  private final Map<String, Client> templateStrategy;
 
   public void sendMailWithTemplate(
       Map<String, String> values, Map<String, String> model, String template) {
+
+      Optional<Client> strategy = Optional.ofNullable(templateStrategy.get(template));
+      Client client = strategy.orElseThrow(() -> new BusinessException("Template not found"));
 
     MimeMessagePreparator mailer =
         mimeMessage -> {
           var message = new MimeMessageHelper(mimeMessage, true);
           var myTemplate = configuration.getTemplate(template);
           message.setTo(values.get("email"));
-          message.setSubject(values.get("subject"));
+          message.setSubject(client.getSubject());
           var text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
           message.setText(text, true);
         };
 
-    Optional<JavaMailSender> strategy = Optional.ofNullable(templateStrategy.get(template));
-    strategy.orElse(defaultMailSender).send(mailer);
+      client.getSender().send(mailer);
   }
 }

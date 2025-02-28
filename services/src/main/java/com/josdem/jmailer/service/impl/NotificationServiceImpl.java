@@ -18,29 +18,25 @@ package com.josdem.jmailer.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
+import com.josdem.jmailer.config.SubjectConfig;
 import com.josdem.jmailer.service.MailService;
 import com.josdem.jmailer.service.NotificationService;
 import java.util.Map;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
   private final MailService mailService;
   private final ObjectMapper mapper;
-  private final String subject;
-
-  public NotificationServiceImpl(
-      MailService mailService, ObjectMapper mapper, @Value("${email.subject}") String subject) {
-    this.mailService = mailService;
-    this.mapper = mapper;
-    this.subject = subject;
-  }
 
   @Override
   public void sendNotification(MessageCommand command) {
-    var data = Map.of("email", command.getEmail(), "subject", subject);
+    var data = Map.of("email", command.getEmail());
     mailService.sendMailWithTemplate(
         data, mapper.convertValue(command, Map.class), command.getTemplate());
   }

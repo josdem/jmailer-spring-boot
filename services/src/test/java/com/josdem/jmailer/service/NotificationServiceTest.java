@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
+import com.josdem.jmailer.config.SubjectConfig;
 import com.josdem.jmailer.service.impl.NotificationServiceImpl;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,7 @@ class NotificationServiceTest {
 
   @BeforeEach
   void setup() {
-    notificationService = new NotificationServiceImpl(mailService, mapper, SUBJECT);
+    notificationService = new NotificationServiceImpl(mailService, mapper);
   }
 
   @Test

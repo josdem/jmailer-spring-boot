@@ -18,6 +18,7 @@ import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.josdem.jmailer.model.Client;
 import com.josdem.jmailer.service.impl.MailServiceImpl;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -41,15 +42,15 @@ class MailServiceTest {
   private final JavaMailSender javaMailSender = mock(JavaMailSender.class);
   private final JavaMailSender vetlogMailSender = mock(JavaMailSender.class);
   private final Template freeMarkerTemplate = mock(Template.class);
-  private final Map<String, JavaMailSender> templateStrategy = new HashMap<>();
+  private final Map<String, Client> templateStrategy = new HashMap<>();
   private final Map<String, String> values =
       Map.of("email", "contact@josdem.io", "subject", "Hello from Jmailer!");
 
   @BeforeEach
   void setup() {
-    templateStrategy.put(DEFAULT_TEMPLATE, javaMailSender);
-    templateStrategy.put(VETLOG_TEMPLATE, vetlogMailSender);
-    mailService = new MailServiceImpl(configuration, javaMailSender, templateStrategy);
+    templateStrategy.put(DEFAULT_TEMPLATE, new Client(javaMailSender, "Hello from Jmailer!"));
+    templateStrategy.put(VETLOG_TEMPLATE, new Client(javaMailSender, "Hello from Vetlog!"));
+    mailService = new MailServiceImpl(configuration, templateStrategy);
   }
 
   @Test
