@@ -10,6 +10,8 @@ email:
   blacklist: 180.76.15.
   homeRequestURL: http://localhost:8080/
   factor: 0.5
+  vetlogSubject: Hello from Vetlog!
+  jmailerSubject: Hello from Jmailer!
   spamTokens:
     - one
   spamNames:
