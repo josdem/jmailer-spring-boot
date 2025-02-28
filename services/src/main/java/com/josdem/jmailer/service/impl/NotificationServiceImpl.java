@@ -18,13 +18,10 @@ package com.josdem.jmailer.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
-import com.josdem.jmailer.config.SubjectConfig;
 import com.josdem.jmailer.service.MailService;
 import com.josdem.jmailer.service.NotificationService;
 import java.util.Map;
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service

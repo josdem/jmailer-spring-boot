@@ -16,10 +16,9 @@
 
 package com.josdem.jmailer.config;
 
+import com.josdem.jmailer.model.Client;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.josdem.jmailer.model.Client;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +39,7 @@ public class TemplateConfig {
 
     Map<String, Client> templateStrategy = new HashMap<>();
     templateStrategy.put("welcome.ftl", vetlogClient);
-    templateStrategy.put("adoption.ftl",  vetlogClient);
+    templateStrategy.put("adoption.ftl", vetlogClient);
     templateStrategy.put("forgotPassword.ftl", vetlogClient);
     templateStrategy.put("message.ftl", jmailerClient);
     templateStrategy.put("register.ftl", jmailerClient);

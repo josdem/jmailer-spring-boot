@@ -24,7 +24,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 @AllArgsConstructor
 public class Client {
 
-    private JavaMailSender sender;
-    private String subject;
-
+  private JavaMailSender sender;
+  private String subject;
 }

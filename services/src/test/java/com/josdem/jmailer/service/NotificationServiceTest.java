@@ -19,7 +19,6 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
-import com.josdem.jmailer.config.SubjectConfig;
 import com.josdem.jmailer.service.impl.NotificationServiceImpl;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,6 @@ import org.junit.jupiter.api.Test;
 
 class NotificationServiceTest {
   public static final String EMAIL = "contact@josdem.io";
-  public static final String SUBJECT = "Hello from Jmailer!";
   public static final String TEMPLATE = "message.ftl";
 
   private NotificationService notificationService;
@@ -45,7 +43,7 @@ class NotificationServiceTest {
   @DisplayName("send a notification")
   void shouldSendNotification() {
     Map model = mock(Map.class);
-    Map data = Map.of("email", EMAIL, "subject", SUBJECT);
+    Map data = Map.of("email", EMAIL);
     MessageCommand messageCommand =
         new MessageCommand(
             "Jose Morales",

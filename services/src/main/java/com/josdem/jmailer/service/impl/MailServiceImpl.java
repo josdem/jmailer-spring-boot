@@ -16,7 +16,6 @@
 
 package com.josdem.jmailer.service.impl;
 
-import com.josdem.jmailer.config.EmailProperties;
 import com.josdem.jmailer.exception.BusinessException;
 import com.josdem.jmailer.model.Client;
 import com.josdem.jmailer.service.MailService;
@@ -24,7 +23,6 @@ import freemarker.template.Configuration;
 import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -40,8 +38,8 @@ public class MailServiceImpl implements MailService {
   public void sendMailWithTemplate(
       Map<String, String> values, Map<String, String> model, String template) {
 
-      Optional<Client> strategy = Optional.ofNullable(templateStrategy.get(template));
-      Client client = strategy.orElseThrow(() -> new BusinessException("Template not found"));
+    Optional<Client> strategy = Optional.ofNullable(templateStrategy.get(template));
+    Client client = strategy.orElseThrow(() -> new BusinessException("Template not found"));
 
     MimeMessagePreparator mailer =
         mimeMessage -> {
@@ -53,6 +51,6 @@ public class MailServiceImpl implements MailService {
           message.setText(text, true);
         };
 
-      client.getSender().send(mailer);
+    client.getSender().send(mailer);
   }
 }
