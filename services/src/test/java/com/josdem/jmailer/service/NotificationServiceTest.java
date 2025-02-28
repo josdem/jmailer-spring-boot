@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 
 class NotificationServiceTest {
   public static final String EMAIL = "contact@josdem.io";
-  public static final String SUBJECT = "Hello from Jmailer!";
   public static final String TEMPLATE = "message.ftl";
 
   private NotificationService notificationService;
@@ -37,14 +36,14 @@ class NotificationServiceTest {
 
   @BeforeEach
   void setup() {
-    notificationService = new NotificationServiceImpl(mailService, mapper, SUBJECT);
+    notificationService = new NotificationServiceImpl(mailService, mapper);
   }
 
   @Test
   @DisplayName("send a notification")
   void shouldSendNotification() {
     Map model = mock(Map.class);
-    Map data = Map.of("email", EMAIL, "subject", SUBJECT);
+    Map data = Map.of("email", EMAIL);
     MessageCommand messageCommand =
         new MessageCommand(
             "Jose Morales",

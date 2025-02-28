@@ -32,6 +32,8 @@ public class EmailProperties {
   private String vetlogUsername;
   private String vetlogPassword;
   private String redirect;
+  private String vetlogSubject;
+  private String jmailerSubject;
   private List<String> spamTokens;
   private List<String> spamNames;
   private double factor;

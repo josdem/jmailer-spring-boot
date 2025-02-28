@@ -16,6 +16,7 @@
 
 package com.josdem.jmailer.config;
 
+import com.josdem.jmailer.model.Client;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -29,15 +30,19 @@ public class TemplateConfig {
 
   private final JavaMailSender defaultMailSender;
   private final JavaMailSender vetlogMailSender;
+  private final EmailProperties emailProperties;
 
   @Bean
-  public Map<String, JavaMailSender> templateStrategy() {
-    Map<String, JavaMailSender> templateStrategy = new HashMap<>();
-    templateStrategy.put("welcome.ftl", vetlogMailSender);
-    templateStrategy.put("adoption.ftl", vetlogMailSender);
-    templateStrategy.put("forgotPassword.ftl", vetlogMailSender);
-    templateStrategy.put("message.ftl", defaultMailSender);
-    templateStrategy.put("register.ftl", defaultMailSender);
+  public Map<String, Client> templateStrategy() {
+    var vetlogClient = new Client(vetlogMailSender, emailProperties.getVetlogSubject());
+    var jmailerClient = new Client(defaultMailSender, emailProperties.getJmailerSubject());
+
+    Map<String, Client> templateStrategy = new HashMap<>();
+    templateStrategy.put("welcome.ftl", vetlogClient);
+    templateStrategy.put("adoption.ftl", vetlogClient);
+    templateStrategy.put("forgotPassword.ftl", vetlogClient);
+    templateStrategy.put("message.ftl", jmailerClient);
+    templateStrategy.put("register.ftl", jmailerClient);
     return templateStrategy;
   }
 }
