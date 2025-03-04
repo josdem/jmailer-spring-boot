@@ -74,7 +74,7 @@
       <div class="p-2">
         <div class="d-flex justify-content-center">
           <a href="https://twitter.com/vetlog_care"><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/twitter.png" height="20" width="20" alt="twitter"></a>
-          <a href="https://www.instagram.com/vetlog_care><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/tiktok.png" height="20" width="20" alt="instagram"></a>
+          <a href="https://www.instagram.com/vetlog_care><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/instagram.png" height="20" width="20" alt="instagram"></a>
           <a href="https://tiktok.com/@vetlog_care"><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/tiktok.png" height="20" width="20" alt="tiktok"></a>
         </div>
       </div>
