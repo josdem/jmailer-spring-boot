@@ -21,25 +21,31 @@
     <p>Thank you for using Vetlog.</p>
     </div>
     <footer>
-    <div class="d-flex flex-column text-white" style="background-color: black">
-      <div class="p-2">
-        <div class="d-flex justify-content-center">
-          <a href="https://twitter.com/vetlog_care"><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/twitter.png" height="20" width="20" alt="twitter"></a>
-          <a href="https://www.instagram.com/vetlog_care"><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/instagram.png" height="20" width="20" alt="instagram"></a>
-          <a href="https://tiktok.com/@vetlog_care"><img style="margin: 0px 15px" src="https://storage.googleapis.com/vetlog-icons/tiktok.png" height="20" width="20" alt="tiktok"></a>
-        </div>
-      </div>
-      <div class="p-2">
-        <div class="d-flex justify-content-center">
-          <p>© Copyright 2025, Vetlog.</p>
-        </div>
-      </div>
-      <div class="p-2">
-        <div class="d-flex justify-content-center">
-          <a href="https://vetlog.org/">https://vetlog.org/</a>
-        </div>
-      </div>
-    </div>
-    </footer>
-  </body>
+    <table width="100%" bgcolor="#000000" cellpadding="10">
+    <tr>
+      <td align="center">
+        <a href="https://twitter.com/vetlog_care">
+          <img src="https://storage.googleapis.com/vetlog-icons/twitter.png" height="20" width="20" alt="twitter" style="margin: 0px 10px;">
+        </a>
+        <a href="https://www.instagram.com/vetlog_care">
+          <img src="https://storage.googleapis.com/vetlog-icons/instagram.png" height="20" width="20" alt="instagram" style="margin: 0px 10px;">
+        </a>
+        <a href="https://tiktok.com/@vetlog_care">
+          <img src="https://storage.googleapis.com/vetlog-icons/tiktok.png" height="20" width="20" alt="tiktok" style="margin: 0px 10px;">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="color: white; font-size: 14px;">
+        <span>&#169;</span> Copyright 2025, Vetlog.
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://vetlog.org/" style="color: white; font-size: 14px;">https://vetlog.org/</a>
+      </td>
+    </tr>
+  </table>
+</footer>
+</body>
 </html>
