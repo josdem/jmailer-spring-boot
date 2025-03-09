@@ -3,7 +3,6 @@ email:
   password: ${EMAIL_PASSWORD}
   vetlogUsername: ${VETLOG_USERNAME}
   vetlogPassword: ${VETLOG_PASSWORD}
-  subject: Hello from Jmailer!
   contact: contact@josdem.io
   redirect: https://jmailer.josdem.io/flyer
   whitelist: http://localhost:8080/
