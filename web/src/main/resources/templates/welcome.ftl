@@ -16,7 +16,7 @@
     <h3>Welcome to Vetlog!</h3>
     <br/>
     <p>Hello dear ${name}, we are glad to have you.</p>
-    <p>Now you have an account feel free to: ${message}</p>
+    <p>Now that you have an account feel free to: ${message}</p>
     <p>Visit our <a href="https://vetlog.org/privacy/show">privacy policy</a></p>
     <p>Thank you for using Vetlog.</p>
     </div>
