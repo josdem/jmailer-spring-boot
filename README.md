@@ -1,6 +1,6 @@
 Jmailer Spring Boot
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ------------------------------------
 Send email from everywhere!
@@ -41,6 +41,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/RaulUrbina"><img src="https://avatars.githubusercontent.com/u/182582371?v=4?s=100" width="100px;" alt="RaulUrbina"/><br /><sub><b>RaulUrbina</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=RaulUrbina" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AbaSheger"><img src="https://avatars.githubusercontent.com/u/111607144?v=4?s=100" width="100px;" alt="Abenezer Anglo"/><br /><sub><b>Abenezer Anglo</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=AbaSheger" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/axtant"><img src="https://avatars.githubusercontent.com/u/70051483?v=4?s=100" width="100px;" alt="axtant"/><br /><sub><b>axtant</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=axtant" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ZoltanNemeth9"><img src="https://avatars.githubusercontent.com/u/30147495?v=4?s=100" width="100px;" alt="Zoltan Nemeth"/><br /><sub><b>Zoltan Nemeth</b></sub></a><br /><a href="https://github.com/josdem/jmailer-spring-boot/commits?author=ZoltanNemeth9" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
