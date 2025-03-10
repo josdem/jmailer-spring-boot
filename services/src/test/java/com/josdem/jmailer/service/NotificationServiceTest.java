@@ -49,6 +49,7 @@ class NotificationServiceTest {
             "Jose Morales",
             EMAIL,
             "token",
+                "English",
             "Hello from Jmailer!",
             "contactName",
             "emailContact",
