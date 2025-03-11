@@ -48,8 +48,10 @@ class MailServiceTest {
 
   @BeforeEach
   void setup() {
-    templateStrategy.put(DEFAULT_TEMPLATE, new Client(javaMailSender, "Hello from Jmailer!","¡Hola desde Vetlog!"));
-    templateStrategy.put(VETLOG_TEMPLATE, new Client(vetlogMailSender, "Hello from Vetlog!","¡Hola desde Vetlog!"));
+    templateStrategy.put(
+        DEFAULT_TEMPLATE, new Client(javaMailSender, "Hello from Jmailer!", "¡Hola desde Jmailer!"));
+    templateStrategy.put(
+        VETLOG_TEMPLATE, new Client(vetlogMailSender, "Hello from Vetlog!", "¡Hola desde Vetlog!"));
     mailService = new MailServiceImpl(configuration, templateStrategy);
   }
 
