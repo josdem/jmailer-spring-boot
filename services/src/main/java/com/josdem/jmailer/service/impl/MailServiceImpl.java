@@ -23,6 +23,7 @@ import freemarker.template.Configuration;
 import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -46,11 +47,7 @@ public class MailServiceImpl implements MailService {
           var message = new MimeMessageHelper(mimeMessage, true);
           var myTemplate = configuration.getTemplate(template);
           message.setTo(values.get("email"));
-          var subject =
-              model.get("locale").equalsIgnoreCase("spanish")
-                  ? client.getSpanishSubject()
-                  : client.getSubject();
-          message.setSubject(subject);
+          message.setSubject(client.getSubject());
 
           var text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
           message.setText(text, true);
