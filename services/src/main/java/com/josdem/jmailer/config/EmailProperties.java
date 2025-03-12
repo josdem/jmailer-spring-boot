@@ -33,7 +33,6 @@ public class EmailProperties {
   private String vetlogPassword;
   private String redirect;
   private String vetlogSubject;
-  private String vetlogSubjectSpanish;
   private String jmailerSubject;
   private List<String> spamTokens;
   private List<String> spamNames;

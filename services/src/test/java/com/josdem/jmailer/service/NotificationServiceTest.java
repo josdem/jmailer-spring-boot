@@ -49,14 +49,12 @@ class NotificationServiceTest {
             "Jose Morales",
             EMAIL,
             "token",
-            "English",
             "Hello from Jmailer!",
             "contactName",
             "emailContact",
             TEMPLATE,
             "redirect",
             "source");
-    messageCommand.setLocale("English");
     when(mapper.convertValue(messageCommand, Map.class)).thenReturn(model);
     notificationService.sendNotification(messageCommand);
     verify(mailService).sendMailWithTemplate(data, model, TEMPLATE);

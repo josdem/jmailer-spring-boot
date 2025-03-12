@@ -10,7 +10,6 @@ email:
   homeRequestURL: http://localhost:8080/
   factor: 0.5
   vetlogSubject: Hello from Vetlog!
-  vetlogSubjectSpanish: ¡Hola desde Vetlog!
   jmailerSubject: Hello from Jmailer!
   spamTokens:
     - one

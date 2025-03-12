@@ -48,13 +48,6 @@ public class MessageCommand implements Command {
   @NotNull
   private String token;
 
-  @Schema(
-      description = "Localization",
-      type = "string",
-      allowableValues = {"English", "Spanish"})
-  @NotNull
-  private String locale;
-
   @Schema(description = "Message to send")
   @Size(min = 9)
   private String message;

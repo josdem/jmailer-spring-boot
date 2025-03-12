@@ -26,5 +26,4 @@ public class Client {
 
   private JavaMailSender sender;
   private String subject;
-  private String spanishSubject;
 }
