@@ -31,8 +31,5 @@ jobs:
       - name: Generate Gradelw
         run: gradle wrapper
 
-      - name: Run Services tests
-        run: ./gradlew -Dtoken=userToken jacocoTestReport sonar :services:test
-
       - name: Run Web tests
-        run: ./gradlew -Dtoken=userToken jacocoTestReport sonar :web:test
+        run: ./gradlew -Dtoken=userToken jacocoTestReport sonar test
