@@ -39,8 +39,11 @@ public class TemplateConfig {
 
     Map<String, Client> templateStrategy = new HashMap<>();
     templateStrategy.put("welcome.ftl", vetlogClient);
+    templateStrategy.put("welcome_es.ftl", vetlogClient);
     templateStrategy.put("adoption.ftl", vetlogClient);
+    templateStrategy.put("adoption_es.ftl", vetlogClient);
     templateStrategy.put("forgotPassword.ftl", vetlogClient);
+    templateStrategy.put("forgotPassword_es.ftl", vetlogClient);
     templateStrategy.put("message.ftl", jmailerClient);
     templateStrategy.put("register.ftl", jmailerClient);
     return templateStrategy;
