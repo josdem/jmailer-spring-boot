@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
+    id("org.sonarqube") version "6.0.1.5171"
     id ("java")
     id ("jacoco")
 }
@@ -30,6 +31,14 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "josdem_jmailer-spring-boot")
+        property("sonar.organization", "josdem-io")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 spotless {
