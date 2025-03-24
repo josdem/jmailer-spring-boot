@@ -2,19 +2,19 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     java
-    id("org.springframework.boot") version "3.4.1"
+    id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
+    id("org.sonarqube") version "6.0.1.5171"
     id ("java")
     id ("jacoco")
 }
 
-val springdocVersion = "2.8.3"
+val springdocVersion = "2.8.4"
 val freeMarkerVersion = "2.3.34"
 
 group = "com.josdem.jmailer"
-version = "1.3.0"
-
+version = "1.4.0"
 
 java {
     toolchain {
@@ -30,6 +30,14 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "josdem_jmailer-spring-boot")
+        property("sonar.organization", "josdem-io")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 spotless {

@@ -2,14 +2,15 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
     java
-    id("org.springframework.boot") version "3.4.1"
+    id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
+    id("org.sonarqube") version "6.0.1.5171"
     id ("java")
     id ("jacoco")
 }
 
-val springdocVersion = "2.8.3"
+val springdocVersion = "2.8.4"
 val freeMarkerVersion = "2.3.34"
 
 group = "com.josdem.jmailer"
@@ -28,6 +29,14 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "josdem_jmailer-spring-boot")
+        property("sonar.organization", "josdem-io")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 spotless {
@@ -50,7 +59,6 @@ dependencies {
     compileOnly ("org.projectlombok:lombok")
     annotationProcessor ("org.projectlombok:lombok")
     testImplementation ("org.springframework.boot:spring-boot-starter-test")
-    testImplementation ("io.projectreactor:reactor-test")
     testCompileOnly ("org.projectlombok:lombok")
     testAnnotationProcessor ("org.projectlombok:lombok")
 }

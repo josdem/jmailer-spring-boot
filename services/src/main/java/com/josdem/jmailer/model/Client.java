@@ -5,7 +5,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,15 +14,16 @@
  limitations under the License.
 */
 
-package com.josdem.jmailer;
+package com.josdem.jmailer.model;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.mail.javamail.JavaMailSender;
 
-@SpringBootApplication
-public class JmailerApplication {
+@Data
+@AllArgsConstructor
+public class Client {
 
-  public static void main(String[] args) {
-    SpringApplication.run(JmailerApplication.class, args);
-  }
+  private JavaMailSender sender;
+  private String subject;
 }

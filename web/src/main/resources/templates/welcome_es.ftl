@@ -13,12 +13,12 @@
     </header>
     <hr>
     <div class="d-flex flex-column" style="margin: 0px 15px">
-    <h3>Welcome to Vetlog!</h3>
+    <h3>¡Bienvenid@ a Vetlog!</h3>
     <br/>
-    <p>Hello dear ${name}, we are glad to have you.</p>
-    <p>Now that you have an account feel free to: ${message}</p>
-    <p>Visit our <a href="https://vetlog.org/privacy/show">privacy policy</a></p>
-    <p>Thank you for using Vetlog.</p>
+    <p>Hola ${name}, estamos felices que estés con nosotros.</p>
+    <p>Ahora que tienes una cuenta, siéntete libre de: ${message}</p>
+    <p>Visita nuestro <a href="https://vetlog.org/privacy/show">aviso de privacidad</a></p>
+    <p>Gracias por usar Vetlog.</p>
     </div>
     <footer>
     <table width="100%" bgcolor="#000000" cellpadding="10">

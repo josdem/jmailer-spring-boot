@@ -54,6 +54,24 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "axtant",
+      "name": "axtant",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70051483?v=4",
+      "profile": "https://github.com/axtant",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ZoltanNemeth9",
+      "name": "Zoltan Nemeth",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30147495?v=4",
+      "profile": "https://github.com/ZoltanNemeth9",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

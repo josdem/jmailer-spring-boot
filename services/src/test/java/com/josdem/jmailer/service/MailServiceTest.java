@@ -18,10 +18,12 @@ import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.josdem.jmailer.model.Client;
 import com.josdem.jmailer.service.impl.MailServiceImpl;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,26 +33,39 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 
 class MailServiceTest {
 
-  private static final String TEMPLATE = "message.ftl";
+  private static final String DEFAULT_TEMPLATE = "message.ftl";
+  private static final String VETLOG_TEMPLATE = "welcome.ftl";
 
   private MailService mailService;
   private final Map model = mock(Map.class);
   private final Configuration configuration = mock(Configuration.class);
   private final JavaMailSender javaMailSender = mock(JavaMailSender.class);
+  private final JavaMailSender vetlogMailSender = mock(JavaMailSender.class);
   private final Template freeMarkerTemplate = mock(Template.class);
+  private final Map<String, Client> templateStrategy = new HashMap<>();
   private final Map<String, String> values =
       Map.of("email", "contact@josdem.io", "subject", "Hello from Jmailer!");
 
   @BeforeEach
   void setup() {
-    mailService = new MailServiceImpl(configuration, javaMailSender);
+    templateStrategy.put(DEFAULT_TEMPLATE, new Client(javaMailSender, "Hello from Jmailer!"));
+    templateStrategy.put(VETLOG_TEMPLATE, new Client(vetlogMailSender, "Hello from Vetlog!"));
+    mailService = new MailServiceImpl(configuration, templateStrategy);
   }
 
   @Test
-  @DisplayName("sending mail with template")
-  void shouldSendMailWithTemplate() throws IOException {
-    given(configuration.getTemplate(TEMPLATE)).willReturn(freeMarkerTemplate);
-    mailService.sendMailWithTemplate(values, model, TEMPLATE);
+  @DisplayName("sending mail with default template")
+  void shouldSendMailWithDefaultTemplate() throws IOException {
+    given(configuration.getTemplate(DEFAULT_TEMPLATE)).willReturn(freeMarkerTemplate);
+    mailService.sendMailWithTemplate(values, model, DEFAULT_TEMPLATE);
     verify(javaMailSender).send(isA(MimeMessagePreparator.class));
+  }
+
+  @Test
+  @DisplayName("sending mail with vetlog template")
+  void shouldSendMailWithVetlogTemplate() throws IOException {
+    given(configuration.getTemplate(VETLOG_TEMPLATE)).willReturn(freeMarkerTemplate);
+    mailService.sendMailWithTemplate(values, model, VETLOG_TEMPLATE);
+    verify(vetlogMailSender).send(isA(MimeMessagePreparator.class));
   }
 }

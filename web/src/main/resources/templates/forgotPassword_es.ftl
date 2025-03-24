@@ -6,13 +6,14 @@
   </head>
   <body>
     <h1>Jmailer</h1>
-    <h3>Por favor, confirme su email</h3>
+    <h3>¿Necesitas resetear tu contraseña?</h3>
     <hr>
-    <p>Gracias por registrarse. Su cuenta ha sido creada y debe ser activada antes de que la pueda usar.</p>
-    <p>Para activar la cuenta, haga clic sobre el siguiente enlace o copie y pegue la URL completa en su navegador</p>
+    <p>Alguien ha solicitado resetear tu contraseña.</p>
+    <p>Si solicitaste esto, por favor da clic en el siguiente link para resetear</p>
     <p><br></p>
     <p class="text-center"><a href="${message}">${message}</a></p>
     <br/>
+    <p>Si tu no solicitaste o quieres conservar la contraseña actual, simplemente ignora este mensaje</p>
     <p>Thank you for using Jmailer!</p>
   </body>
 </html>

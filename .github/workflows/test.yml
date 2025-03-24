@@ -13,6 +13,7 @@ jobs:
     env:
       EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
       EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -30,8 +31,5 @@ jobs:
       - name: Generate Gradelw
         run: gradle wrapper
 
-      - name: Run Services tests
-        run: ./gradlew -Dtoken=userToken jacocoTestReport :services:test
-
       - name: Run Web tests
-        run: ./gradlew -Dtoken=userToken jacocoTestReport :web:test
+        run: ./gradlew -Dtoken=userToken jacocoTestReport sonar test
