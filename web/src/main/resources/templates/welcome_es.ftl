@@ -5,7 +5,6 @@
     <title>Notification</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/6.7.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -13,12 +12,12 @@
     </header>
     <hr>
     <div class="d-flex flex-column" style="margin: 0px 15px">
-    <h3>¡Bienvenid@ a Vetlog!</h3>
-    <br/>
-    <p>Hola ${name}, estamos felices que estés con nosotros.</p>
-    <p>Ahora que tienes una cuenta, siéntete libre de: ${message}</p>
-    <p>Visita nuestro <a href="https://vetlog.org/privacy/show">aviso de privacidad</a></p>
-    <p>Gracias por usar Vetlog.</p>
+      <h3>¡Bienvenid@ a Vetlog!</h3>
+      <br/>
+      <p>Hola ${name}, estamos felices que estés con nosotros.</p>
+      <p>Ahora que tienes una cuenta, siéntete libre de: ${message}</p>
+      <p>Visita nuestro <a href="https://vetlog.org/privacy/show">aviso de privacidad</a></p>
+      <p>Gracias por usar Vetlog.</p>
     </div>
     <footer>
     <table width="100%" bgcolor="#000000" cellpadding="10">
@@ -45,7 +44,7 @@
         <a href="https://vetlog.org/" style="color: white; font-size: 14px;">https://vetlog.org/</a>
       </td>
     </tr>
-  </table>
-</footer>
+    </table>
+  </footer>
 </body>
 </html>
