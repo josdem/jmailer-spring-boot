@@ -14,7 +14,7 @@ val springdocVersion = "2.8.4"
 val freeMarkerVersion = "2.3.34"
 
 group = "com.josdem.jmailer"
-version = "1.4.1"
+version = "1.4.2"
 
 java {
     toolchain {
