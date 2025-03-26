@@ -17,6 +17,10 @@
 package com.josdem.jmailer.config;
 
 import jakarta.jms.ConnectionFactory;
+import jakarta.mail.MessagingException;
+import jakarta.mail.NoSuchProviderException;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,27 +35,26 @@ public class ApplicationConfig {
   private final EmailProperties emailProperties;
 
   @Bean
-  JavaMailSenderImpl defaultMailSender() {
+  JavaMailSenderImpl defaultMailSender() throws MessagingException {
     return getMailSenderConfig(emailProperties.getUsername(), emailProperties.getPassword());
   }
 
   @Bean
-  JavaMailSenderImpl vetlogMailSender() {
+  JavaMailSenderImpl vetlogMailSender() throws MessagingException {
     return getMailSenderConfig(
         emailProperties.getVetlogUsername(), emailProperties.getVetlogPassword());
   }
 
-  private JavaMailSenderImpl getMailSenderConfig(String username, String password) {
+  private JavaMailSenderImpl getMailSenderConfig(String username, String password) throws MessagingException {
     var mailSender = new JavaMailSenderImpl();
     mailSender.setHost("smtp.gmail.com");
     mailSender.setPort(587);
-    mailSender.setUsername(username);
-    mailSender.setPassword(password);
     var prop = mailSender.getJavaMailProperties();
-    prop.put("mail.transport.protocol", "smtp");
-    prop.put("mail.smtp.auth", "true");
-    prop.put("mail.smtp.starttls.enable", "true");
-    prop.put("mail.debug", "true");
+    prop.put("mail.imap.ssl.enable", "true");
+    prop.put("mail.imap.auth.mechanisms", "XOAUTH2");
+    Session session = Session.getInstance(prop);
+    Store store = session.getStore("imap");
+    store.connect("imap.gmail.com", username, "oauth2_access_token");
     return mailSender;
   }
 
