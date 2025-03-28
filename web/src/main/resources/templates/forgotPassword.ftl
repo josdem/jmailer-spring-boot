@@ -20,7 +20,7 @@
       <p class="text-center"><a href="${message}">${message}</a></p>
       <br/>
       <p>If you want to keep using your current password, just ignore this message.</p>
-      <p>Visit our privacy policy: <a href="https://vetlog.org/privacy/show">aviso de privacidad</a></p>
+      <p>Visit our <a href="https://vetlog.org/privacy/show">privacy policy</a></p>
       <p>Thanks for using Vetlog.</p>
     </div>
     <footer>
