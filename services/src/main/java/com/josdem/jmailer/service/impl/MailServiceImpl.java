@@ -46,7 +46,7 @@ public class MailServiceImpl implements MailService {
           var message = new MimeMessageHelper(mimeMessage, true);
           var myTemplate = configuration.getTemplate(template);
           message.setTo(values.get("email"));
-          message.setSubject(client.getSubject());
+          message.setSubject(values.get("subject"));
 
           var text = FreeMarkerTemplateUtils.processTemplateIntoString(myTemplate, model);
           message.setText(text, true);
