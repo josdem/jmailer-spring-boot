@@ -30,12 +30,11 @@ public class TemplateConfig {
 
   private final JavaMailSender defaultMailSender;
   private final JavaMailSender vetlogMailSender;
-  private final EmailProperties emailProperties;
 
   @Bean
   public Map<String, Client> templateStrategy() {
-    var vetlogClient = new Client(vetlogMailSender, emailProperties.getVetlogSubject());
-    var jmailerClient = new Client(defaultMailSender, emailProperties.getJmailerSubject());
+    var vetlogClient = new Client(vetlogMailSender);
+    var jmailerClient = new Client(defaultMailSender);
 
     Map<String, Client> templateStrategy = new HashMap<>();
     templateStrategy.put("welcome.ftl", vetlogClient);
