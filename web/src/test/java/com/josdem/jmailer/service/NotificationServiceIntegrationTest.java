@@ -28,7 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-class NotificationServiceTest {
+class NotificationServiceIntegrationTest {
 
   private final NotificationService notificationService;
 
@@ -38,7 +38,8 @@ class NotificationServiceTest {
     log.info("Running: {}", testInfo.getDisplayName());
     MessageCommand message = new MessageCommand();
     message.setEmail("joseluis.delacruz@gmail.com");
-    message.setMessage("Hello from Junit5!");
+    message.setSubject("Hello from Jmailer!");
+    message.setMessage("Hello there, this is a Junit5 message.");
     message.setName("Junit Jupiter");
     message.setTemplate("message.ftl");
     message.setToken("userToken");
