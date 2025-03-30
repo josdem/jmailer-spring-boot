@@ -49,6 +49,10 @@ public class MessageCommand implements Command {
   private String token;
 
   @Schema(description = "Message to send")
+  @NotNull
+  private String subject;
+
+  @Schema(description = "Message to send")
   @Size(min = 9)
   private String message;
 
