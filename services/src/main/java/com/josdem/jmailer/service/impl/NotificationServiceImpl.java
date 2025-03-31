@@ -16,6 +16,7 @@
 
 package com.josdem.jmailer.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josdem.jmailer.command.MessageCommand;
 import com.josdem.jmailer.service.MailService;
@@ -34,7 +35,7 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public void sendNotification(MessageCommand command) {
     var data = Map.of("email", command.getEmail());
-    mailService.sendMailWithTemplate(
-        data, mapper.convertValue(command, Map.class), command.getTemplate());
+    var model = mapper.convertValue(command, new TypeReference<Map<String, String>>() {});
+    mailService.sendMailWithTemplate(data, model, command.getTemplate());
   }
 }

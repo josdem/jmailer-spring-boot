@@ -25,5 +25,4 @@ import org.springframework.mail.javamail.JavaMailSender;
 public class Client {
 
   private JavaMailSender sender;
-  private String subject;
 }
