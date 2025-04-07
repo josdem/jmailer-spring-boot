@@ -12,6 +12,7 @@ plugins {
 
 val springdocVersion = "2.8.4"
 val freeMarkerVersion = "2.3.34"
+val jmsApiVersion = "2.0.1"
 
 group = "com.josdem.jmailer"
 
@@ -54,7 +55,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-validation")
     implementation ("org.freemarker:freemarker:$freeMarkerVersion")
     implementation ("org.apache.activemq:activemq-broker")
-    implementation ("javax.jms:javax.jms-api:2.0.1")
+    implementation ("javax.jms:javax.jms-api:$jmsApiVersion")
     implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
     compileOnly ("org.projectlombok:lombok")
     annotationProcessor ("org.projectlombok:lombok")
