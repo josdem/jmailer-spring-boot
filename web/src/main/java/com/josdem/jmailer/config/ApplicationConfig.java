@@ -57,7 +57,8 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public JmsListenerContainerFactory<SimpleMessageListenerContainer> myJmsContainerFactory(ConnectionFactory connectionFactory) {
+  public JmsListenerContainerFactory<SimpleMessageListenerContainer> myJmsContainerFactory(
+      ConnectionFactory connectionFactory) {
     var factory = new SimpleJmsListenerContainerFactory();
     factory.setConnectionFactory(connectionFactory);
     return factory;
