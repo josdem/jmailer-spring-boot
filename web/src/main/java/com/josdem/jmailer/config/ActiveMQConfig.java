@@ -17,6 +17,7 @@
 package com.josdem.jmailer.config;
 
 import jakarta.jms.ConnectionFactory;
+import java.util.List;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ public class ActiveMQConfig {
   @Bean
   public ConnectionFactory connectionFactory() {
     var factory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
-    factory.setTrustAllPackages(true);
+    factory.setTrustedPackages(List.of("com.josdem.jmailer"));
     return factory;
   }
 }
