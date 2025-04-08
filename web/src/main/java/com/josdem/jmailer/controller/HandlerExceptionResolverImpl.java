@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Component
-public class HandlerException implements HandlerExceptionResolver {
+public class HandlerExceptionResolverImpl implements HandlerExceptionResolver {
 
   public ModelAndView resolveException(
       HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {

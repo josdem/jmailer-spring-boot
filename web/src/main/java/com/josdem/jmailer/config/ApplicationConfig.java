@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
+import org.springframework.jms.listener.SimpleMessageListenerContainer;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
@@ -56,7 +57,8 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
+  public JmsListenerContainerFactory<SimpleMessageListenerContainer> myJmsContainerFactory(
+      ConnectionFactory connectionFactory) {
     var factory = new SimpleJmsListenerContainerFactory();
     factory.setConnectionFactory(connectionFactory);
     return factory;

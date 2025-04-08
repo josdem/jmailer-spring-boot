@@ -65,7 +65,7 @@ public class EmailerController {
       return new ResponseEntity<String>("FORBIDDEN", HttpStatus.FORBIDDEN);
     }
     emailerService.sendEmail(command);
-    return new ResponseEntity<String>("OK", HttpStatus.OK);
+    return new ResponseEntity<>("OK", HttpStatus.OK);
   }
 
   @PostMapping(value = "/form", consumes = "application/x-www-form-urlencoded")
@@ -82,6 +82,6 @@ public class EmailerController {
   @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Unauthorized")
   @ExceptionHandler(BusinessException.class)
   public ResponseEntity<String> handleException(BusinessException be) {
-    return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+    return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
   }
 }
