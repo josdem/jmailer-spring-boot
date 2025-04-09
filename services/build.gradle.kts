@@ -64,6 +64,16 @@ dependencies {
     testAnnotationProcessor ("org.projectlombok:lombok")
 }
 
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+    }
+}
+
 the<DependencyManagementExtension>().apply {
     imports {
         mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
