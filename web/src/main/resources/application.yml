@@ -5,8 +5,6 @@ email:
   vetlogPassword: ${VETLOG_PASSWORD}
   contact: contact@josdem.io
   redirect: https://jmailer.josdem.io/flyer
-  whitelist: http://localhost:8080/
-  blacklist: 180.76.15.
   homeRequestURL: http://localhost:8080/
   factor: 0.5
   spamTokens:

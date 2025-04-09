@@ -17,6 +17,7 @@ val jmsApiVersion = "2.0.1"
 group = "com.josdem.jmailer"
 version = "1.4.8"
 
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
