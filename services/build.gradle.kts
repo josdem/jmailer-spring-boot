@@ -37,6 +37,7 @@ sonar {
         property("sonar.projectKey", "josdem_jmailer-spring-boot")
         property("sonar.organization", "josdem-io")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "services/build/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
