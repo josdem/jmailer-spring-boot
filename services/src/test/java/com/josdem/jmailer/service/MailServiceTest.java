@@ -13,11 +13,13 @@
 
 package com.josdem.jmailer.service;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.josdem.jmailer.exception.BusinessException;
 import com.josdem.jmailer.model.Client;
 import com.josdem.jmailer.service.impl.MailServiceImpl;
 import freemarker.template.Configuration;
@@ -25,12 +27,15 @@ import freemarker.template.Template;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
+@Slf4j
 class MailServiceTest {
 
   private static final String DEFAULT_TEMPLATE = "message.ftl";
@@ -51,6 +56,16 @@ class MailServiceTest {
     templateStrategy.put(DEFAULT_TEMPLATE, new Client(javaMailSender));
     templateStrategy.put(VETLOG_TEMPLATE, new Client(vetlogMailSender));
     mailService = new MailServiceImpl(configuration, templateStrategy);
+  }
+
+  @Test
+  @DisplayName("throwing exception when template is not found")
+  void shouldThrowExceptionWhenTemplateIsNotFound(TestInfo testInfo) {
+    log.info(testInfo.getDisplayName());
+    var templateName = "nonexistent.ftl";
+    assertThrows(
+        BusinessException.class,
+        () -> mailService.sendMailWithTemplate(values, model, templateName));
   }
 
   @Test
