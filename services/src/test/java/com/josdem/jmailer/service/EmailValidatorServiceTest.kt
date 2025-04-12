@@ -79,6 +79,14 @@ internal class EmailValidatorServiceTest {
         }
     }
 
+    @Test
+    fun `should validate adoption by message`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        var command = getCommand()
+        command.message = "5610184061"
+        emailValidatorService.validate(command)
+    }
+
     private fun getCommand(): MessageCommand {
         var command =
             MessageCommand().apply {
