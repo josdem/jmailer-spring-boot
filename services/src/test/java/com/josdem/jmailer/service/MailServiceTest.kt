@@ -9,17 +9,28 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mock
+import org.mockito.Mockito.isA
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.slf4j.LoggerFactory
+import org.springframework.mail.javamail.JavaMailSender
+import org.springframework.mail.javamail.MimeMessagePreparator
+
+private const val DEFAULT_TEMPLATE: String = "message.ftl"
+private const val VETLOG_TEMPLATE: String = "welcome.ftl"
 
 internal class MailServiceTest {
     private lateinit var mailService: MailService
 
     @Mock private lateinit var configuration: Configuration
 
-    private val templateStrategy: Map<String, Client> = emptyMap()
+    @Mock private lateinit var javaMailSender: JavaMailSender
 
-    private val model: Map<String, String> = emptyMap()
+    @Mock private lateinit var vetlogMailSender: JavaMailSender
+
+    private val templateStrategy = mutableMapOf<String, Client>()
+
+    private val model = mutableMapOf<String, String>()
 
     private val values = mapOf("email" to "contact@josdem.io", "subject" to "Hello from Jmailer!")
 
@@ -28,6 +39,8 @@ internal class MailServiceTest {
     @BeforeEach
     fun setUp() {
         MockitoAnnotations.openMocks(this)
+        templateStrategy[DEFAULT_TEMPLATE] = Client(javaMailSender)
+        templateStrategy[VETLOG_TEMPLATE] = Client(vetlogMailSender)
         mailService = MailServiceImpl(configuration, templateStrategy)
     }
 
@@ -36,5 +49,13 @@ internal class MailServiceTest {
         log.info(testInfo.displayName)
         val templateName = "nonexistent.ftl"
         assertThrows<BusinessException> { mailService.sendMailWithTemplate(values, model, templateName) }
+    }
+
+    @Test
+    fun `should send an email with default template`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        val templateName = "message.ftl"
+        mailService.sendMailWithTemplate(values, model, templateName)
+        verify(javaMailSender).send(isA(MimeMessagePreparator::class.java))
     }
 }
