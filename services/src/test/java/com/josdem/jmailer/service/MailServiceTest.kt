@@ -54,8 +54,14 @@ internal class MailServiceTest {
     @Test
     fun `should send an email with default template`(testInfo: TestInfo) {
         log.info(testInfo.displayName)
-        val templateName = "message.ftl"
-        mailService.sendMailWithTemplate(values, model, templateName)
+        mailService.sendMailWithTemplate(values, model, DEFAULT_TEMPLATE)
         verify(javaMailSender).send(isA(MimeMessagePreparator::class.java))
+    }
+
+    @Test
+    fun `should send an email with vetlog template`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        mailService.sendMailWithTemplate(values, model, VETLOG_TEMPLATE)
+        verify(vetlogMailSender).send(isA(MimeMessagePreparator::class.java))
     }
 }
