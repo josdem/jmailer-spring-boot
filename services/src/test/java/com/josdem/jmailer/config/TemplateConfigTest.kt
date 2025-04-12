@@ -43,4 +43,12 @@ internal class TemplateConfigTest {
         assertTrue(templateStrategy.containsKey("message.ftl"))
         assertTrue(templateStrategy.containsKey("register.ftl"))
     }
+
+    @Test
+    fun `getting default client`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        val templateStrategy = templateConfig.templateStrategy()
+        val defaultClient = templateStrategy["message.ftl"]
+        assertNotNull(defaultClient)
+    }
 }
