@@ -15,7 +15,7 @@ val freeMarkerVersion = "2.3.34"
 val jmsApiVersion = "2.0.1"
 
 group = "com.josdem.jmailer"
-version = "1.4.9"
+version = "1.4.10"
 
 
 java {
