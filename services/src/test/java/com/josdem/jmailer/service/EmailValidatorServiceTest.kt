@@ -68,6 +68,17 @@ internal class EmailValidatorServiceTest {
         }
     }
 
+    @Test
+    fun `should validate spam by keyword`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        var command = getCommand()
+        command.name = "NHUQfuLarRMDj"
+
+        assertThrows<BusinessException> {
+            emailValidatorService.validate(command)
+        }
+    }
+
     private fun getCommand(): MessageCommand {
         var command =
             MessageCommand().apply {
