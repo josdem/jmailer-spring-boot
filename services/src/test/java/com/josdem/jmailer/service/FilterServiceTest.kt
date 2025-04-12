@@ -29,7 +29,7 @@ internal class FilterServiceTest {
 
     @BeforeEach
     fun setUp() {
-        var emailProperties = EmailProperties()
+        val emailProperties = EmailProperties()
         emailProperties.factor = 0.5
         filterService = FilterServiceImpl(emailProperties)
     }
