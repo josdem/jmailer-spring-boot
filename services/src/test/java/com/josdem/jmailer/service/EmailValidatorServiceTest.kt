@@ -49,6 +49,26 @@ internal class EmailValidatorServiceTest {
     @Test
     fun `should validate spam by message`(testInfo: TestInfo) {
         log.info(testInfo.displayName)
+        var command = getCommand()
+        command.message = "discount"
+
+        assertThrows<BusinessException> {
+            emailValidatorService.validate(command)
+        }
+    }
+
+    @Test
+    fun `should validate spam by name`(testInfo: TestInfo) {
+        log.info(testInfo.displayName)
+        var command = getCommand()
+        command.name = "John"
+
+        assertThrows<BusinessException> {
+            emailValidatorService.validate(command)
+        }
+    }
+
+    private fun getCommand(): MessageCommand {
         var command =
             MessageCommand().apply {
                 name = "josdem"
@@ -57,12 +77,9 @@ internal class EmailValidatorServiceTest {
                 email = "contact@josdem.io"
                 redirect = "redirect"
                 subject = "Hello"
+                message = "Hello from Junit5!"
                 source = "source"
             }
-        command.message = "discount"
-
-        assertThrows<BusinessException> {
-            emailValidatorService.validate(command)
-        }
+        return command
     }
 }
