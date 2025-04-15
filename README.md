@@ -1,6 +1,7 @@
 Jmailer Spring Boot
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All 1Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jmailer&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jmailer)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ------------------------------------
 Send email from everywhere!

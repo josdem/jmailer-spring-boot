@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailValidatorServiceImpl implements EmailValidatorService {
 
-  private static final String REGEX = "[0-9]+";
+  private static final String REGEX = "\\d+";
   private final EmailProperties emailProperties;
   private final FilterService filterService;
 
