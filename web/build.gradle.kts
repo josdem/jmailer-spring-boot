@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
     id("org.sonarqube") version "6.0.1.5171"
+    id("org.jetbrains.kotlin.jvm") version "2.1.10"
     id ("java")
     id ("jacoco")
 }
@@ -13,6 +14,7 @@ plugins {
 val springdocVersion = "2.8.4"
 val freeMarkerVersion = "2.3.34"
 val jmsApiVersion = "2.0.1"
+val mockitoKotlinVersion = "5.4.0"
 
 group = "com.josdem.jmailer"
 version = "1.4.11"
@@ -22,6 +24,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 configurations {
@@ -48,6 +54,13 @@ spotless {
         removeUnusedImports()
         endWithNewline()
     }
+    kotlin {
+        target("**/*.kt")
+        targetExclude("**/build/**", "**/build-*/**")
+        ktlint()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
 }
 
 dependencies {
@@ -64,9 +77,10 @@ dependencies {
     implementation (project (":services"))
     compileOnly ("org.projectlombok:lombok")
     annotationProcessor ("org.projectlombok:lombok")
-    testImplementation ("org.springframework.boot:spring-boot-starter-test")
     testCompileOnly ("org.projectlombok:lombok")
     testAnnotationProcessor ("org.projectlombok:lombok")
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
 }
 
 tasks.withType<Test> {
