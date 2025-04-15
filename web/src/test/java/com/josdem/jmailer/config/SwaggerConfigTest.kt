@@ -24,7 +24,7 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.slf4j.LoggerFactory
 
-private const val SWAGGER_SERVER: kotlin.String = "http://localhost:8080"
+private const val SWAGGER_SERVER: String = "http://localhost:8080"
 
 internal class SwaggerConfigTest {
     private lateinit var swaggerConfig: SwaggerConfig
