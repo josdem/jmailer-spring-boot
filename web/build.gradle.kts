@@ -17,7 +17,7 @@ val jmsApiVersion = "2.0.1"
 val mockitoKotlinVersion = "5.4.0"
 
 group = "com.josdem.jmailer"
-version = "1.4.11"
+version = "1.4.12"
 
 
 java {
