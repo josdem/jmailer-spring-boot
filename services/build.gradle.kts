@@ -2,7 +2,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
     java
-    id("org.springframework.boot") version "3.4.2"
+    id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
     id("org.sonarqube") version "6.0.1.5171"
@@ -11,7 +11,7 @@ plugins {
     id ("jacoco")
 }
 
-val springdocVersion = "2.8.4"
+val springdocVersion = "2.8.6"
 val freeMarkerVersion = "2.3.34"
 val jmsApiVersion = "2.0.1"
 val mockitoKotlinVersion = "5.4.0"

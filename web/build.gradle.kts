@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     java
-    id("org.springframework.boot") version "3.4.2"
+    id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
     id ("com.diffplug.spotless") version "7.0.2"
     id("org.jetbrains.kotlin.jvm") version "2.1.10"
@@ -10,13 +10,13 @@ plugins {
     id ("jacoco")
 }
 
-val springdocVersion = "2.8.4"
+val springdocVersion = "2.8.6"
 val freeMarkerVersion = "2.3.34"
 val jmsApiVersion = "2.0.1"
 val mockitoKotlinVersion = "5.4.0"
 
 group = "com.josdem.jmailer"
-version = "1.4.12"
+version = "1.5.0"
 
 
 java {
